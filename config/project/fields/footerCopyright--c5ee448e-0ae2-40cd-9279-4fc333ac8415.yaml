@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 3851b6a0-ac4d-43e7-ba78-aee369748c8f
+handle: footerCopyright
+instructions: ''
+name: 'Footer Copyright'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -1,0 +1,23 @@
+enableVersioning: true
+handle: globalFooter
+name: 'Global Footer'
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  6671a41b-84cc-4d94-91a7-02d6825a057c:
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: null
+type: single

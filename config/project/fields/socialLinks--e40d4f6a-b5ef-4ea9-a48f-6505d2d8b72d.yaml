@@ -1,0 +1,57 @@
+contentColumnType: text
+fieldGroup: fabe0e87-64a6-48d8-ae62-b368f9ebd436
+handle: socialLinks
+instructions: ''
+name: 'Social Links'
+searchable: false
+settings:
+  addRowLabel: 'Add a row'
+  columnType: text
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Facebook
+            -
+              - handle
+              - facebook
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Twitter
+            -
+              - handle
+              - twitter
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  defaults:
+    -
+      __assoc__:
+        -
+          - col1
+          - ''
+        -
+          - col2
+          - ''
+  maxRows: ''
+  minRows: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

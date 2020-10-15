@@ -1,0 +1,76 @@
+contentColumnType: text
+fieldGroup: 0f57c7d8-8c6e-4dfd-b236-2d40d9f224dc
+handle: globalNav
+instructions: 'Setup the global Nav Options'
+name: 'Global Nav'
+searchable: true
+settings:
+  addRowLabel: 'Add a row'
+  columnType: text
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - menu-text
+            -
+              - handle
+              - menuText
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - menu-url
+            -
+              - handle
+              - menuUrl
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - menu-tip
+            -
+              - handle
+              - menuTip
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  defaults:
+    -
+      __assoc__:
+        -
+          - col1
+          - ''
+        -
+          - col2
+          - ''
+        -
+          - col3
+          - ''
+  maxRows: ''
+  minRows: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

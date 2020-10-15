@@ -1,0 +1,37 @@
+{#-- Global footer --#}
+
+{#-- Browser fixes --#}
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+		{% set myEntryQuery = craft.entries().section('globalFooter').limit(1) %}
+		{% set thisEntry = myEntryQuery.one() %}
+
+		<footer class="FooterSections dark">
+			<div class="footerInfo">
+				<span>
+                    {% set logo = thisEntry.simpleLogo.one() %}
+					<a href="/"><img class="footerLogo" src="{{ logo.url }}" alt="{{ logo.altText }}" class="lazyloaded">
+					</a>
+				</span>
+				<span>
+                    {{ thisEntry.footerCopyright }}
+				</span>
+				<span class="footerLinks">
+					<a href="#">{{ thisEntry.footerPrivacy }}</a>
+				</span>
+			</div>
+			<div class="footerSocial">
+                {% for row in thisEntry.socialLinks %}
+                    <span class="">
+                        <a class="footerSocial-icons footerSocial-icons--fb" href="{{ row.facebook }}"></a>
+                    </span>
+                    <span class="">
+                        <a class="footerSocial-icons footerSocial-icons--twitter" href="{{ row.twitter }}"></a>
+                    </span>
+                {% endfor %}
+			</div>
+		</footer>
+

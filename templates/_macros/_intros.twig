@@ -1,0 +1,29 @@
+{# public macro for displaying food choices #}
+
+{% macro showIntro(slug = "") %}
+{% import '_macros/_srcset' as m_srcset %}
+{% import _self as self %}
+
+{% set myItems = craft.entries().section('intros').search(slug) %}
+{% set item = myItems.one() %}
+
+<section class="MainContent">
+        <div class="Intro">
+            <div class="Intro-title">
+                <h1>{{ item.introHeading }}</h1>
+                <p>
+                    {{ item.introSubheading }}
+                </p>
+            </div>
+
+            {# set top hero image with srcset tags #}
+            {{ m_srcset.srcset(item.introHero.one(), 'hero') }}
+
+            <div class="Intro-heading">
+                <h2>{{ item.introTitle }}</h2>
+                <p>{{ item.introTagline }}</p>
+            </div>
+        </div>
+</section>
+
+{% endmacro showIntro %}

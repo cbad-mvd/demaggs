@@ -1,0 +1,92 @@
+fieldLayouts:
+  cb2edaeb-ad85-4eb7-a8ed-af60d5d89a61:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 01aa4cfa-3356-4eaa-a5f8-da933e5d00f4
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ac03511f-5cac-4f49-a1e6-e35c03612c97
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 13772022-4b96-416d-910d-5adbc3d783da
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 6223420a-15e1-48d0-80ca-8e23f867bffd
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 08fa6b7d-6167-4fa6-8bef-ef1d47c34f0e
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e9aed476-d853-4f13-a893-38cb40f3a236
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+handle: menu
+hasTitleField: true
+name: Menu
+section: 49845259-44cc-4a27-9b03-eea67b7bdbd4
+sortOrder: 1
+titleFormat: 'Custom Menu'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

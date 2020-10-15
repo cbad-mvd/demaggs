@@ -1,0 +1,76 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{# import the srcset macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Testimonials</title>
+{% endblock titleTag %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('testimonials') }}
+{% endblock pageintro %}
+
+{% block content %}
+    <section class="row Video">
+        <div class="Video-wrapper">
+            <iframe width="786" height="442" src="https://www.youtube.com/embed/xGfLXDTzJck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
+<!--
+            <iframe width="425" height="349" src="https://www.youtube.com/embed/FKWwdQu6_ok" frameborder="0" allowfullscreen></iframe>
+            <iframe src="http://player.vimeo.com/video/25708134?title=0&amp;byline=0&amp;portrait=0" width="400" height="225" frameborder="0"></iframe>
+            <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe>
+-->            
+        </div>
+        <p class="Video-caption" style="margin: 0.5rem; text-align: center;">Check out the action at 2:02 in the clip!<p>
+    </section>
+    <section class="row VidGallery">
+        {% for vidBlock in entry.vidBlocks.limit(5) %}
+            <div class="VidGallery-image">
+                {% set img = vidBlock.vidImage.one() %}
+                <img class="lazy" src="{{ img.url }}" alt="{{ img.altText }}" />
+            </div>
+        {% endfor %}
+
+<!--        
+        <div class="VidGallery-image">
+            {#					{% set img = category.fiGroupImage.one() %}         #}
+			<img class="lazy" src="/assets/img/food-burger.jpg" alt="image goes here" />
+        </div>
+        <div class="VidGallery-image">
+            {#					{% set img = category.fiGroupImage.one() %}         #}
+			<img class="lazy" src="/assets/img/food-burger.jpg" alt="image goes here" />
+        </div>
+        <div class="VidGallery-image">
+            {#					{% set img = category.fiGroupImage.one() %}         #}
+			<img class="lazy" src="/assets/img/food-burger.jpg" alt="image goes here" />
+        </div>
+        <div class="VidGallery-image">
+            {#					{% set img = category.fiGroupImage.one() %}         #}
+			<img class="lazy" src="/assets/img/food-burger.jpg" alt="image goes here" />
+        </div>
+        <div class="VidGallery-image">
+            {#					{% set img = category.fiGroupImage.one() %}         #}
+			<img class="lazy" src="/assets/img/food-burger.jpg" alt="image goes here" />
+        </div>
+-->
+
+    </section>
+{% endblock content %}
+
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+    {{ parent() }}
+    <script src="/assets/js/jquery.fitvids.js"></script>
+    <script>
+    // Basic FitVids Test
+    $(".Video-wrapper").fitVids();
+    // Custom selector and No-Double-Wrapping Prevention Test
+    $(".Video-wrapper").fitVids({ customSelector: "iframe[src^='http://socialcam.com']"});
+    </script>
+    
+{% endblock bodyJs %}

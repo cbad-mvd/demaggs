@@ -1,0 +1,30 @@
+contentColumnType: string
+fieldGroup: fabe0e87-64a6-48d8-ae62-b368f9ebd436
+handle: socialTwitter
+instructions: ''
+name: 'Social Twitter'
+searchable: false
+settings:
+  allowSelfRelations: false
+  allowedKinds: null
+  defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+  defaultUploadLocationSubpath: ''
+  limit: ''
+  localizeRelations: false
+  previewMode: full
+  restrictFiles: ''
+  selectionLabel: ''
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  singleUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+  singleUploadLocationSubpath: ''
+  source: null
+  sources: '*'
+  targetSiteId: null
+  useSingleFolder: false
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Assets

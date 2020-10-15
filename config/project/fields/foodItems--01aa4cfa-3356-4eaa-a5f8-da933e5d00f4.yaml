@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: 7e14fbf0-d7cf-45fb-9cd2-2ff90ed4067f
+handle: foodItems
+instructions: ''
+name: 'Food Items'
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_fooditems}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

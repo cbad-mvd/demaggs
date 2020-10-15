@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 9cbb1a68-2306-49a6-a326-5894a9bae891
+handle: fiPrice
+instructions: ''
+name: 'Item Price'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

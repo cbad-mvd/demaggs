@@ -1,0 +1,106 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{# import the srcset macro #}
+{% import '_macros/_srcset' as m_srcset %}
+
+{% block titleTag %}
+	<title>DaBomb Build Your Menu Page II</title>
+{% endblock titleTag %}
+
+{% block headLinks %}
+	{{ parent() }}
+{% endblock headLinks %}
+
+{#
+{% block pageintro %}
+                        <section class="MainContent">
+                                <div class="Intro">
+                                    <div class="Intro-title">
+                                        {{ entry.introHeading }}
+                                        <p>
+                                            {{ entry.introSubtitle }}
+                                        </p>
+                                    </div>
+
+                                    { set top hero image with srcset tags }
+                                    {{ m_srcset.srcset(entry.introHero.one(), 'hero') }}
+
+                                    <div class="Intro-heading">
+                                        <h2>{{ entry.introTitle }}</h2>
+                                        <p>{{ entry.introTagline }}</p>
+                                    </div>
+                                </div>
+                        </section>
+{% endblock pageintro %}
+
+#}
+{% block content %}
+
+        <div class="row">
+			<div class="Food">
+				<div class="FoodChoices">
+				
+					{% for item in entry.foodItems %}
+						<div class="FoodItem">
+							<div class="FoodItem-info"> 
+								<h5 class="FoodItem-title">{{ item.itemName }}</h5>
+								<p>{{ item.itemDescription }}</p>
+								<p class="FoodItem-price">${{ item.itemPrice }}</p>
+								<span class="FoodItem-button button"><a href="mailto:info@demaggs.com?subject=DEMAGGS Dining Request ">Add to Menu</a></span>
+							</div>
+							{% for img in item.itemImage %}
+								<span class="FoodItem-image" style="background-image: url({{ img.url }});"></span>
+							{% endfor %}
+						</div>
+					{% endfor %}
+					
+					{% set myEntryQuery = craft.entries().section('menu') %}
+					{% set foodItems = myEntryQuery.all() %}
+
+					{% for item in foodItems %}
+						<div class="FoodItem">
+							<div class="FoodItem-info"> 
+								<h5 class="FoodItem-title">{{ item.fiName }}</h5>
+								<p>{{ item.fiDescription }}</p>
+								<p class="FoodItem-price">${{ item.fiPrice }}</p>
+								<span class="FoodItem-button button"><a href="mailto:info@demaggs.com?subject=DEMAGGS Dining Request ">Add to Menu</a></span>
+							</div>
+							{% for img in item.fiImage %}
+								<span class="FoodItem-image" style="background-image: url({{ img.url }});"></span>
+							{% endfor %}
+						</div>
+					{% endfor %}
+
+				</div>
+				
+				<div class="FoodMenu dark">
+					<h5 class="FoodMenu-title">My Selections:</h5>
+					<div class="FoodMenu-choices">
+						<div class="FoodMenu-item">
+							<p class="name">Demaggs Signature Burger</p>
+							<p class="price">$13.00</p>
+							<p class="remove"  title="Remove"><a href="#">X</a></p>
+						</div>
+						<div class="FoodMenu-item">
+							<p class="name">Napa Chicken Sandwich</p>
+							<p class="price">$16.00</p>
+							<p class="remove" title="Remove"><a href="#">X</a></p>
+						</div>
+						<div class="FoodMenu-item">
+							<p class="name">Total:</p>
+							<p class="price">$29.00</p>
+							<p class="remove" title="Remove"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock content %}
+
+{% block subcontent %}
+{% endblock %}
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+	{{ parent() }}
+{% endblock bodyJs %}

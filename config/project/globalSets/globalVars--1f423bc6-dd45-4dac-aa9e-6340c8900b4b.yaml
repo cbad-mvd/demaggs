@@ -1,0 +1,36 @@
+fieldLayouts:
+  bbcf9764-3e20-4e73-8e4e-ca56819b9c0c:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 43701e8d-5a3f-4814-a561-3548c8cbb835
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: f6097bdb-7a29-47d3-a3ec-08c794858f59
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 04404781-9234-4f84-ae9f-34c605b83d4f
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Vars
+        sortOrder: 1
+handle: globalVars
+name: 'Global Vars'

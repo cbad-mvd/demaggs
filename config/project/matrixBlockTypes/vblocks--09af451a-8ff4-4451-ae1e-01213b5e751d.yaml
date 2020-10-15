@@ -1,0 +1,81 @@
+field: dfaaebb3-0695-417a-b752-d27464d1d724
+fieldLayouts:
+  1e6716a6-b233-474f-8d47-cbc6262f02dd:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 2b3b4c08-1db7-4f4f-9fac-8d534b2aa287
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 8b6110f7-491e-40bc-9e54-a0df0d71a5b3
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  2b3b4c08-1db7-4f4f-9fac-8d534b2aa287:
+    contentColumnType: text
+    fieldGroup: null
+    handle: vidName
+    instructions: ''
+    name: 'Vid Name'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  8b6110f7-491e-40bc-9e54-a0df0d71a5b3:
+    contentColumnType: string
+    fieldGroup: null
+    handle: vidImage
+    instructions: ''
+    name: 'Vid Image'
+    searchable: false
+    settings:
+      allowSelfRelations: false
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: false
+      previewMode: full
+      restrictFiles: '1'
+      selectionLabel: ''
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      singleUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+      singleUploadLocationSubpath: videos
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: true
+      validateRelatedElements: false
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+handle: vblocks
+name: vBlocks
+sortOrder: 1

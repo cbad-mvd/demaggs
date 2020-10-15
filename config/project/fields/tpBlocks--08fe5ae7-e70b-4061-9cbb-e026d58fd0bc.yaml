@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: 278a794b-3484-46c2-84a9-937a406b843d
+handle: tpBlocks
+instructions: ''
+name: 'tp Blocks'
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_tpblocks}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

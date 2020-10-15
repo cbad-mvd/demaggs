@@ -1,0 +1,228 @@
+contentColumnType: mediumtext
+fieldGroup: fabe0e87-64a6-48d8-ae62-b368f9ebd436
+handle: contactInfo
+instructions: ''
+name: 'Contact Info'
+searchable: false
+settings:
+  addRowLabel: 'Add a row'
+  columnType: mediumtext
+  columns:
+    __assoc__:
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - Name
+            -
+              - handle
+              - name
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Phone
+            -
+              - handle
+              - phone
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col10
+        -
+          __assoc__:
+            -
+              - heading
+              - Fax
+            -
+              - handle
+              - fax
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Email
+            -
+              - handle
+              - email
+            -
+              - width
+              - ''
+            -
+              - type
+              - email
+      -
+        - col11
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Email Subject'
+            -
+              - handle
+              - emailSubject
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col4
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Address One'
+            -
+              - handle
+              - addressOne
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col5
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Address Two'
+            -
+              - handle
+              - addressTwo
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col6
+        -
+          __assoc__:
+            -
+              - heading
+              - City
+            -
+              - handle
+              - city
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col7
+        -
+          __assoc__:
+            -
+              - heading
+              - State
+            -
+              - handle
+              - state
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col8
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Postal Code'
+            -
+              - handle
+              - postalCode
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col9
+        -
+          __assoc__:
+            -
+              - heading
+              - Button
+            -
+              - handle
+              - button
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  defaults:
+    -
+      __assoc__:
+        -
+          - col3
+          - ''
+        -
+          - col1
+          - ''
+        -
+          - col10
+          - ''
+        -
+          - col2
+          - ''
+        -
+          - col11
+          - ''
+        -
+          - col4
+          - ''
+        -
+          - col5
+          - ''
+        -
+          - col6
+          - ''
+        -
+          - col7
+          - ''
+        -
+          - col8
+          - ''
+        -
+          - col9
+          - ''
+  maxRows: ''
+  minRows: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

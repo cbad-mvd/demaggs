@@ -1,0 +1,31 @@
+contentColumnType: string
+fieldGroup: c75ed5cc-bbff-495d-8af0-e013af71cd6a
+handle: contactHero
+instructions: 'Image that sits next to contact block'
+name: 'Contact Hero'
+searchable: false
+settings:
+  allowSelfRelations: false
+  allowedKinds:
+    - image
+  defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+  defaultUploadLocationSubpath: ''
+  limit: '1'
+  localizeRelations: false
+  previewMode: full
+  restrictFiles: '1'
+  selectionLabel: ''
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  singleUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+  singleUploadLocationSubpath: ''
+  source: null
+  sources: '*'
+  targetSiteId: null
+  useSingleFolder: false
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Assets

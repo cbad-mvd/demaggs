@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: c7180f67-4d7f-4f1c-90a5-84cd9712be79
+handle: menuItemPrice
+instructions: ''
+name: 'Menu Item Price'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

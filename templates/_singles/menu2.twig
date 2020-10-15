@@ -1,0 +1,54 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{# import the srcset macro #}
+{% import '_macros/_srcset' as m_srcset %}
+{% import '_macros/_intros' as m_intros %}
+{% import '_macros/_food' as m_food %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Create Menu</title>
+{% endblock titleTag %}
+
+{% block headLinks %}
+	{{ parent() }}
+{% endblock headLinks %}
+
+{% block pageintro %}
+		{{ m_intros.showIntro("menu") }}		{# must fix #}
+{% endblock pageintro %}
+
+{% block content %}
+
+{% set myCategoryQuery = craft.categories().group('foodGroups') %}
+
+{# Fetch the categories #}
+{% set categories = myCategoryQuery.all() %}
+
+{# Display the menu group navigation #}
+	<div class="row">
+		<div class="Food">
+			<div>
+			{% nav category in categories %}
+				<h2>{{ category.title }}</h2>
+				<h4>{{ category.fiGroupDescription }}</h4>
+				{{ m_food.showFoodItems(category) }}
+			{% endnav %}
+			</div>
+			<div class="FoodMenu dark">
+				<h5 class="FoodMenu-title">My Selections:</h5>
+				{{ m_food.showCart() }}
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock content %}
+
+{% block subcontent %}
+{% endblock %}
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+	{{ parent() }}
+{% endblock bodyJs %}

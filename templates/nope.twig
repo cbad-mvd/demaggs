@@ -1,0 +1,45 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{% block titleTag %}
+	<title>DaBomb Page Title Goes Here</title>
+{% endblock titleTag %}
+
+{% block headLinks %}
+	{{ parent() }}
+	<link rel="amphtml" href="{{ siteUrl('/amp') }}">
+{% endblock headLinks %}
+
+{% block pageintro %}
+                        <section class="MainContent">
+                                <div class="Intro">
+                                    <h1>Fine Dining,<br>At Home</h1>
+                                    <img src="	./assets/img/hero-primary-sm.jpg" srcset="
+												./assets/img/hero-primary-sm.jpg 750w,
+												./assets/img/hero-primary-med.jpg 1500w,
+												./assets/img/hero-primary-lg.jpg 2000w,
+												./assets/img/hero-primary-xl.jpg 2400w" alt="A Lovely Evening with Friends"/>
+
+                                    <div class="Intro-heading">
+                                        <h2>Choose Your Home Dining Experience</h2>
+                                        <p>Select a customized menu from our chef's following choices:</p>
+                                    </div>
+                                </div>
+                        </section>
+{% endblock pageintro %}
+
+{% block content %}
+	<section>
+		<h1>content</h1>
+	</section>
+{% endblock content %}
+
+{% block subcontent %}
+	<section>
+		<h2>subcontent</h2>
+	</section>
+{% endblock %}
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+	{{ parent() }}
+{% endblock bodyJs %}

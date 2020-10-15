@@ -1,0 +1,61 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{# import the srcset macro #}
+{% import '_macros/_srcset' as m_srcset %}
+{% import '_macros/_intros' as m_intros %}
+{% import '_macros/_food' as m_food %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Create Menu</title>
+{% endblock titleTag %}
+
+{% block headLinks %}
+	{{ parent() }}
+{% endblock headLinks %}
+
+{% block pageintro %}
+		{{ m_intros.showIntro(entry.slug) }}
+{% endblock pageintro %}
+
+{% block content %}
+
+{% set myCategoryQuery = craft.categories().group('foodGroups') %}
+
+{# Fetch the categories #}
+{% set categories = myCategoryQuery.all() %}
+
+{# Display the menu group navigation #}
+	<div id="select" class="row">
+		<section class="MenuChoices ItemGrid">
+		{% nav category in categories %}
+		<div class="MenuChoices-item ItemGrid-item" style="min-height: 200px;">
+			<a href="{{ category.url }}" class="MenuChoices-overlay">
+				<div class="MenuChoices-contents">
+					<p class="MenuChoices-title">{{ category.title }}</p>
+					<p class="MenuChoices-subtitle">{{ category.fiGroupDescription }}</p>
+					<span class="MenuChoices-select">{{ globalVars.makeSelection }}</span>
+				</div>
+			</a>
+			<div class="MenuChoices-imgWrap">
+				<div>
+					{# should make lazy and responsive #}
+					{% set img = category.fiGroupImage.one() %}
+					<img class="lazy" src="{{ img.url }}" alt="{{ img.altText }}"/>
+				</div>
+			</div>
+		</div>
+		{% endnav %}
+		</section>
+	</div>
+
+
+
+{% endblock content %}
+
+{% block subcontent %}
+{% endblock %}
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+	{{ parent() }}
+{% endblock bodyJs %}

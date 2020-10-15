@@ -1,0 +1,52 @@
+{# public macro for displaying food choices #}
+{% macro showFoodItems(cat = null) %}
+{% import _self as self %}
+
+    {% if cat is null %}
+        {% set foodItems = craft.entries().section('menu').all() %}
+    {% else %}
+        {% set foodItems = craft.entries().section('menu').relatedTo(cat) %}
+    {% endif %}
+
+    {% for item in foodItems.all() %}
+        <div class="FoodItem">
+            <div class="FoodItem-info"> 
+                <h5 class="FoodItem-title">{{ item.fiName }}</h5>
+                <p>{{ item.fiDescription }}</p>
+                <p class="FoodItem-price">${{ item.fiPrice }}</p>
+                <span class="FoodItem-button button"><a href="mailto:info@demaggs.com?subject=DEMAGGS Dining Request ">Add to Menu</a></span>
+            </div>
+            {% set img = item.fiImage.one() %}
+            <span class="FoodItem-image" style="background-image: url({{ img.url }});"></span>
+        </div>
+    {% endfor %}
+{% endmacro showFoodItems %}
+
+{% macro showCart(cart = null) %}
+{% import _self as self %}
+
+    {% if cart is null %}
+        {% set cartItems = craft.entries().section('menu').all() %}
+    {% else %}
+        {% set cartItems = craft.entries().section('menu').relatedTo(cart) %}
+    {% endif %}
+
+					<div class="FoodMenu-choices">
+						<div class="FoodMenu-item">
+							<p class="name">Demaggs Signature Burger</p>
+							<p class="price">$13.00</p>
+							<p class="remove"  title="Remove"><a href="#">X</a></p>
+						</div>
+						<div class="FoodMenu-item">
+							<p class="name">Napa Chicken Sandwich</p>
+							<p class="price">$16.00</p>
+							<p class="remove" title="Remove"><a href="#">X</a></p>
+						</div>
+						<div class="FoodMenu-item">
+							<p class="name">Total:</p>
+							<p class="price">$29.00</p>
+							<p class="remove" title="Remove"></p>
+						</div>
+					</div>
+
+{% endmacro %}

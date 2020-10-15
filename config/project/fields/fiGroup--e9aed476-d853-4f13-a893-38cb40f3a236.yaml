@@ -1,0 +1,23 @@
+contentColumnType: string
+fieldGroup: 9cbb1a68-2306-49a6-a326-5894a9bae891
+handle: fiGroup
+instructions: 'Enter the food group to which this item belongs'
+name: Group
+searchable: false
+settings:
+  allowLimit: false
+  allowMultipleSources: false
+  allowSelfRelations: false
+  branchLimit: '1'
+  limit: null
+  localizeRelations: false
+  selectionLabel: 'Add Food Group'
+  showSiteMenu: true
+  source: 'group:0269c0ac-6b64-4cc6-99ee-7dc55e13c4ee'
+  sources: '*'
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Categories

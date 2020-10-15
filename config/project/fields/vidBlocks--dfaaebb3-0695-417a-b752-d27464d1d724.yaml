@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: fabe0e87-64a6-48d8-ae62-b368f9ebd436
+handle: vidBlocks
+instructions: ''
+name: 'Video Blocks'
+searchable: false
+settings:
+  contentTable: '{{%matrixcontent_vidblocks}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

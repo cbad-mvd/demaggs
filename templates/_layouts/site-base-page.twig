@@ -1,0 +1,99 @@
+{# -- Layout template for HTML pages -- #}
+{#
+ ┌─────────────────────────────────────────────────────────────────────────────┐
+ │ ┌─────────────────────────────────────────────────────────────────────────┐ │
+ │ │                                                                         │ │
+ │ │                                                                         │ │
+ │ │                                                                         │ │
+ │ │                                 content                                 │ │
+ │ └─────────────────────────────────────────────────────────────────────────┘ │
+ │ ┌─────────────────────────────────────────────────────────────────────────┐ │
+ │ │                                                                         │ │
+ │ │                                                                         │ │
+ │ │                                                                         │ │
+ │ │                               subContent                                │ │
+ │ └─────────────────────────────────────────────────────────────────────────┘ │
+ │                                                                             │
+ │                                  bodyHtml                                   │
+ └─────────────────────────────────────────────────────────────────────────────┘
+#}
+{% extends "_boilerplate/_layouts/base-html-layout.twig" %}
+
+{# -- Any <meta> tags that should be included in the <head> #}
+{% block headMeta %}
+		<!-- Document metadata -->
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block titleTag %}
+		    <title>Home :: DEMAGGS Fine In-Home Dining</title>
+        {% endblock titleTag %}
+{% endblock headMeta %}
+
+{# -- Any <link> tags that should be included in the <head> #}
+{% block headLinks %}
+		<!-- Fonts, CSS & favicon -->
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Merriweather:300i,400,400i">
+
+        <!-- Stylesheets -->
+		<link href="/assets/css/styles.css" type="text/css" media="screen" rel="stylesheet">
+
+        <!-- FavIcon -->
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+{% endblock headLinks %}
+
+{# -- Any CSS that should be included before </head> -- #}
+{% block headCss %}
+    {% include "_inline-css/site-fonts.css" %}
+{% endblock headCss %}
+
+{# -- Page body -- #}
+{% block bodyHtml %}
+    <div id="page-container" class="overflow-hidden leading-tight">
+        <confetti></confetti>
+        <div id="content-container" class="bg-repeat header-background">
+
+    		<div class="row  nomargins" styles="min-height: 1600px">
+                {# -- Info header, including _navbar.twig -- #}
+                {% include "_partials/info-header.twig" %}
+            </div>
+
+            <main>
+        		<div class="row  nomargins">
+                    {% block pageintro %}
+                    {% endblock %}
+                </div>
+            
+        		<div class="row  nomargins">
+                    {# -- Primary content block -- #}
+                    {% block content %}
+                    {% endblock %}                
+                </div>
+            </main>
+        </div>
+
+        {# -- Content that appears below the primary content block -- #}
+        {% block subcontent %}
+        {% endblock %}
+
+        {# -- Info footer -- #}
+        {% include "_partials/info-footer.twig" %}
+
+        {# -- HTML Footer -- #}
+        {% include "_partials/global-footer.twig" %}
+    </div>
+{% endblock bodyHtml %}
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+		<!-- javascript -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+		<script src="/assets/js/jquery.slicknav.js"></script>
+		<script src="/assets/js/main.js"></script>
+		<script></script>
+{% endblock bodyJs %}
+

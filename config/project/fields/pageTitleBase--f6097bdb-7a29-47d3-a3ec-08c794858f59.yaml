@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 2d50023f-8043-4155-b451-cfb75c1b6081
+handle: pageTitleBase
+instructions: ''
+name: 'Page Title Base'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

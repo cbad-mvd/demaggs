@@ -1,0 +1,137 @@
+field: 01aa4cfa-3356-4eaa-a5f8-da933e5d00f4
+fieldLayouts:
+  2d5e6e14-3f7e-46a5-8cb6-134612e53afc:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: e360ebbd-1399-4f4b-b304-c9c6250fd3d9
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 9da041eb-8a5d-4c20-93af-87ab34ba50b4
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 2796a247-ff6b-489c-9406-5108619165bd
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 5c206450-135f-4688-8df3-00039affd224
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  2796a247-ff6b-489c-9406-5108619165bd:
+    contentColumnType: text
+    fieldGroup: null
+    handle: itemPrice
+    instructions: ''
+    name: 'Item Price'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  5c206450-135f-4688-8df3-00039affd224:
+    contentColumnType: string
+    fieldGroup: null
+    handle: itemImage
+    instructions: ''
+    name: 'Item Image'
+    searchable: true
+    settings:
+      allowSelfRelations: false
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: false
+      previewMode: full
+      restrictFiles: '1'
+      selectionLabel: ''
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      singleUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: false
+      validateRelatedElements: false
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  9da041eb-8a5d-4c20-93af-87ab34ba50b4:
+    contentColumnType: text
+    fieldGroup: null
+    handle: itemDescription
+    instructions: ''
+    name: 'Item Description'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  e360ebbd-1399-4f4b-b304-c9c6250fd3d9:
+    contentColumnType: text
+    fieldGroup: null
+    handle: itemName
+    instructions: ''
+    name: 'Item Name'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: foodItem
+name: 'Food Item'
+sortOrder: 1

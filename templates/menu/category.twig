@@ -1,0 +1,24 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{% import '_macros/_intros' as m_intros %}
+{% import '_macros/_food' as m_food %}
+
+{% block content %}
+
+		{{ m_intros.showIntro(category.slug) }}
+
+        <div class="row">
+			<div class="Food">
+				<div class="FoodChoices">
+				    {{ m_food.showFoodItems(category) }}
+				</div>
+				<div class="FoodMenu dark">
+					<h5 class="FoodMenu-title">My Selections:</h5>
+				    {{ m_food.showCart() }}
+				</div>
+			</div>
+		</div>
+        <div class="row" style="text-align: center">
+            <span class="FoodItem-button button" style="display: inline-block"><a href="/menu#select">Back to Selections</a></span>
+		</div>
+{% endblock content %}

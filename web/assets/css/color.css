@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/****************************************
+ Color Styles
+*****************************************/
+/* Backgrounds
+__________________________________________________ */
+.page {
+  color: #ffffff;
+}
+
+.dark {
+  background-color: #212125;
+}
+
+.dark25 {
+  background-color: rgba(33, 33, 37, 0.25);
+}
+
+.dark50 {
+  background-color: rgba(33, 33, 37, 0.5);
+}
+
+/* Text
+__________________________________________________ */
+p, h1, h2, h3, h4, h5, h6 {
+  color: #333333;
+}
+
+.dark p, .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #eeeeee;
+}
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+a {
+  color: #465bd1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cf0505;
+}
+
+.dark a {
+  color: #b3d146;
+}
+
+.dark a:hover {
+  color: #b3d146;
+  text-decoration: underline;
+}
+/*# sourceMappingURL=color.css.map */

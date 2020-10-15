@@ -1,0 +1,105 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{# import the srcset macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+
+
+{% block bodyTag %}
+	<body class="home-page">
+{% endblock bodyTag %}
+
+{% block titleTag %}
+	<title>DaBomb Home Page Title Goes Here</title>
+{% endblock titleTag %}
+
+{% block headLinks %}
+	{{ parent() }}
+{% endblock headLinks %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('intro-home') }}
+{% endblock pageintro %}
+
+{% block content %}
+	{{ m_textpic.textpic(entry.tpBlocks) }}
+    {#
+        {% set swapClass = "" %}
+        {% for block in entry.tpBlocks.all() %}
+        {% if block.type == "textPic" %}
+
+            <section class="row TextPic">
+                <div class="TextBlock ~ {{ swapClass }}">
+                    <div class="topBorder"></div>
+                    <div>
+                        <h3>{{ block.itemTitle }}</h3>
+                        <h5>{{ block.itemSubtitle }}</h5>
+                        <p>{{ block.itemDesc }}</p>
+                    </div>
+                    <div>
+                        <span class="button">
+                            <a href="{{ block.itemBtnUrl }}">{{ block.itemBtn }}</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="PicBlock">
+                    <img class="lazy" data-src="./assets/img/hero-primary-lg.jpg" data-srcset="
+                    ./assets/img/hero-primary-lg.jpg 750w,
+                    ./assets/img/hero-primary-lg.jpg 1500w,
+                    ./assets/img/hero-primary-lg.jpg 2000w,
+                    ./assets/img/hero-primary-lg.jpg 2400w" alt="Side Dishes"/>
+                </div>
+            </section>
+
+            {% if swapClass == "swapOrder" %}
+                {% set swapClass = "" %}
+            {% else %}
+                {% set swapClass = "swapOrder" %}
+            {% endif %}
+
+        {% endif %}
+        {% endfor %}
+        #}        
+            {# made sure the block order alternates on rows #}
+{% endblock content %}
+
+{% block subcontent %}
+		<div class="row dark">
+			<div class="ContactUs" id="contactus">
+                {% set hero = entry.contactHero.one() %}
+				<div class="ContactUs-info" style="background-image: url('{{ hero.url }}');"></div>
+ 				<div class="ContactUs-contact">
+					<div class="ContactUs-feature">
+						<div>
+							<span class="ContactUs-logo">
+                                {% set logo = entry.simpleLogo.one() %}
+								<img src="{{ logo.getUrl() }}" alt="{{ logo.altText }}"/>
+							</span>
+
+                            {% for contact in entry.contactInfo %}                   
+                            <p>{{ contact.addressOne }}, {{ contact.city }}, {{ contact.state }} {{ contact.postalCode }}</p>
+                            <p>Phone: {{ contact.phone }}</p>
+                            <p>Fax: {{ contact.fax }}</p>
+                            <p>email:
+                                <a href="mailto:{{ contact.email }}?subject={{ contact.emailSubject }}">{{ contact.email }}</a>
+                            </p>
+
+							<p>&nbsp;</p>
+                            <span class="button">
+							    <a href="mailto:{{ contact.email }}?subject={{ contact.emailSubject }}">{{ contact.button }}</a>
+                            </span>
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+{% endblock %}
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+	{{ parent() }}
+{% endblock bodyJs %}

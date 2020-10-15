@@ -1,0 +1,24 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{# import the srcset macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} About</title>
+{% endblock titleTag %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('about') }}
+{% endblock pageintro %}
+
+{% block content %}
+	{{ m_textpic.textpic(entry.tpBlocks) }}
+{% endblock content %}
+
+
+{# -- Any JavaScript that should be included before </body> -- #}
+{% block bodyJs %}
+	{{ parent() }}
+{% endblock bodyJs %}

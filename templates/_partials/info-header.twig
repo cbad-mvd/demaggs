@@ -1,0 +1,70 @@
+    		{% set myEntryQuery = craft.entries().section('globalHeader').limit(1) %}
+            {% set thisEntry = myEntryQuery.one() %}
+
+            <header class="MainHdr nav--comin-in">
+				<div class="TopContactRow">
+					<div>
+                        {% for item in thisEntry.contactInfo %}
+
+                            {% set email = "<a href='mailto:#{item.email}'>#{item.email}</a>" %}
+                            {% set phone = "<a href='tel:#{item.phone}'>#{item.phone}</a>" %}
+
+                            {{ email | rot13 }}
+                            {{ phone | encode }}
+
+                        {% endfor %}
+					</div>
+				</div>
+                <div class="HdrNavRow">
+                    <div class="logo">
+                        {% set image = thisEntry.siteLogo.one() %}
+                        <a href="{{ alias('@web') }}">
+                            <img class="lazyloaded" src="{{ image.url }}" alt="{{ image.altText }}">
+                        </a>
+                    </div>
+                    <div class="nav">
+                        <ul class="nav-menu">
+                            {% for item in thisEntry.globalNav %}
+                                <li>
+                                    <a href="{{ item.menuUrl }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                    {#
+
+				ul, ul li {
+					margin: 0;
+					padding: 0;
+				}
+
+				<div class="HdrNavRow">
+					<div class="HdrNavRow-topLogo">
+						<a href="#">
+                            {% set image = thisEntry.siteLogo.one() %}
+                            <img class="lazyloaded" src="{{ image.url }}" alt="{{ image.altText }}">
+						</a>
+					</div>
+                    <div class="HdrNavRow-topNav">
+                        <nav class="HdrNavRow-navContainer">
+                            <ul class="HdrNavRow-navMenuMobil" style="display:none">
+                                {% for item in thisEntry.globalNav %}
+                                    <li>
+                                        <a href="{{ item.menuUrl }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="HdrNavRow-navMenu">
+                                {% for item in thisEntry.globalNav %}
+                                    <li>
+                                        <a href="{{ item.menuUrl }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </nav>
+                    </div>
+				</div>
+                    #}
+			</header>

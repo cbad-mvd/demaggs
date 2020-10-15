@@ -1,0 +1,69 @@
+/*
+ * Responsive: since everything is rem/em based, control document font-size
+ *             with media queries setting the base size in html
+ */
+html {
+  font-size: 87.5%;
+  /* Larger than phablet */
+  /* Larger than standard desktop */
+}
+
+@media (min-width: 550px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
+body {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5em;
+  color: #333;
+}
+
+p {
+  margin: 1.5rem 0;
+}
+
+.headerDefaults, h1, h2, .compenent-title, h3, h4, h5, h6 {
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5em;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2, .compenent-title {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-style: italic;
+}
+
+h6 {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.compenent-title {
+  font-size: 3rem;
+  color: red;
+}
+/*# sourceMappingURL=emfonts.css.map */
