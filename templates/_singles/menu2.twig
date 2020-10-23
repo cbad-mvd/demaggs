@@ -14,7 +14,7 @@
 {% endblock headLinks %}
 
 {% block pageintro %}
-		{{ m_intros.showIntro("menu") }}		{# must fix #}
+		{{ m_intros.showIntro(entry.slug) }}		{# must fix #}
 {% endblock pageintro %}
 
 {% block content %}
@@ -29,8 +29,10 @@
 		<div class="Food">
 			<div>
 			{% nav category in categories %}
-				<h2>{{ category.title }}</h2>
-				<h4>{{ category.fiGroupDescription }}</h4>
+				<div class="FoodGroup">
+					<h2>{{ category.title }}</h2>
+					<h5>{{ category.fiGroupDescription }}</h5>
+				</div>
 				{{ m_food.showFoodItems(category) }}
 			{% endnav %}
 			</div>

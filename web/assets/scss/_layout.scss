@@ -242,6 +242,11 @@ footer {
 		&.swapOrder {
 			order: 2;
 		}
+
+		&.textOnTop {
+			order: 0;
+		}
+
 	}
 		
 	@media (min-width: 750px) {
@@ -277,6 +282,11 @@ footer {
 					padding-right: 0;
 				}
 			}
+
+			&.textOnTop {
+				order: 2;
+			}
+	
 	
 		}
 	}
@@ -369,6 +379,13 @@ footer {
 		background-color: $color-bg__dark;
 	}
 
+	&.mobile {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		margin: 0;	
+		width: 40%;	
+	}
 	/*
 	 * topContactRow: upper portion of MainHdr (hidden for now, may not need)
 	 */
@@ -469,7 +486,7 @@ footer {
                 height: 2rem;
                 color: #fff;
                 margin-bottom: 0;
-                padding: 0 1.5rem;
+                padding: 0 0.5rem;
             }
             li.active a {
                 background: #2f2f35 none repeat scroll 0 0;
@@ -479,6 +496,20 @@ footer {
 
         }    
     }
+
+	.mobile-nav {
+        position: absolute;
+		top: 0.5rem;
+		right: 1rem;
+		margin: 0;
+
+		img {
+			width: 24px;
+			height: 24px;
+		}
+
+
+	}
 
     &--downx {
         margin: 1rem 0;
@@ -512,6 +543,9 @@ footer {
                 margin-top: 1rem;
             }
 		}
+		.mobile-nav {
+			display: none;
+		}
 
         &--down {
             .logo {
@@ -539,7 +573,12 @@ footer {
         }
         .nav {
             &-menu {
-                margin-top: 1.75rem;
+				margin-top: 1.75rem;
+				
+				li a {
+					padding: 0 0.5rem;
+				}
+	
             }
 		}
 
@@ -862,6 +901,26 @@ footer {
 	}
 }
 
+.FoodGroup {
+	margin: 4rem 2rem 0.5rem 2rem;
+	padding: 0;
+
+	&:first-of-type {
+		margin-top: 0;
+	}
+
+	h2 {
+		margin: 0;
+		text-align: left;
+		border-bottom: 0.25rem solid $color-main-accent;
+	}
+	h5 {
+		margin: 0;
+		text-align: right;
+		padding: 0.25rem 0;
+	}
+}
+
 .FoodItem {
 	display: flex;
 	flex-flow: row wrap;
@@ -963,6 +1022,49 @@ footer {
 	 }
  }
 
+ .MobileMenu {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 0;
+	width: 100vw; 
+	height: 100vh; 
+	background-color: $color-bg__dark;
+	z-index: 1000;
+
+	.closeMenu {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+		margin: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&-content {
+		margin-top: 8rem;
+
+		ul {
+			padding: 0;
+		}
+
+		ul li {
+			list-style: none;
+			font-size: 2rem;
+			line-height: 3rem;
+			text-align: center;
+		}
+
+		ul li a {
+			color: #fff;
+		}
+
+		ul li a:hover {
+			color: $color-main-accent;
+		}
+	}
+ }
 /*
  * animation styles
  */

@@ -103,4 +103,12 @@ $(document).ready(function () {
 		/***
 		***/
 	);
+
+	$("#jsMobileClose").click(function() {
+		$(".MobileMenu").css("display","none");
+	});
+
+	$("#jsMobileShow").click(function() {
+		$(".MobileMenu").css("display","block");
+	});
 });

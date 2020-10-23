@@ -366,6 +366,13 @@ html {
           box-sizing: border-box;
 }
 
+/*
+ * provide smooth scrolling to #hash links
+ */
+html {
+  scroll-behavior: smooth;
+}
+
 *,
 *:before,
 *:after {
@@ -1056,6 +1063,12 @@ footer {
           order: 2;
 }
 
+.TextPic .TextBlock.textOnTop {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+}
+
 @media (min-width: 750px) {
   .TextPic .PicBlock {
     width: 56%;
@@ -1083,6 +1096,11 @@ footer {
   .TextPic .TextBlock.swapOrder h3, .TextPic .TextBlock.swapOrder h5, .TextPic .TextBlock.swapOrder .title, .TextPic .TextBlock.swapOrder p {
     padding-left: 1.5rem;
     padding-right: 0;
+  }
+  .TextPic .TextBlock.textOnTop {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
   }
 }
 
@@ -1179,6 +1197,14 @@ footer {
 .MainHdr--down {
   top: 4.5rem;
   background-color: #212125;
+}
+
+.MainHdr.mobile {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  margin: 0;
+  width: 40%;
 }
 
 .MainHdr .TopContactRow {
@@ -1288,12 +1314,24 @@ footer {
   height: 2rem;
   color: #fff;
   margin-bottom: 0;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
 }
 
 .HdrNavRow .nav-menu li.active a {
   background: #2f2f35 none repeat scroll 0 0;
   color: #b2d338;
+}
+
+.HdrNavRow .mobile-nav {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  margin: 0;
+}
+
+.HdrNavRow .mobile-nav img {
+  width: 24px;
+  height: 24px;
 }
 
 .HdrNavRow--downx {
@@ -1324,6 +1362,9 @@ footer {
   .HdrNavRow .nav-menu {
     margin-top: 1rem;
   }
+  .HdrNavRow .mobile-nav {
+    display: none;
+  }
   .HdrNavRow--down .logo {
     top: 2.75rem;
   }
@@ -1344,6 +1385,9 @@ footer {
   }
   .HdrNavRow .nav-menu {
     margin-top: 1.75rem;
+  }
+  .HdrNavRow .nav-menu li a {
+    padding: 0 0.5rem;
   }
   .HdrNavRow--down .logo {
     top: 2.75rem;
@@ -1649,6 +1693,27 @@ footer {
   }
 }
 
+.FoodGroup {
+  margin: 4rem 2rem 0.5rem 2rem;
+  padding: 0;
+}
+
+.FoodGroup:first-of-type {
+  margin-top: 0;
+}
+
+.FoodGroup h2, .FoodGroup .compenent-title {
+  margin: 0;
+  text-align: left;
+  border-bottom: 0.25rem solid #b3d146;
+}
+
+.FoodGroup h5, .FoodGroup .title {
+  margin: 0;
+  text-align: right;
+  padding: 0.25rem 0;
+}
+
 .FoodItem {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1766,6 +1831,50 @@ footer {
 
 .VidGallery-image {
   width: 17.5%;
+}
+
+.MobileMenu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #212125;
+  z-index: 1000;
+}
+
+.MobileMenu .closeMenu {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.MobileMenu-content {
+  margin-top: 8rem;
+}
+
+.MobileMenu-content ul {
+  padding: 0;
+}
+
+.MobileMenu-content ul li {
+  list-style: none;
+  font-size: 2rem;
+  line-height: 3rem;
+  text-align: center;
+}
+
+.MobileMenu-content ul li a {
+  color: #fff;
+}
+
+.MobileMenu-content ul li a:hover {
+  color: #b3d146;
 }
 
 /*

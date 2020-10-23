@@ -11,7 +11,7 @@
 {% endblock bodyTag %}
 
 {% block titleTag %}
-	<title>DaBomb Home Page Title Goes Here</title>
+<title>{{ globalVars.pageTitleBase }} www.Demaggs.com</title>
 {% endblock titleTag %}
 
 {% block headLinks %}
@@ -66,10 +66,10 @@
 
 {% block subcontent %}
 		<div class="row dark">
-			<div class="ContactUs" id="contactus">
+			<div class="ContactUs">
                 {% set hero = entry.contactHero.one() %}
 				<div class="ContactUs-info" style="background-image: url('{{ hero.url }}');"></div>
- 				<div class="ContactUs-contact">
+ 				<div  id="contactus" class="ContactUs-contact">
 					<div class="ContactUs-feature">
 						<div>
 							<span class="ContactUs-logo">

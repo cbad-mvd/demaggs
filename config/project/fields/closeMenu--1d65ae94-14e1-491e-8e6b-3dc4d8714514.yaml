@@ -1,0 +1,32 @@
+contentColumnType: string
+fieldGroup: 2d50023f-8043-4155-b451-cfb75c1b6081
+handle: closeMenu
+instructions: 'Icon to close the mobile menu'
+name: 'Close Menu'
+searchable: false
+settings:
+  allowSelfRelations: false
+  allowUploads: false
+  allowedKinds:
+    - image
+  defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+  defaultUploadLocationSubpath: ''
+  limit: '1'
+  localizeRelations: false
+  previewMode: full
+  restrictFiles: '1'
+  selectionLabel: ''
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  singleUploadLocationSource: 'volume:4a46dc29-d0d2-467d-b11a-82245eec2f0f'
+  singleUploadLocationSubpath: ''
+  source: null
+  sources: '*'
+  targetSiteId: null
+  useSingleFolder: true
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Assets

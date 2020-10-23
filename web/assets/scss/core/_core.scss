@@ -9,6 +9,14 @@ html {
 	box-sizing: border-box;
 }
 
+/*
+ * provide smooth scrolling to #hash links
+ */
+html {
+	scroll-behavior: smooth;
+}
+
+
 *,
 *:before,
 *:after {

@@ -51,6 +51,11 @@
 
 {# -- Page body -- #}
 {% block bodyHtml %}
+    {% block mobileMenu %}
+        {# -- Mobile Menu Overlay block -- #}
+        {% include "_partials/mobile-menu.twig" %}    
+    {% endblock mobileMenu %}
+
     <div id="page-container" class="overflow-hidden leading-tight">
         <confetti></confetti>
         <div id="content-container" class="bg-repeat header-background">

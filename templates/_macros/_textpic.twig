@@ -1,13 +1,30 @@
-{% macro textpic(blocks = null) %}
+{% macro textpic(blocks = null, textOnTop = false) %}
 {% import '_macros/_srcset' as m_srcset %}
 
 {% if blocks is not null %}
     {% set swapClass = "" %}
+
     {% for block in blocks.all() %}
     {% if block.type == "textPic" %}
+        
+        {# if textOnTop force image on bottom 
+        {% if textOnTop == true %}
+            {% set swapClass = swapClass ~ "textOnTop" %}
+        {% endif %}
+        #}
+        {# made sure the block order alternates on rows #}
+        {% if (textOnTop == true) or (swapClass == "swapOrder") %}
+            {% set swapClass = "" %}
+            {% if textOnTop == true %}
+                {% set swapClass = "textOnTop" %}
+            {% endif %}
+        {% elseif textOnTop == false %}
+            {% set swapClass = "swapOrder" %}
+        {% endif %}
+
 
         <section class="row TextPic">
-            <div class="TextBlock ~ {{ swapClass }}">
+            <div class="TextBlock {{ swapClass }}">
                 <div class="topBorder"></div>
                 <div>
                     <h3>{{ block.itemTitle }}</h3>
@@ -38,12 +55,7 @@
             </div>
         </section>
 
-        {# made sure the block order alternates on rows #}
-        {% if swapClass == "swapOrder" %}
-            {% set swapClass = "" %}
-        {% else %}
-            {% set swapClass = "swapOrder" %}
-        {% endif %}
+{##}
 
     {% endif %}
     {% endfor %}

@@ -2,6 +2,7 @@
             {% set thisEntry = myEntryQuery.one() %}
 
             <header class="MainHdr nav--comin-in">
+
 				<div class="TopContactRow">
 					<div>
                         {% for item in thisEntry.contactInfo %}
@@ -30,6 +31,10 @@
                                 </li>
                             {% endfor %}
                         </ul>
+                    </div>
+                    <div class="mobile-nav">
+                        {% set image = globalVars.mobileMenu.one() %}
+                        <img id="jsMobileShow" src="{{ image.url }}" alt="{{ globalVars.pageTitleBase }}" />
                     </div>
                 </div>
                 
