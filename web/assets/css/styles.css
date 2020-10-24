@@ -1317,6 +1317,14 @@ footer {
   padding: 0 0.5rem;
 }
 
+.HdrNavRow .nav-menu li a:hover {
+  color: #b3d146;
+}
+
+.HdrNavRow .nav-menu li a.active {
+  color: #b3d146;
+}
+
 .HdrNavRow .nav-menu li.active a {
   background: #2f2f35 none repeat scroll 0 0;
   color: #b2d338;

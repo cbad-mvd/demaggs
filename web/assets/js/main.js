@@ -111,4 +111,10 @@ $(document).ready(function () {
 	$("#jsMobileShow").click(function() {
 		$(".MobileMenu").css("display","block");
 	});
+
+	$(".HdrNavRow .nav-menu li a").click(function() {
+		//$(".HdrNavRow .nav-menu li a").removeClass("active");
+		//$(this).addClass("active");
+		//alert($(this).text());
+	});
 });

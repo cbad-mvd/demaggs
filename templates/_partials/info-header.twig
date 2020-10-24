@@ -27,7 +27,17 @@
                         <ul class="nav-menu">
                             {% for item in thisEntry.globalNav %}
                                 <li>
-                                    <a href="{{ item.menuUrl }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
+                                    {% if entry.slug == item.menuUrl %}
+                                        {% set linkClass = "active" %}
+                                    {% elseif (entry.slug == "home") and (item.menuUrl == "/") %}
+                                         {% set linkClass = "active" %}
+                                   {% else %}
+                                        {% set linkClass = entry.slug %}
+                                    {% endif %}
+                                {#
+                                        {% set linkClass = entry.slug ~ item.menuUrl %}
+                                #}
+                                    <a href="{{ item.menuUrl }}" class="{{ linkClass }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
