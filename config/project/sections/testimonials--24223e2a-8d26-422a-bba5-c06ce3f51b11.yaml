@@ -1,6 +1,6 @@
 enableVersioning: true
-handle: testimonals
-name: Testimonals
+handle: testimonials
+name: Testimonials
 previewTargets:
   -
     __assoc__:

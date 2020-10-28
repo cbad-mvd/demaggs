@@ -1,6 +1,8 @@
     		{% set myEntryQuery = craft.entries().section('globalHeader').limit(1) %}
             {% set thisEntry = myEntryQuery.one() %}
 
+            {% set thisSlug = entry is defined ? entry.slug : "" %}
+
             <header class="MainHdr nav--comin-in">
 
 				<div class="TopContactRow">
@@ -27,17 +29,17 @@
                         <ul class="nav-menu">
                             {% for item in thisEntry.globalNav %}
                                 <li>
-                                    {% if entry.slug == item.menuUrl %}
+                                    {% if thisSlug == item.menuUrl %}
                                         {% set linkClass = "active" %}
-                                    {% elseif (entry.slug == "home") and (item.menuUrl == "/") %}
+                                    {% elseif (thisSlug == "home") and (item.menuUrl == "/") %}
                                          {% set linkClass = "active" %}
                                    {% else %}
-                                        {% set linkClass = entry.slug %}
+                                        {% set linkClass = thisSlug %}
                                     {% endif %}
                                 {#
-                                        {% set linkClass = entry.slug ~ item.menuUrl %}
+                                        {% set linkClass = thisSlug ~ item.menuUrl %}
                                 #}
-                                    <a href="{{ item.menuUrl }}" class="{{ linkClass }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
+                                    <a href="{{ alias('@web') }}/{{ item.menuUrl }}" class="{{ linkClass }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
