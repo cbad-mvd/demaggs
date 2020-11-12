@@ -1,0 +1,36 @@
+{% extends "_layouts/site-base-page.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_user' as m_user %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Login</title>
+{% endblock titleTag %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('account') }}
+{% endblock pageintro %}
+
+{% block content %}
+
+    <section row>
+        <h1 class="userLoginTitle">Member Login / Registration</h1>
+        <div class="UserLogin">
+            <div class="UserLogin-guest">
+                <h3>Member Registration</h3>
+                <p>Already a member? Use the Member Login below.</p>
+                {{ m_user.regForm() }}
+
+            </div>
+            <div class="UserLogin-login">
+                <h3>Member Login</h3>
+                <p>New to Demaggs? Use the Member Registration.</p>
+                {{ m_user.loginForm('/menu2') }}
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}

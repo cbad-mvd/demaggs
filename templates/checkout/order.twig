@@ -1,0 +1,243 @@
+{% extends "_layouts/site-base-page.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Place Order</title>
+{% endblock titleTag %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('checkout') }}
+{% endblock pageintro %}
+
+{% block content %}
+    {% set cart = craft.commerce.carts.cart %}
+    {% set states = craft.commerce.states.allEnabledStates %}
+    
+    <section class="row">
+        <h1 class="checkoutTitle">Checkout</h1>
+        <div class="UserCheckout">
+            <div class="UserCheckout-info">
+                <h5>Customer Address</h5>
+                {% if cart.shippingAddress %} 
+                    {% set addressId = cart.shippingAddressId %}                                
+                    {% set fname = cart.shippingAddress.firstName %}
+                    {% set lname = cart.shippingAddress.lastName %}
+                    {% set addr1 = cart.shippingAddress.address1 %}
+                    {% set addr2 = cart.shippingAddress.address2 %}
+                    {% set city = cart.shippingAddress.city %}
+                    {% set state = cart.shippingAddress.stateId %}
+                    {% set zip = cart.shippingAddress.zipCode %}
+                {% else %}
+                    {% set addressId="" %}
+                    {% set fname="" %}
+                    {% set lname="" %}
+                    {% set addr1="" %}
+                    {% set addr2="" %}
+                    {% set city="" %}
+                    {% set state="" %}
+                    {% set zip="" %}
+                {% endif %}
+
+                <form method="post">
+                    <input type="hidden" name="action" value="commerce/cart/update-cart">
+                    
+                    {{ csrfInput() }}
+                    <input type="hidden" name="billingAddressSameAsShipping" value="1">
+                    <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ USCountryID }}">
+
+                    <div class="formRow">
+                        <span class="w45">
+                            <label for="shippingAddress-firstName">First Name*</label>
+                            <input type="text" id="shippingAddress-firstName"
+                                    class=""
+                                    name="shippingAddress[firstName]" value="{{ fname }}" >
+                        </span>
+
+                        <span class="w45">
+                            <label for="shippingAddress-lastName">Last Name*</label>
+                            <input type="text" id="shippingAddress-lastName"
+                                    class=""
+                                    name="shippingAddress[lastName]" value="{{ lname }}" >
+                        </span>
+                    </div>
+                    <div class="formRow">
+                        <label for="shippingAddress-address1">Address One</label>
+                        <input type="text" id="shippingAddress-address1"
+                                class=""
+                                name="shippingAddress[address1]" value="{{ addr1 }}" >
+                    </div>
+                    <div class="formRow">
+                        <label for="shippingAddress-address2">Address Two</label>
+                        <input type="text" id="shippingAddress-address2"
+                                class=""
+                                name="shippingAddress[address2]" value="{{ addr2 }}" >
+                    </div>
+                    <div class="formRow">
+                        <span class="w45">
+                            <label for="shippingAddress-city">City</label>
+                            <input type="text" id="shippingAddress-city"
+                                    class=""
+                                    name="shippingAddress[city]" value="{{ city }}" >
+                        </span>
+                        <span class="w30">
+                            <label for="shippingAddress-stateId">State</label>
+                            <select id="shippingAddress-stateId" name="shippingAddress[stateValue]">
+                                {% if state == "" %}
+                                    <option value="" selected disabled hidden>Select State</option>
+                                {% endif %}
+                                {% for countryId, states in craft.commerce.states.allEnabledStatesAsListGroupedByCountryId %}
+                                    {% if countryId == USCountryID %}
+                                        {% for stateId, stateName in states %}
+                                            {% if state == stateId %}
+                                                <option value="{{ stateId }}" selected >{{ stateName }}</option>
+                                            {% else %}
+                                                <option value="{{ stateId }}">{{ stateName }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+
+                        </span>
+                        <span class="w20">
+                            <label for="shippingAddress-zipCode">Zip</label>
+                            <input type="text" id="shippingAddress-zipCode"
+                                    class=""
+                                    name="shippingAddress[zipCode]" value="{{ zip }}" >
+                        </span>
+                    </div>
+
+                    <input type="submit" value="Update Address" class="button"/>
+                </form>
+            </div>
+
+            <div class="UserCheckout-payment">
+                <h5>Payment</h5>
+                <div class="alert error" role="alert">
+                    {# {{ cart.app.session.getFlash("error") }} #}
+                </div>
+                <form method="post">
+                    <input type="hidden" name="action" value="commerce/payments/pay">
+                    {{ redirectInput('/customer/order?number={number}') }}
+                    <input type="hidden" name="paymentMethodId" value="1">
+                    
+                    {% set formValues = {
+                        firstName: paymentForm is defined ? paymentForm.firstName :
+                                    (cart.billingAddress ? cart.billingAddress.firstName : ""),
+                        lastName: paymentForm is defined ? paymentForm.lastName :
+                                    (cart.billingAddress ? cart.billingAddress.lastName : ""),
+                        number: paymentForm is defined ? paymentForm.number : "",
+                        cvv: paymentForm is defined ? paymentForm.cvv : "",
+                        month: paymentForm is defined ? paymentForm.month : "1",
+                        year: paymentForm is defined ? paymentForm.year : currentYear + 1,
+                    } %}
+                    
+                    {{ csrfInput() }}
+                    <div class="formRow">
+                        <span class="w45">
+                            <label for="shippingAddress-firstName">Cardholder</label>
+                            <input type="text" name="firstName"
+                                    class=""
+                                    maxlength="70"
+                                    value="{{ formValues.firstName }}" >
+                            {% if paymentForm is defined and paymentForm.hasErrors("firstName") %}
+                                <span class="error">{{ paymentForm.getFirstError("firstName") }}</span>
+                            {% endif %}
+                        </span>
+
+                        <span class="w45">
+                            <label for="shippingAddress-lastName"></label>
+                            <input type="text" name="lastName"
+                                    class=""
+                                    maxlength="70"
+                                    value="{{ formValues.lastName }}" >
+                            {% if paymentForm is defined and paymentForm.hasErrors("lastName") %}
+                                <span class="error">{{ paymentForm.getFirstError("lastName") }}</span>
+                            {% endif %}
+                        </span>
+                    </div>
+
+                    <div class="formRow">
+                        <label for="shippingAddress-address1">Card Number</label>
+                        <input type="text" name="number"
+                                class=""
+                                maxlength="19"
+                                value="{{ formValues.number }}" >
+                        {% if paymentForm is defined and paymentForm.hasErrors("number") %}
+                            <span class="error">{{ paymentForm.getFirstError("number") }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="formRow">
+                        <span class="w30">
+                            <label>Month</label>
+                            <select name="month">
+                                {% for month in 1..12 %}
+                                <option value="{{ month }}" 
+                                        {% if formValues.month == month %} selected{% endif %}>
+                                        {{ month }} 
+                                </option>
+                                {% endfor %}
+                            </select>
+                            {% if paymentForm is defined and paymentForm.hasErrors("month") %}
+                                <span class="error">{{ paymentForm.getFirstError("month") }}</span>
+                            {% endif %}
+                        </span>
+                        
+                        <span class="w30">
+                            <label>Year</label>
+                            <select name="year">
+                                {% for year in currentYear..(currentYear + 12) %}
+                                <option value="{{ year }}" 
+                                        {% if formValues.year == year %} selected{% endif %}>
+                                        {{ year }} 
+                                </option>
+                                {% endfor %}
+                            </select>
+                            {% if paymentForm is defined and paymentForm.hasErrors("year") %}
+                                <span class="error">{{ paymentForm.getFirstError("year") }}</span>
+                            {% endif %}
+                        </span>
+
+                        <span class="w30">
+                            <label for="cvv">CVC</label>
+                            <input type="text" name="cvv"
+                                    placeholder="CVC"
+                                    class=""
+                                    value="{{ formValues.cvv }}" >
+                            {% if paymentForm is defined and paymentForm.hasErrors("cvv") %}
+                                <span class="error">{{ paymentForm.getFirstError("cvv") }}</span>
+                            {% endif %}
+                        </span>
+                    </div>
+                    <input type="submit" value="Place Order" class="button"/>
+                </form>
+            </div>
+        </div>
+
+        {# debugging extras 
+        <h4>Welcome {{ cart.email }} ({{ cart.customerId }})</h4>
+        {% set address = craft.commerce.customers.customer.addresses|first %}
+        <h6>first addressId = "{{ addressId }}"</h6>
+
+        {% if cart.shippingAddress %}
+            <ul>
+                <li>cart shipping addressId = {{ cart.shippingAddressId }}
+                <li>cart billing addressId  = {{ cart.billingAddressId }}
+                <li>{{ cart.shippingAddress.firstName }} {{ cart.shippingAddress.lastName }}</li>
+                <li>{{ cart.shippingAddress.countryId }}</li>
+                <li>{{ state }}</li>
+                <li></li>
+            </ul>
+        {% else %}
+            <p>No Shipping Address has been set for cart</p>
+        {% endif %}
+        end debugging extras #}
+    </section>
+{% endblock content %}
+

@@ -1,0 +1,6 @@
+color: orange
+default: true
+description: 'Order booked, pending scheduling'
+handle: booked
+name: Booked
+sortOrder: 99

@@ -1,0 +1,6 @@
+color: red
+default: false
+description: 'Your order is on hold due to an exception'
+handle: exception
+name: Exception
+sortOrder: 99

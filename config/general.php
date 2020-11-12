@@ -35,6 +35,7 @@ return [
         'appID' => App::env('APP_ID'),
         'siteUrl' => App::env('SITE_URL'),
         'testToEmailAddress' => (bool)App::env('TEST_TO_EMAIL', false),
+        'useEmailAsUsername' => (bool)App::env('EMAIL_TO_USERNAME', true),
 
         // Craft config settings from constants
 		'useProjectConfigFile' => false,

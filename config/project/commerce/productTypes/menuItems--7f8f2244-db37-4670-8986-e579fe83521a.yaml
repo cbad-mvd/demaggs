@@ -1,0 +1,72 @@
+descriptionFormat: '{product.title}'
+handle: menuItems
+hasDimensions: false
+hasProductTitleField: true
+hasVariantTitleField: false
+hasVariants: false
+name: 'Menu Items'
+productFieldLayouts:
+  135faaac-e0ed-4f66-93ee-77df890ad3b0:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\commerce\fieldlayoutelements\ProductTitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 13772022-4b96-416d-910d-5adbc3d783da
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 08fa6b7d-6167-4fa6-8bef-ef1d47c34f0e
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e9aed476-d853-4f13-a893-38cb40f3a236
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+productTitleFormat: ''
+siteSettings:
+  6671a41b-84cc-4d94-91a7-02d6825a057c:
+    hasUrls: true
+    template: cart/_entry
+    uriFormat: 'cart/{slug}'
+skuFormat: '{product.slug}'
+titleFormat: '{product.title}'

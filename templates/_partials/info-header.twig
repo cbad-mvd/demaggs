@@ -1,3 +1,6 @@
+
+{% import '_macros/_user' as m_user %}
+
     		{% set myEntryQuery = craft.entries().section('globalHeader').limit(1) %}
             {% set thisEntry = myEntryQuery.one() %}
 
@@ -42,7 +45,21 @@
                                     <a href="{{ alias('@web') }}/{{ item.menuUrl }}" class="{{ linkClass }}" title="{{ item.menuTip }}">{{ item.menuText }}</a>
                                 </li>
                             {% endfor %}
+                            <li>
+                                {# <a href="{{ m_user.getLoginLink() }}" class="{{ thisSlug }}" title="{{ m_user.getLoginLinkTitle() }}">{{ m_user.getLoginLinkTitle() }}</a> #}
+                                <a href="" class="jsShowUserMenu userIcon" title=""><span></span></a>                                
+                            </li>
                         </ul>
+                        <div id="userMenu" class="usermenu">
+                            <ul>
+                                {% if currentUser %}
+                                    <li><a href="/customer" class="">Order History</a></li>
+                                {% else %}
+                                {% endif %}
+                                <li><a href="{{ m_user.getLoginLink() }}" class="">{{ m_user.getLoginLinkTitle() }}</a></li>
+                            </ul>
+                        </div>
+
                     </div>
                     <div class="mobile-nav">
                         {% set image = globalVars.mobileMenu.one() %}

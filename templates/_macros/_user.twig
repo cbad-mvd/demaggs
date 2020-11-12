@@ -1,0 +1,144 @@
+{# public macros for managing users #}
+
+{# form for customer login #}
+{% macro loginForm(landing='/') %}
+{% import _self as self %}
+
+<form method="post" accept-charset="UTF-8">
+    {{ csrfInput() }}
+    {{ actionInput('users/login') }}
+    {{ redirectInput(landing) }}
+
+    <div class="">
+    <label for="loginName">Username or email</label>
+    {{ input('text', 'loginName', craft.app.user.rememberedUsername, { id: 'loginName', }) }}
+    </div>
+
+    <div class="">
+        <label for="password">Password</label>
+        {{ input('password', 'password', null, { id: 'password', }) }}
+    </div>
+
+    <div class="checkbox-group">
+        <span>
+            {{ input('checkbox', 'rememberMe', '1') }}
+            <label for="rememberMe">Remember Me</label>
+        </span>
+    </div>
+
+    <button type="submit">Login</button>
+
+    {% if errorMessage is defined %}
+        <p>{{ errorMessage }}</p>
+    {% endif %}
+</form>
+
+<p><a href="{{ url('reset-password') }}">Forgot your password?</a></p>
+{% endmacro loginForm %}
+
+
+{# form for customer registration #}
+{% macro regForm(landing='/') %}
+{% import _self as self %}
+
+{% macro errorList(errors) %}
+  {% if errors %}
+    {{ ul(errors, {class: 'errors'}) }}
+  {% endif %}
+{% endmacro %}
+
+<form method="post" accept-charset="UTF-8">
+    {{ csrfInput() }}
+    {{ actionInput('users/save-user') }}
+    {{ redirectInput(landing) }}
+
+    <div class="">
+        <label for="username">Username</label>
+        {{ input('text', 'username', user.username ?? null, { id: 'username', }) }}
+        {% if user is defined %}
+            {{ _self.errorList(user.getErrors('username')) }}
+        {% endif %}
+    </div>
+
+    <div class="">
+        <label for="email">Email</label>
+        {{ input('email', 'email', user.email ?? null, { id: 'email', }) }}
+        {% if user is defined %}
+            {{ _self.errorList(user.getErrors('email')) }}
+        {% endif %}
+    </div>
+
+    <div class="">
+        <label for="password">Password</label>
+        {{ input('password', 'password', null, {
+        id: 'password',
+        }) }}
+    </div>
+
+    {% if user is defined %}
+    <div>
+        {{ _self.errorList(user.getErrors('password')) }}
+    </div>
+    {% endif %}
+
+        <button type="submit">Register</button>
+</form>
+
+{% endmacro regForm %}
+
+
+{# form for customer registration #}
+{% macro forgotPassword() %}
+{% import _self as self %}
+
+<form method="post" accept-charset="UTF-8">
+  {{ csrfInput() }}
+  {{ actionInput('users/send-password-reset-email') }}
+  {{ redirectInput('/') }}
+
+  <label for="loginName">Username or email</label>
+  {{ input('text', 'loginName', loginName ?? craft.app.user.rememberedUsername, {
+    id: 'loginName',
+  }) }}
+
+  {% if errors ?? false %}
+    {{ ul(errors, {class: 'errors'}) }}
+  {% endif %}
+
+  <button type="submit">Submit</button>
+</form>
+
+{% endmacro forgotPassword %}
+
+{% macro guestCheckoutForm(cart=null, landing='/checkout/order') %}
+    {% if cart is not null %}
+                <form method="post" accept-charset="UTF-8">
+                    <input type="hidden" name="action" value="commerce/cart/update-cart">
+                    {{ redirectInput(landing) }}
+                    {{ csrfInput() }}
+					<div class="">
+                        <label for="">Email</label><br />
+                        <input class="" type="text" value="{{ cart.email }}"
+                            name="email"
+                            placeholder="myemail@site.com"/>
+                    </div>
+                    <input type="submit" value="Continue as Guest" class="button"/>
+                </form>
+    {% endif %}
+{% endmacro guestCheckoutForm %}
+
+{% macro getLoginLink() %}
+    {% if not craft.app.user.isGuest %}
+        {{ logoutUrl }}
+    {% else %}
+        {{ loginUrl }}"
+    {% endif %}
+{% endmacro getLoginLink %}
+
+{% macro getLoginLinkTitle() %}
+    {% if not craft.app.user.isGuest %}
+        Logout
+    {% else %}
+        Login
+    {% endif %}
+{% endmacro getLoginLinkTitle %}

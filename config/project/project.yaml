@@ -1,12 +1,20 @@
-dateModified: 1603899537
+dateModified: 1605210554
 email:
   fromEmail: jmayall@surething.com
-  fromName: demaggs
+  fromName: 'Demaggs Dining'
+  replyToEmail: jmayall@surething.com
+  template: ''
+  transportSettings:
+    command: ''
   transportType: craft\mail\transportadapters\Sendmail
 plugins:
+  commerce:
+    edition: pro
+    enabled: true
+    schemaVersion: 3.2.9
   contact-form:
     edition: standard
-    enabled: true
+    enabled: false
     schemaVersion: 1.0.0
   redactor:
     edition: standard
@@ -27,9 +35,3 @@ system:
   retryDuration: null
   schemaVersion: 3.5.13
   timeZone: America/Los_Angeles
-users:
-  allowPublicRegistration: false
-  defaultGroup: null
-  photoSubpath: null
-  photoVolumeUid: null
-  requireEmailVerification: true

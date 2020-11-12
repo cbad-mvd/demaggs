@@ -117,4 +117,68 @@ $(document).ready(function () {
 		//$(this).addClass("active");
 		//alert($(this).text());
 	});
+
+	var sInitialClick = true;
+	$('.jsShowUserMenu').click(function() {
+		var showIt = ($('#userMenu').css('display') == "none");
+
+		if ( showIt ) {
+			event.preventDefault();
+			$('#userMenu').css('display', "block");
+			sInitialClick = true;
+
+			$(document).on("click", function(e) {
+				var target = $( e.target );
+
+				if ( 	target.is( "div#userMenu" ) ||
+						target.is( "div#userMenu ul li" ) || 
+						target.is( "div#userMenu ul li a" ) || 
+						target.is( "div#userMenu ul" ) ) {
+					// e.type is the type of event
+					// e.target is the element the event originally occured in
+					// do nothing alert(e.target);
+				}
+				else {
+					if ( !sInitialClick ){
+						event.preventDefault();
+						$('#userMenu').css('display', "none");
+						$(document).off("click");						
+					}
+					sInitialClick = false;
+				}
+			});
+		}
+		else {
+			event.preventDefault();
+			$(document).off("click");
+			$('#userMenu').css('display', "none");
+		}
+	});
+
+	$('.jsRemoveLineItem').click(function() {
+		var $this = $(this);
+		var id = $(this).data('line-item-id');
+		var data = {
+			action: 'commerce/cart/update-cart',
+			lineItems: {[id]: {'remove': true}}
+		};
+		$.ajax({
+			type: "POST",
+			dataType: 'json',
+			headers: {
+				"X-CSRF-Token" : window.csrfTokenValue,
+			},
+			url: '/',
+			data: data,
+			success: function(response){
+				location.reload();
+				console.log("successfully updated cart", response, data);
+			},
+			fail :function(response) {
+				console.log("error updating cart", response, data);
+			}
+		});
+
+	});
+	
 });

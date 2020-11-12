@@ -1,0 +1,104 @@
+{% extends "_layouts/site-base-page.twig" %}
+{% set number = craft.app.request.param('number') %}
+{% if number is defined %}
+    {% set order = craft.orders.number(number).one() %}
+{% endif %}
+{% if not order %}
+    {% redirect "/customer" %}
+{% endif %}
+
+{# import macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+{% import '_macros/_fmt'     as m_fmt %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Order Confirmation</title>
+{% endblock titleTag %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('account') }}
+{% endblock pageintro %}
+
+{% block content %}
+{% set oddClass = "" %}
+
+{#
+{% dd(order) %} 
+#}
+    <section class="row">
+        <div class="UserOrder">
+            <div class="UserOrder-info">
+                <h3>Thank you for your order!</h3>
+                <div class="details">
+                    <span>
+                        <h5>Order Details</h5>
+                        <p>Customer: {{ order.email }}</p>
+                        <p>Order Number: {{ m_fmt.OrderNum(order.id) }}</p>
+                        <p>Order Date: {{ order.dateOrdered | date }}</p>
+                        <p>Order Total: {{ order.totalPrice | currency(order.currency) }}</p>
+                    </span>
+                    <span>
+                    {% if order.shippingAddress %}
+                        <h5>Event Address</h5>
+                        <p>{{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</p>
+                        <p>{{ order.shippingAddress.address1 }}</p>
+                        {% if order.shippingAddress.address2 %}
+                            <p>{{ order.shippingAddress.address2 }}</p>
+                        {% endif %}
+                        <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.state }} {{ order.shippingAddress.zipCode }}</p>
+                    {% endif %}
+                    </span>
+                </div>
+                <div class="lineItem hdr">
+                        <span class="itemQty hdr">
+                            Qty
+                        </span>
+                        <span class="itemDesc hdr">
+                            Description
+                        </span>
+                        <span class="itemPrice hdr">
+                            Price
+                        </span>
+                        <span class="itemTotal hdr">
+                            Total
+                        </span>
+                </div>
+                {% for item in order.lineItems %}
+                <div class="lineItem{{ oddClass }}">
+
+                        <span class="itemQty">
+                            {{ item.qty }}
+                        </span>
+                        <span class="itemDesc">
+                            {{ item.description }}
+                        </span>
+                        <span class="itemPrice">
+                            {{ item.price | currency(order.currency) }}
+                        </span>
+                        <span class="itemTotal">
+                            {{ item.total | currency(order.currency) }}
+                        </span>
+                </div>
+                {% set oddClass = (oddClass == "") ? " oddRow" : "" %}
+                {% endfor %}
+                <div class="lineItem total">
+                        <span class="itemQty hdr">
+                            &nbsp;
+                        </span>
+                        <span class="itemDesc hdr">
+                            &nbsp;
+                        </span>
+                        <span class="itemPrice hdr">
+                            Total:
+                        </span>
+                        <span class="itemTotal hdr">
+                            {{ order.totalPrice | currency(order.currency) }}
+                        </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "_layouts/site-base-page.twig" %}
 
 {% import '_macros/_intros' as m_intros %}
-{% import '_macros/_food' as m_food %}
+{% import '_macros/_menu' as m_menu %}
 
 {% block content %}
 
@@ -10,11 +10,11 @@
         <div class="row">
 			<div class="Food">
 				<div class="FoodChoices">
-				    {{ m_food.showFoodItems(category) }}
+					{{ m_menu.showMenuItems(category) }}
 				</div>
 				<div class="FoodMenu dark">
 					<h5 class="FoodMenu-title">My Selections:</h5>
-				    {{ m_food.showCart() }}
+				    {{ m_menu.showCart() }}
 				</div>
 			</div>
 		</div>

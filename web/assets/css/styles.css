@@ -598,11 +598,14 @@ input[type="reset"],
 input[type="button"] {
   display: inline-block;
   margin: 0;
-  padding: 0.5rem 1.5rem;
+  padding: 0 1.5rem;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
+  font-weight: bold;
+  line-height: 2.25rem;
   white-space: nowrap;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -612,8 +615,6 @@ button > a,
 input[type="submit"] > a,
 input[type="reset"] > a,
 input[type="button"] > a {
-  line-height: 2.25rem;
-  font-weight: bold;
   display: block;
 }
 
@@ -1285,7 +1286,7 @@ footer {
   margin: 0;
   padding: 0;
   width: 70%;
-  height: 2.5rem;
+  min-height: 2.5rem;
 }
 
 .HdrNavRow .nav-menu {
@@ -1299,6 +1300,7 @@ footer {
   font-size: 0.75rem;
   list-style: none;
   margin-top: 2rem;
+  padding-right: 1.5rem;
 }
 
 .HdrNavRow .nav-menu li {
@@ -1328,6 +1330,31 @@ footer {
 .HdrNavRow .nav-menu li.active a {
   background: #2f2f35 none repeat scroll 0 0;
   color: #b2d338;
+}
+
+.HdrNavRow .nav div.usermenu {
+  display: none;
+  position: absolute;
+  top: 3.75rem;
+  right: 2rem;
+  margin: 0;
+  min-width: 20%;
+  background-color: #212125;
+}
+
+.HdrNavRow .nav div.usermenu > ul {
+  font-size: 0.75rem;
+  list-style: none;
+  margin: .25rem;
+  padding: 0.5rem;
+}
+
+.HdrNavRow .nav div.usermenu > ul li a {
+  color: white;
+}
+
+.HdrNavRow .nav div.usermenu > ul li a:hover {
+  color: #b3d146;
 }
 
 .HdrNavRow .mobile-nav {
@@ -1647,13 +1674,20 @@ footer {
   width: 100%;
   margin-right: 0;
   padding: 1.5rem;
+  padding: 1rem;
 }
 
 .Food .FoodMenu h5, .Food .FoodMenu .title, .Food .FoodMenu p, .Food .FoodMenu div {
   margin: 0;
 }
 
-.Food .FoodMenu-item {
+.Food .FoodMenu-wrapper {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.Food .FoodMenu-total, .Food .FoodMenu-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1666,18 +1700,29 @@ footer {
   line-height: 1.25;
 }
 
-.Food .FoodMenu-item .name {
+.Food .FoodMenu-total .name, .Food .FoodMenu-item .name {
   width: 68%;
 }
 
-.Food .FoodMenu-item .remove {
+.Food .FoodMenu-total .remove, .Food .FoodMenu-item .remove {
   width: 8%;
+  text-align: center;
+  font-weight: 700;
+  color: #b3d146;
+}
+
+.Food .FoodMenu-total .remove:hover, .Food .FoodMenu-item .remove:hover {
+  cursor: pointer;
+  color: #cf0505;
+}
+
+.Food .FoodMenu-total .price, .Food .FoodMenu-item .price {
+  width: 18%;
   text-align: right;
 }
 
-.Food .FoodMenu-item .price {
-  width: 18%;
-  text-align: right;
+.Food .FoodMenu-total {
+  font-weight: bold;
 }
 
 .Food .FoodMenu-title {
@@ -1772,8 +1817,10 @@ footer {
 }
 
 .FoodItem-button {
-  margin-top: 1rem;
+  display: block;
+  margin-top: 3rem;
   margin-bottom: 0;
+  padding: 0;
 }
 
 .FoodItem-price {
@@ -1798,6 +1845,342 @@ footer {
 }
 
 /*
+ * User Login
+ */
+h1.userLoginTitle {
+  width: 95%;
+  margin: 0 auto;
+}
+
+@media (min-width: 750px) {
+  h1.userLoginTitle {
+    width: 80%;
+  }
+}
+
+@media (min-width: 550px) {
+  h1.userLoginTitle {
+    width: 90%;
+  }
+}
+
+.UserLogin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.UserLogin h3 {
+  margin-top: 0;
+}
+
+.UserLogin > div {
+  margin: 0 1rem 2rem 1rem;
+  padding: 0.5rem;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  min-height: 20rem;
+  width: 95%;
+}
+
+@media (min-width: 750px) {
+  .UserLogin > div {
+    margin: 0 1rem;
+    padding: 1.5rem;
+    width: 40%;
+  }
+}
+
+@media (min-width: 550px) {
+  .UserLogin > div {
+    width: 45%;
+    margin: 0 .5rem;
+  }
+}
+
+/*
+ * User Checkout
+ */
+h1.checkoutTitle {
+  width: 95%;
+  margin: 0rem auto;
+}
+
+@media (min-width: 800px) {
+  h1.checkoutTitle {
+    width: 80%;
+    margin: 1.5rem auto;
+  }
+}
+
+.UserCheckout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.UserCheckout h5, .UserCheckout .title {
+  margin: 0 0 .5rem 0;
+}
+
+.UserCheckout-payment, .UserCheckout-info {
+  margin: 0 0.5rem 2rem 0.5rem;
+  padding: 1.5rem;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  min-height: 20rem;
+  width: 95%;
+}
+
+.UserCheckout-payment span.w45, .UserCheckout-info span.w45 {
+  width: 45%;
+}
+
+.UserCheckout-payment span.w30, .UserCheckout-info span.w30 {
+  width: 30%;
+}
+
+.UserCheckout-payment span.w25, .UserCheckout-info span.w25 {
+  width: 25%;
+}
+
+.UserCheckout-payment span.w20, .UserCheckout-info span.w20 {
+  width: 20%;
+}
+
+@media (min-width: 800px) {
+  .UserCheckout-info {
+    width: 50%;
+  }
+  .UserCheckout-payment {
+    width: 30%;
+  }
+}
+
+/*
+ * User Order
+ */
+.UserOrder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.UserOrder h3 {
+  margin: 0 0 .5rem 0;
+}
+
+.UserOrder-history, .UserOrder-info {
+  margin: 0 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  min-height: 20rem;
+  width: 95%;
+}
+
+.UserOrder-history h5, .UserOrder-history .title,
+.UserOrder-history p, .UserOrder-info h5, .UserOrder-info .title,
+.UserOrder-info p {
+  margin: 0;
+}
+
+.UserOrder-history .details, .UserOrder-info .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.UserOrder-history .details span, .UserOrder-info .details span {
+  width: 95%;
+  margin-bottom: 2rem;
+}
+
+.UserOrder-history .history,
+.UserOrder-history .lineItem, .UserOrder-info .history,
+.UserOrder-info .lineItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0.5rem 0;
+  padding: 0 1rem;
+}
+
+.UserOrder-history .history span.hdr,
+.UserOrder-history .lineItem span.hdr, .UserOrder-info .history span.hdr,
+.UserOrder-info .lineItem span.hdr {
+  font-weight: bold;
+}
+
+.UserOrder-history .history span.itemQty,
+.UserOrder-history .lineItem span.itemQty, .UserOrder-info .history span.itemQty,
+.UserOrder-info .lineItem span.itemQty {
+  width: 10%;
+}
+
+.UserOrder-history .history span.itemDesc,
+.UserOrder-history .lineItem span.itemDesc, .UserOrder-info .history span.itemDesc,
+.UserOrder-info .lineItem span.itemDesc {
+  width: 40%;
+}
+
+.UserOrder-history .history span.itemPrice,
+.UserOrder-history .lineItem span.itemPrice, .UserOrder-info .history span.itemPrice,
+.UserOrder-info .lineItem span.itemPrice {
+  width: 12%;
+}
+
+.UserOrder-history .history span.itemTotal,
+.UserOrder-history .lineItem span.itemTotal, .UserOrder-info .history span.itemTotal,
+.UserOrder-info .lineItem span.itemTotal {
+  width: 12%;
+}
+
+.UserOrder-history .history span.orderNum,
+.UserOrder-history .lineItem span.orderNum, .UserOrder-info .history span.orderNum,
+.UserOrder-info .lineItem span.orderNum {
+  width: 22.5%;
+}
+
+.UserOrder-history .history span.orderDate,
+.UserOrder-history .lineItem span.orderDate, .UserOrder-info .history span.orderDate,
+.UserOrder-info .lineItem span.orderDate {
+  width: 22.5%;
+}
+
+.UserOrder-history .history span.orderQty,
+.UserOrder-history .lineItem span.orderQty, .UserOrder-info .history span.orderQty,
+.UserOrder-info .lineItem span.orderQty {
+  width: 0%;
+  display: none;
+}
+
+.UserOrder-history .history span.orderTotal,
+.UserOrder-history .lineItem span.orderTotal, .UserOrder-info .history span.orderTotal,
+.UserOrder-info .lineItem span.orderTotal {
+  width: 22.5%;
+}
+
+.UserOrder-history .history span.orderStatus,
+.UserOrder-history .lineItem span.orderStatus, .UserOrder-info .history span.orderStatus,
+.UserOrder-info .lineItem span.orderStatus {
+  width: 22.5%;
+}
+
+.UserOrder-history .history.oddRow,
+.UserOrder-history .lineItem.oddRow, .UserOrder-info .history.oddRow,
+.UserOrder-info .lineItem.oddRow {
+  background-color: #eee;
+}
+
+.UserOrder-history .history.hdr,
+.UserOrder-history .lineItem.hdr, .UserOrder-info .history.hdr,
+.UserOrder-info .lineItem.hdr {
+  margin-top: 2rem;
+  background-color: #eee;
+}
+
+.UserOrder-history .history.total,
+.UserOrder-history .lineItem.total, .UserOrder-info .history.total,
+.UserOrder-info .lineItem.total {
+  margin: 1rem 0 2rem 0;
+}
+
+@media (min-width: 800px) {
+  .UserOrder-history, .UserOrder-info {
+    width: 75%;
+    padding: 1.5rem;
+  }
+  .UserOrder-history .details span, .UserOrder-info .details span {
+    width: 45%;
+  }
+  .UserOrder-history .lineItem span.orderNum, .UserOrder-info .lineItem span.orderNum {
+    width: 18%;
+  }
+  .UserOrder-history .lineItem span.orderDate, .UserOrder-info .lineItem span.orderDate {
+    width: 18%;
+  }
+  .UserOrder-history .lineItem span.orderQty, .UserOrder-info .lineItem span.orderQty {
+    width: 18%;
+    display: inline;
+  }
+  .UserOrder-history .lineItem span.orderTotal, .UserOrder-info .lineItem span.orderTotal {
+    width: 18%;
+  }
+  .UserOrder-history .lineItem span.orderStatus, .UserOrder-info .lineItem span.orderStatus {
+    width: 18%;
+  }
+}
+
+/*
+ * default form styles (should move)
+ */
+form > div {
+  margin: 0 0 1rem 0;
+}
+
+form select,
+form input {
+  margin: 0;
+}
+
+form span {
+  display: inline-block;
+}
+
+form select,
+form input[type="email"],
+form input[type="password"],
+form input[type="text"] {
+  padding: 0.5rem;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+form label {
+  margin-left: 0.2rem;
+}
+
+/*
  * Video player
  */
 .Video-wrapper {
@@ -1817,6 +2200,21 @@ footer {
   padding: 0;
   background-color: #ffffff;
   margin: 0 auto;
+}
+
+.userIcon {
+  margin-top: 4px;
+}
+
+.userIcon span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/img/icons/usericon-light.svg");
+}
+
+.userIcon span:hover {
+  background-image: url("/assets/img/icons/usericon-hot.svg");
 }
 
 /*

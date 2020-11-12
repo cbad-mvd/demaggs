@@ -1,0 +1,10 @@
+bcc: null
+cc: null
+enabled: true
+name: 'Order Confirmation'
+plainTextTemplatePath: ''
+recipientType: customer
+replyTo: jmayall@surething.com
+subject: 'Congratulations! Your Event with Demaggs Dining has been booked!'
+templatePath: /customer/_email/order-confirmation
+to: null

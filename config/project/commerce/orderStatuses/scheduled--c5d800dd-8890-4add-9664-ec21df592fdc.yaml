@@ -1,0 +1,6 @@
+color: green
+default: false
+description: 'Your event has been scheduled.'
+handle: scheduled
+name: Scheduled
+sortOrder: 99

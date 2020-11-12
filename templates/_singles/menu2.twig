@@ -3,7 +3,7 @@
 {# import the srcset macro #}
 {% import '_macros/_srcset' as m_srcset %}
 {% import '_macros/_intros' as m_intros %}
-{% import '_macros/_food' as m_food %}
+{% import '_macros/_menu' as m_menu %}
 
 {% block titleTag %}
 	<title>{{ globalVars.pageTitleBase }} Create Menu</title>
@@ -33,12 +33,14 @@
 					<h2>{{ category.title }}</h2>
 					<h5>{{ category.fiGroupDescription }}</h5>
 				</div>
-				{{ m_food.showFoodItems(category) }}
+				{{ m_menu.showMenuItems(category) }}
 			{% endnav %}
 			</div>
 			<div class="FoodMenu dark">
-				<h5 class="FoodMenu-title">My Selections:</h5>
-				{{ m_food.showCart() }}
+				<div class="FoodMenu-wrapper">
+					<h5 class="FoodMenu-title">My Selections:</h5>
+					{{ m_menu.showCart() }}
+				</div>
 			</div>
 		</div>
 	</div>

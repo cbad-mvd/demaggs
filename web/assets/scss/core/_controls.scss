@@ -7,17 +7,18 @@ input[type="reset"],
 input[type="button"] {
     display: inline-block;
     margin: 0;
-	padding: $vspace-base/3 $vspace-base;
+	padding: 0 $vspace-base;
 	text-align: center;
 	text-transform: uppercase;
-	text-decoration: none;
-	white-space: nowrap;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: $vspace-base * 1.5;
+    white-space: nowrap;
+    border: none;
 	border-radius: 4px;
     cursor: pointer;
     
     > a {
-        line-height: $vspace-base * 1.5;
-        font-weight: bold;
         display: block;
     }
     > a:hover {

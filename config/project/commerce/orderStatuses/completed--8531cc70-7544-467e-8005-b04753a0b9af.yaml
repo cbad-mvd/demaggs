@@ -1,0 +1,6 @@
+color: blue
+default: false
+description: 'Thank you for letting us serve you!'
+handle: completed
+name: Completed
+sortOrder: 99

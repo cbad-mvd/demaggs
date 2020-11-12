@@ -16,9 +16,27 @@
 			alias("@web"),
 		] 
 	%}
+
+	{# -- Setup csfr variables for use anywhere -- #}
+	<script type="text/javascript">
+		window.csrfTokenName = "{{ craft.app.config.general.csrfTokenName }}";
+		window.csrfTokenValue = "{{ craft.app.request.csrfToken }}";
+	</script>
+
+	{# A few handy dates #}
+	{% set currentYear = date().format('Y') %}
+	{% set currentMonth = date().format('n') %}
+	{% set currentDay = date().format('j') %}
+	{% set currentMonthLong = date().format('m') %}
+	{% set currentDayLong = date().format('d') %}
+	{% set currentYearShort = date().format('y') %}
+	{% set currentMonthName = date().format('F') %}
+	{% set currentDayName = date().format('l') %}
+
 	{# -- General global variables -- #}
 	{% set baseUrl = alias('@web') ~ '/' %}
 	{% set gaTrackingId = getenv('GA_TRACKING_ID') %}
+	{% set USCountryID = 236 %}
 
 	{# -- Twig output from the render; this must be in a block -- #}
 	{% block htmlPage %}

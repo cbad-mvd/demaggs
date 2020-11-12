@@ -462,17 +462,18 @@ footer {
         margin: 0;
         padding: 0;
         width: 70%;
-        height: 2.5rem;
+        min-height: 2.5rem;
 
         &-menu {
             width: 100%;
 
             display: flex;
-            justify-content: flex-end;
+			justify-content: flex-end;
+
             font-size: $font-size-small;
             list-style: none;
-            margin-top: 2rem;
-
+			margin-top: 2rem;
+			padding-right: 1.5rem;
 
             li {
                 display: inline-block;
@@ -498,9 +499,30 @@ footer {
 					background: #2f2f35 none repeat scroll 0 0;
                 color: #b2d338;
             }
+		}    
+		div.usermenu {
+			display: none;
+			position: absolute;
+			top: 3.75rem;
+			right: 2rem;
+			margin: 0;
+			min-width: 20%;
+			background-color: $color-bg__dark;
 
-
-        }    
+			> ul {
+				font-size: $font-size-small;
+				list-style: none;
+				margin: .25rem;
+				padding: 0.5rem;	
+			}
+			> ul li a {
+				color: white;
+			}
+			> ul li a:hover {
+				color: $color-main-accent;
+			}
+		}
+	
     }
 
 	.mobile-nav {
@@ -862,11 +884,19 @@ footer {
 		width: 100%;
 		margin-right: 0;
 		padding: $vspace-base;
+		padding: 1rem;
 
 		h5, p, div {
 			margin: 0;
 		}
+
+		&-wrapper {
+			padding: 0.5rem;
+			border-radius: 0.5rem;
+			background-color: rgba(255,255,255,0.1);			
+		}
 	
+		&-total,
 		&-item {
 			display: flex;
 			justify-content: space-between;
@@ -880,12 +910,22 @@ footer {
 			}
 			& .remove {
 				width: 8%;
-				text-align: right;
+				text-align: center;
+				font-weight: 700;
+				color: $color-main-accent;
+			}
+			& .remove:hover {
+				cursor: pointer;
+				color: $color-link-hover;
 			}
 			& .price {
 				width: 18%;
 				text-align: right;
 			}
+		}
+
+		&-total{
+			font-weight: bold;
 		}
 
 		&-title {
@@ -965,8 +1005,10 @@ footer {
 	}
 
 	&-button {
-		margin-top: 1rem;
+		display: block;		
+		margin-top: 3rem;
 		margin-bottom: 0;
+		padding: 0;
 	}
 
 	&-price {
@@ -991,6 +1033,248 @@ footer {
 }
 
 /*
+ * User Login
+ */
+h1.userLoginTitle {
+	width: 95%;
+	margin: 0 auto;
+
+	@media (min-width: 750px) {
+		width: 80%;
+	}
+
+	@media (min-width: 550px) {
+		width: 90%;
+	}
+}
+
+.UserLogin {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+
+	h3 {
+		margin-top: 0;
+	}
+
+	> div {
+		margin: 0 1rem 2rem 1rem;
+		padding: 0.5rem;
+		background-color: $color-rowbg__alt;
+		border: 1px solid $color-rowborder;
+		border-radius: 1rem;
+		min-height: 20rem;
+		width: 95%;
+	}
+
+	&-login,
+	&-guest {
+	}
+
+	@media (min-width: 750px) {
+		> div {
+			margin: 0 1rem;
+			padding: 1.5rem;
+			width: 40%;
+		}
+	}
+
+	@media (min-width: 550px) {
+		> div {
+			width: 45%;
+			margin: 0 .5rem;		
+		}
+	}
+}
+
+/*
+ * User Checkout
+ */
+ h1.checkoutTitle {
+	width: 95%;
+	margin: 0rem auto;
+
+	@media (min-width: 800px) {
+		width: 80%;
+		margin: 1.5rem auto;
+	}
+ }
+
+ .UserCheckout {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+ 
+	h5 {
+		margin: 0 0 .5rem 0;
+	}
+
+	&-payment,
+	&-info {
+		margin: 0 0.5rem 2rem 0.5rem;
+		padding: 1.5rem;
+		background-color: $color-rowbg__alt;
+		border: 1px solid $color-rowborder;
+		border-radius: 1rem;
+		min-height: 20rem;
+		width: 95%;
+
+		span.w45 {
+			width: 45%;
+		}
+		span.w30 {
+			width: 30%;
+		}
+		span.w25 {
+			width: 25%;
+		}
+		span.w20 {
+			width: 20%;
+		}
+
+
+	}
+
+	@media (min-width: 800px) {
+		&-info {
+			width: 50%;
+		}
+		&-payment {
+			width: 30%;
+		}
+	}
+}
+
+/*
+ * User Order
+ */
+.UserOrder {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+ 
+	h3 {
+		margin: 0 0 .5rem 0;
+	}
+
+	&-history,
+	&-info {
+		margin: 0 0.5rem;
+		padding: 1rem;
+		border: 1px solid $color-rowborder;
+		border-radius: 1rem;
+		min-height: 20rem;
+		width: 95%;
+
+		h5,
+		p {
+			margin: 0;
+		}
+
+		.details {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;		
+			margin: 2rem 0;
+
+			span {
+				width: 95%;
+				margin-bottom: 2rem;
+			}
+			
+		}
+
+		.history,
+		.lineItem {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;		
+			margin: 0.5rem 0;
+			padding: 0 1rem;
+
+			span.hdr {
+				font-weight: bold;
+			}
+
+			span.itemQty { width: 10%; }
+			span.itemDesc { width: 40%; }
+			span.itemPrice { width: 12%; }
+			span.itemTotal { width: 12%; }
+
+			span.orderNum { width: 22.5%; }
+			span.orderDate { width: 22.5%; }
+			span.orderQty { width: 0%; display: none; }
+			span.orderTotal { width: 22.5%; }
+			span.orderStatus { width: 22.5%; }
+
+			&.oddRow {
+				background-color: $color-rowbg__alt;
+			}
+			&.hdr {
+				margin-top: 2rem;
+				background-color: $color-rowbg__alt;
+			}
+			&.total {
+				margin: 1rem 0 2rem 0;
+			}
+		}
+	}
+
+	@media (min-width: 800px) {
+		&-history,
+		&-info {
+			width: 75%;
+			padding: 1.5rem;
+
+			.details {
+				span {
+					width: 45%;
+				}
+			}
+
+			.lineItem {
+				span.orderNum { width: 18%; }
+				span.orderDate { width: 18%; }
+				span.orderQty { width: 18%; display: inline; }
+				span.orderTotal { width: 18%; }
+				span.orderStatus { width: 18%; }
+			}
+
+		}
+	}
+}
+
+/*
+ * default form styles (should move)
+ */
+form {
+	> div {
+		margin: 0 0 1rem 0;
+	}
+	select,
+	input {
+		margin: 0;
+	}
+	span {
+		display: inline-block;
+	}
+
+	select,
+	input[type="email"],
+	input[type="password"],
+	input[type="text"] {
+			padding: 0.5rem;
+			width: 90%;
+			border: 1px solid #ccc;
+			border-radius: 0.5rem;
+	}
+	label {
+		margin-left: 0.2rem;
+	}
+}
+
+
+/*
  * Video player
  */
 .Video {
@@ -1013,6 +1297,20 @@ footer {
 	}
 }
 
+.userIcon {
+	margin-top: 4px;
+
+	span {
+		display: block;
+		width: 24px;
+		height: 24px;
+		background-image: url('/assets/img/icons/usericon-light.svg');
+
+		&:hover {
+			background-image: url('/assets/img/icons/usericon-hot.svg');
+		}
+	}
+}
 /*
  * Video Gallery
  */

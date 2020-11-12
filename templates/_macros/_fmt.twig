@@ -1,0 +1,5 @@
+{# public macro for displaying food choices #}
+{% macro OrderNum(num = 0) %}
+{% import _self as self %}
+    dm-{{ "%05d"|format(num) }}
+{% endmacro OrderNum %}

@@ -1,0 +1,6 @@
+allowPublicRegistration: true
+defaultGroup: ee43d57e-bcba-4fbc-b359-191f3da1a1aa
+photoSubpath: null
+photoVolumeUid: 7b765381-8fc4-4192-b988-b9ef87908a75
+requireEmailVerification: true
+suspendByDefault: false

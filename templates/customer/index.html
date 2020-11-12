@@ -1,0 +1,59 @@
+{% extends "_layouts/site-base-page.twig" %}
+{% if not currentUser %}
+    {% redirect "/login" %}
+{% endif %}
+
+{# import macros #}
+{% import '_macros/_fmt'     as m_fmt %}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Order History</title>
+{% endblock titleTag %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('account') }}
+{% endblock pageintro %}
+
+{% block content %}
+    {% set customerOrders = craft.orders.customerId(craft.commerce.customers.customer).isCompleted(true).all() %}
+    {% set oddClass = "" %}
+    
+    <section class="row">
+        <div class="UserOrder">
+            <div class="UserOrder-history">
+                <h3>Order History</h3>
+                <div class="lineItem hdr">
+                    <span class="orderNum">Order #</span>
+                    <span class="orderDate">Date</span>
+                    <span class="orderQty">Qty</span>
+                    <span class="orderTotal">Total</span>
+                    <span class="orderStatus">Status</span>                    
+                </div>
+                {% for order in customerOrders %}
+                <div class="lineItem{{ oddClass }}">
+                    <span class="orderNum">
+                        <a href="{{ url('/customer/order', { number: order.number }) }}">{{ m_fmt.OrderNum(order.id) }}</a>
+                    </span>
+                    <span class="orderDate">{{ order.dateOrdered | date }}</span>
+                    <span class="orderQty">{{ order.totalQty }} item{% if (order.totalQty > 1) %}s{% endif %}</span>
+                    <span class="orderTotal">{{ order.totalPrice | currency(order.currency) }}</span>
+                    <span class="orderStatus" style="color: {{ order.orderStatus.color }}">{{ order.orderStatus }}</span>                    
+                </div>
+                {% set oddClass = (oddClass == "") ? " oddRow" : "" %}
+                {% endfor %}
+
+                {% set cart = craft.commerce.carts.cart %}
+                {% if cart.hasLineItems %}
+                    <div>
+                        <span class="button"><a href="/checkout">Complete Your Current Order</a></span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
+
