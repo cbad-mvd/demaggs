@@ -2249,6 +2249,10 @@ form label {
   margin-left: 0.2rem;
 }
 
+form label.inline {
+  display: inline;
+}
+
 form span.pw-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2272,7 +2276,8 @@ form span.pw-wrapper input[type="password"] {
 }
 
 form span.pw-wrapper span.eyeball {
-  width: 7%;
+  display: none;
+  width: 6%;
   height: 1.2rem;
   cursor: pointer;
   background-image: url("/assets/img/icons/icon-eye-on.svg");

@@ -1319,6 +1319,10 @@ form {
 	label {
 		display: block;
 		margin-left: 0.2rem;
+
+		&.inline {
+			display: inline;
+		}
 	}
 
 	span.pw-wrapper {
@@ -1335,7 +1339,8 @@ form {
 			border-radius: none;
 		}
 		span.eyeball {
-			width: 7%;
+			display: none;
+			width: 6%;
 			height: 1.2rem;
 			cursor: pointer;
 			background-image: url('/assets/img/icons/icon-eye-on.svg');

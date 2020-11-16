@@ -195,7 +195,12 @@ $(document).ready(function () {
 
 	});
 
+	/*
+	 * toggle password visibilty
+	 */
+
 	$('.jsShowPW').click(function() {
+
 		if ( $('.jsPWField').attr('type') == 'password' ){
 			$('.jsPWField').attr('type', 'text');
 			$('.jsShowPW').attr('style', 'background-image: url("/assets/img/icons/icon-eye-off.svg")');
@@ -204,7 +209,18 @@ $(document).ready(function () {
 			$('.jsPWField').attr('type', 'password');
 			$('.jsShowPW').attr('style', 'background-image: url("/assets/img/icons/icon-eye-on.svg")');
 		}
+		$(this).show();
 		event.preventDefault();
+	});
+
+	$('.jsPWField').keyup( function() {
+		val = $(this).val();
+		if ( val.length > 0 ) {
+			$('.jsShowPW').show();			
+		}
+		else {
+			$('.jsShowPW').hide();			
+		}
 	});
 	
 	
