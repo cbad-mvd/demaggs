@@ -513,8 +513,13 @@ footer {
 				font-size: $font-size-small;
 				list-style: none;
 				margin: .25rem;
-				padding: 0.5rem;	
+				padding: 0.75rem;	
 			}
+
+			> ul li.last {
+				margin-bottom: 0;
+			}
+
 			> ul li a {
 				color: white;
 			}
@@ -899,12 +904,18 @@ footer {
 		&-total,
 		&-item {
 			display: flex;
-			justify-content: space-between;
+			flex-flow: row nowrap;
+			justify-content: space-between;			
 			margin: 0.25rem;
 			padding-bottom: 0.5rem;
 			font-size: $font-size-small;
 			line-height: 1.25;
 
+			& .qty {
+				width: 6%;
+				margin-right: 0.5rem;
+				text-align: right;
+			}
 			& .name {
 				width: 68%;
 			}
@@ -937,11 +948,11 @@ footer {
 		flex-flow: row nowrap;
 
 		.FoodMenu {
-			width: 30%;
+			width: 33%;
 			margin-right: 2rem;
 		}
 		.FoodChoices {
-			width: 68%;
+			width: 67%;
 			margin: 1.5rem 0;
 		}
 	}
@@ -993,6 +1004,20 @@ footer {
 		h5, p {
 			padding: $vspace-base/4;
 		}
+
+		form {
+			div.addRow {
+				display: flex;
+				flex-flow: row nowrap;
+				margin: 0;
+				padding: 0;
+
+				input.qty {
+					margin-left: 2rem;
+					width: 15%;
+				}
+			}
+		}
 	}
 
 	&-image {
@@ -1036,15 +1061,16 @@ footer {
  * User Login
  */
 h1.userLoginTitle {
-	width: 95%;
+	width: 44%;
 	margin: 0 auto;
+	text-transform: uppercase;
 
 	@media (min-width: 750px) {
-		width: 80%;
+		width: 44%;
 	}
 
 	@media (min-width: 550px) {
-		width: 90%;
+		width: 44%;
 	}
 }
 
@@ -1052,8 +1078,14 @@ h1.userLoginTitle {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+	margin-top: 0.5rem;
 
 	h3 {
+		margin-top: 0;
+		display: none;
+	}
+
+	p {
 		margin-top: 0;
 	}
 
@@ -1067,8 +1099,11 @@ h1.userLoginTitle {
 		width: 95%;
 	}
 
-	&-login,
+	&-login {
+		display: block;
+	}
 	&-guest {
+		display: none;
 	}
 
 	@media (min-width: 750px) {
@@ -1207,6 +1242,16 @@ h1.userLoginTitle {
 			span.orderTotal { width: 22.5%; }
 			span.orderStatus { width: 22.5%; }
 
+			span.itemQty {
+				text-align: center;
+			}			
+			span.orderTotal,
+			span.itemPrice,
+			span.itemTotal {
+				text-align: right;
+			}
+
+
 			&.oddRow {
 				background-color: $color-rowbg__alt;
 			}
@@ -1259,8 +1304,11 @@ form {
 		display: inline-block;
 	}
 
+
+	span.pw-wrapper,
 	select,
 	input[type="email"],
+	input[type="number"],
 	input[type="password"],
 	input[type="text"] {
 			padding: 0.5rem;
@@ -1269,8 +1317,33 @@ form {
 			border-radius: 0.5rem;
 	}
 	label {
+		display: block;
 		margin-left: 0.2rem;
 	}
+
+	span.pw-wrapper {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		background-color: white;
+		
+		input[type="text"],
+		input[type="password"] {
+			padding: 0;
+			width: 90%;
+			border: none;
+			border-radius: none;
+		}
+		span.eyeball {
+			width: 7%;
+			height: 1.2rem;
+			cursor: pointer;
+			background-image: url('/assets/img/icons/icon-eye-on.svg');
+			background-repeat: no-repeat;
+
+		}
+	}
+
 }
 
 
@@ -1309,6 +1382,10 @@ form {
 		&:hover {
 			background-image: url('/assets/img/icons/usericon-hot.svg');
 		}
+	}
+
+	&:focus {
+		outline: none;
 	}
 }
 /*
@@ -1369,6 +1446,23 @@ form {
 		}
 	}
  }
+
+.ErrorList {
+	margin: 1.5rem 0;
+	padding: 0;
+
+	p {
+		margin: 0.5rem 0;
+	}
+	ul {
+		margin: 0;
+		list-style-type: "→";
+		list-style-position: outside;
+		color: red;
+		padding-left: 1rem;		
+	}
+}
+
 /*
  * animation styles
  */

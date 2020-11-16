@@ -1346,7 +1346,11 @@ footer {
   font-size: 0.75rem;
   list-style: none;
   margin: .25rem;
-  padding: 0.5rem;
+  padding: 0.75rem;
+}
+
+.HdrNavRow .nav div.usermenu > ul li.last {
+  margin-bottom: 0;
 }
 
 .HdrNavRow .nav div.usermenu > ul li a {
@@ -1691,6 +1695,10 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1698,6 +1706,12 @@ footer {
   padding-bottom: 0.5rem;
   font-size: 0.75rem;
   line-height: 1.25;
+}
+
+.Food .FoodMenu-total .qty, .Food .FoodMenu-item .qty {
+  width: 6%;
+  margin-right: 0.5rem;
+  text-align: right;
 }
 
 .Food .FoodMenu-total .name, .Food .FoodMenu-item .name {
@@ -1737,11 +1751,11 @@ footer {
             flex-flow: row nowrap;
   }
   .Food .FoodMenu {
-    width: 30%;
+    width: 33%;
     margin-right: 2rem;
   }
   .Food .FoodChoices {
-    width: 68%;
+    width: 67%;
     margin: 1.5rem 0;
   }
 }
@@ -1805,6 +1819,23 @@ footer {
   padding: 0.375rem;
 }
 
+.FoodItem-info form div.addRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.FoodItem-info form div.addRow input.qty {
+  margin-left: 2rem;
+  width: 15%;
+}
+
 .FoodItem-image {
   width: 100%;
   -webkit-box-ordinal-group: 2;
@@ -1848,19 +1879,20 @@ footer {
  * User Login
  */
 h1.userLoginTitle {
-  width: 95%;
+  width: 44%;
   margin: 0 auto;
+  text-transform: uppercase;
 }
 
 @media (min-width: 750px) {
   h1.userLoginTitle {
-    width: 80%;
+    width: 44%;
   }
 }
 
 @media (min-width: 550px) {
   h1.userLoginTitle {
-    width: 90%;
+    width: 44%;
   }
 }
 
@@ -1875,9 +1907,15 @@ h1.userLoginTitle {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-top: 0.5rem;
 }
 
 .UserLogin h3 {
+  margin-top: 0;
+  display: none;
+}
+
+.UserLogin p {
   margin-top: 0;
 }
 
@@ -1889,6 +1927,14 @@ h1.userLoginTitle {
   border-radius: 1rem;
   min-height: 20rem;
   width: 95%;
+}
+
+.UserLogin-login {
+  display: block;
+}
+
+.UserLogin-guest {
+  display: none;
 }
 
 @media (min-width: 750px) {
@@ -2105,6 +2151,26 @@ h1.checkoutTitle {
   width: 22.5%;
 }
 
+.UserOrder-history .history span.itemQty,
+.UserOrder-history .lineItem span.itemQty, .UserOrder-info .history span.itemQty,
+.UserOrder-info .lineItem span.itemQty {
+  text-align: center;
+}
+
+.UserOrder-history .history span.orderTotal,
+.UserOrder-history .history span.itemPrice,
+.UserOrder-history .history span.itemTotal,
+.UserOrder-history .lineItem span.orderTotal,
+.UserOrder-history .lineItem span.itemPrice,
+.UserOrder-history .lineItem span.itemTotal, .UserOrder-info .history span.orderTotal,
+.UserOrder-info .history span.itemPrice,
+.UserOrder-info .history span.itemTotal,
+.UserOrder-info .lineItem span.orderTotal,
+.UserOrder-info .lineItem span.itemPrice,
+.UserOrder-info .lineItem span.itemTotal {
+  text-align: right;
+}
+
 .UserOrder-history .history.oddRow,
 .UserOrder-history .lineItem.oddRow, .UserOrder-info .history.oddRow,
 .UserOrder-info .lineItem.oddRow {
@@ -2166,8 +2232,10 @@ form span {
   display: inline-block;
 }
 
+form span.pw-wrapper,
 form select,
 form input[type="email"],
+form input[type="number"],
 form input[type="password"],
 form input[type="text"] {
   padding: 0.5rem;
@@ -2177,7 +2245,38 @@ form input[type="text"] {
 }
 
 form label {
+  display: block;
   margin-left: 0.2rem;
+}
+
+form span.pw-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: white;
+}
+
+form span.pw-wrapper input[type="text"],
+form span.pw-wrapper input[type="password"] {
+  padding: 0;
+  width: 90%;
+  border: none;
+  border-radius: none;
+}
+
+form span.pw-wrapper span.eyeball {
+  width: 7%;
+  height: 1.2rem;
+  cursor: pointer;
+  background-image: url("/assets/img/icons/icon-eye-on.svg");
+  background-repeat: no-repeat;
 }
 
 /*
@@ -2215,6 +2314,10 @@ form label {
 
 .userIcon span:hover {
   background-image: url("/assets/img/icons/usericon-hot.svg");
+}
+
+.userIcon:focus {
+  outline: none;
 }
 
 /*
@@ -2281,6 +2384,23 @@ form label {
 
 .MobileMenu-content ul li a:hover {
   color: #b3d146;
+}
+
+.ErrorList {
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.ErrorList p {
+  margin: 0.5rem 0;
+}
+
+.ErrorList ul {
+  margin: 0;
+  list-style-type: "→";
+  list-style-position: outside;
+  color: red;
+  padding-left: 1rem;
 }
 
 /*

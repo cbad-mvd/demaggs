@@ -25,10 +25,13 @@
                     <input type="hidden" name="cartUpdatedNotice" value="Added {{ item.title }} to the cart.">
                     {# {{ redirectInput('/menu2') }} #} 
                     {{ csrfInput() }}
-                    <input type="hidden" name="qty" value="1">
+                    {# <input type="hidden" name="qty" value="1"> #}
                     <input type="hidden" name="purchasableId" value="{{ variant.id }}">
                     
-                        <input class="button radius" type="submit" value="Add to Menu">                    
+                    <div class="addRow">
+                        <input class="button" type="submit" value="Add to Menu">                    
+                        <input class="qty" type="number" name="qty" min="1" max="99" value="1">
+                    </div>
 
                 </form>
 
@@ -58,8 +61,9 @@
                 {# show items in cart #}
                 {% for item in cart.lineItems %}
                 <div class="FoodMenu-item">
+                    <p class="qty">{{ item.qty }}</p>
                     <p class="name">{{ item.description }}</p>
-                    <p class="price">{{ item.price | currency(cart.currency) }}</p>
+                    <p class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</p>
                     <p class="remove jsRemoveLineItem" data-line-item-id="{{ item.id }}" title="Remove">X</p>
                 </div>
                 {% endfor %}
@@ -67,6 +71,7 @@
                 {# show totals #}
                 <hr class="FoodMenu-seperator">
                 <div class="FoodMenu-total">
+                    <p class="qty">&nbsp;</p>
                     <p class="name">Total: </p>
                     <p class="price">{{ cart.totalPrice | currency(cart.currency) }}</p>
                     <p class="remove" title="Remove">&nbsp;</p>

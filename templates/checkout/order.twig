@@ -119,7 +119,7 @@
             <div class="UserCheckout-payment">
                 <h5>Payment</h5>
                 <div class="alert error" role="alert">
-                    {# {{ cart.app.session.getFlash("error") }} #}
+                  {{ craft.app.session.getFlash("error") }}
                 </div>
                 <form method="post">
                     <input type="hidden" name="action" value="commerce/payments/pay">
@@ -145,9 +145,6 @@
                                     class=""
                                     maxlength="70"
                                     value="{{ formValues.firstName }}" >
-                            {% if paymentForm is defined and paymentForm.hasErrors("firstName") %}
-                                <span class="error">{{ paymentForm.getFirstError("firstName") }}</span>
-                            {% endif %}
                         </span>
 
                         <span class="w45">
@@ -156,9 +153,6 @@
                                     class=""
                                     maxlength="70"
                                     value="{{ formValues.lastName }}" >
-                            {% if paymentForm is defined and paymentForm.hasErrors("lastName") %}
-                                <span class="error">{{ paymentForm.getFirstError("lastName") }}</span>
-                            {% endif %}
                         </span>
                     </div>
 
@@ -168,9 +162,6 @@
                                 class=""
                                 maxlength="19"
                                 value="{{ formValues.number }}" >
-                        {% if paymentForm is defined and paymentForm.hasErrors("number") %}
-                            <span class="error">{{ paymentForm.getFirstError("number") }}</span>
-                        {% endif %}
                     </div>
 
                     <div class="formRow">
@@ -184,9 +175,6 @@
                                 </option>
                                 {% endfor %}
                             </select>
-                            {% if paymentForm is defined and paymentForm.hasErrors("month") %}
-                                <span class="error">{{ paymentForm.getFirstError("month") }}</span>
-                            {% endif %}
                         </span>
                         
                         <span class="w30">
@@ -199,9 +187,6 @@
                                 </option>
                                 {% endfor %}
                             </select>
-                            {% if paymentForm is defined and paymentForm.hasErrors("year") %}
-                                <span class="error">{{ paymentForm.getFirstError("year") }}</span>
-                            {% endif %}
                         </span>
 
                         <span class="w30">
@@ -210,11 +195,26 @@
                                     placeholder="CVC"
                                     class=""
                                     value="{{ formValues.cvv }}" >
-                            {% if paymentForm is defined and paymentForm.hasErrors("cvv") %}
-                                <span class="error">{{ paymentForm.getFirstError("cvv") }}</span>
-                            {% endif %}
                         </span>
                     </div>
+
+                    {% set errors = [] %}
+                    {%if paymentForm is defined %}
+                    {% for attributeKey in ['firstName', 'lastName', 'number', 'month', 'year', 'cvv'] %}
+                        {% set errors = errors|merge(paymentForm.getErrors(attributeKey)) %}
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if errors|length > 0 %}
+                    <div class="ErrorList">
+                        <p>Please fix the following errors:</p>
+                        <ul>
+                            {% for error in errors %}
+                                <li>&nbsp;{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
                     <input type="submit" value="Place Order" class="button"/>
                 </form>
             </div>

@@ -1,8 +1,21 @@
 {# public macros for managing users #}
 
+{# create the password field #}
+{% macro passwordField(fieldId="password") %}
+{% import _self as self %}
+
+    <div class="loginPassword">
+        <label for="password">Password</label>
+        <span class="pw-wrapper">
+            {{ input('password', 'password', null, { id: fieldId, class: 'jsPWField' }) }}
+            <span class="jsShowPW eyeball" title="Show Password"></span>
+        </span>
+    </div>
+
+{% endmacro passwordField %}
+
 {# form for customer login #}
 {% macro loginForm(landing='/') %}
-{% import _self as self %}
 
 <form method="post" accept-charset="UTF-8">
     {{ csrfInput() }}
@@ -10,14 +23,11 @@
     {{ redirectInput(landing) }}
 
     <div class="">
-    <label for="loginName">Username or email</label>
+    <label for="loginName">Email Address</label>
     {{ input('text', 'loginName', craft.app.user.rememberedUsername, { id: 'loginName', }) }}
     </div>
 
-    <div class="">
-        <label for="password">Password</label>
-        {{ input('password', 'password', null, { id: 'password', }) }}
-    </div>
+    {{ _self.passwordField("password") }}
 
     <div class="checkbox-group">
         <span>
@@ -28,9 +38,30 @@
 
     <button type="submit">Login</button>
 
+    {% set errors = [] %}
+    {%if user is defined %}
+    {% for attributeKey in ['password', 'loginName' ] %}
+        {% set errors = errors|merge(user.getErrors(attributeKey)) %}
+    {% endfor %}
+    {% endif %}
+
+ {#
+    {% if errors|length > 0 %}
+    <div class="ErrorList">
+        <p>Please fix the following errors:</p>
+        <ul>
+            {% for error in errors %}
+                <li>&nbsp;{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+#}
+
     {% if errorMessage is defined %}
         <p>{{ errorMessage }}</p>
     {% endif %}
+
 </form>
 
 <p><a href="{{ url('reset-password') }}">Forgot your password?</a></p>
@@ -52,6 +83,7 @@
     {{ actionInput('users/save-user') }}
     {{ redirectInput(landing) }}
 
+{#
     <div class="">
         <label for="username">Username</label>
         {{ input('text', 'username', user.username ?? null, { id: 'username', }) }}
@@ -59,7 +91,7 @@
             {{ _self.errorList(user.getErrors('username')) }}
         {% endif %}
     </div>
-
+#}
     <div class="">
         <label for="email">Email</label>
         {{ input('email', 'email', user.email ?? null, { id: 'email', }) }}
@@ -68,12 +100,16 @@
         {% endif %}
     </div>
 
+    {{ _self.passwordField("password2") }}
+
+{#
     <div class="">
         <label for="password">Password</label>
         {{ input('password', 'password', null, {
-        id: 'password',
+        id: 'password2',
         }) }}
     </div>
+#}
 
     {% if user is defined %}
     <div>

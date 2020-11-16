@@ -118,6 +118,20 @@ $(document).ready(function () {
 		//alert($(this).text());
 	});
 
+	$('#gotoNewAccount').click(function() {
+		event.preventDefault();
+		$('.UserLogin-login').css('display', "none");
+		$('.UserLogin-guest').fadeIn(2000);
+		$('.userLoginTitle').text('New Member');
+	});
+
+	$('#gotoLogin').click(function() {
+		event.preventDefault();
+		$('.UserLogin-guest').css('display', "none");
+		$('.UserLogin-login').fadeIn(2000);
+		$('.userLoginTitle').text('Member Login');
+	});
+
 	var sInitialClick = true;
 	$('.jsShowUserMenu').click(function() {
 		var showIt = ($('#userMenu').css('display') == "none");
@@ -180,5 +194,18 @@ $(document).ready(function () {
 		});
 
 	});
+
+	$('.jsShowPW').click(function() {
+		if ( $('.jsPWField').attr('type') == 'password' ){
+			$('.jsPWField').attr('type', 'text');
+			$('.jsShowPW').attr('style', 'background-image: url("/assets/img/icons/icon-eye-off.svg")');
+		}
+		else {
+			$('.jsPWField').attr('type', 'password');
+			$('.jsShowPW').attr('style', 'background-image: url("/assets/img/icons/icon-eye-on.svg")');
+		}
+		event.preventDefault();
+	});
+	
 	
 });
