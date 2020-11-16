@@ -21,15 +21,17 @@
 
 {% block content %}
     <section row>
-        <h1 class="userLoginTitle">Checkout Login</h1>
+        <h1 class="userLoginTitle">Member Checkout</h1>
         <div class="UserLogin">
             <div class="UserLogin-login">
                 <h3>Member Checkout</h3>
+                <p>Not a member? <a href="#" id="gotoGuestCheckout" data-newtitle="Guest Checkout">Please use Guest Checkout</a>.</p>
                 {{ m_user.loginForm() }}
             </div>
 
             <div class="UserLogin-guest">
                 <h3>Guest Checkout</h3>
+                <p>Already a member? <a href="#" id="gotoMemberCheckout" data-newtitle="Member Checkout">Please use Member Checkout</a>.</p>
                 {{ m_user.guestCheckoutForm(cart) }}
 
             </div>

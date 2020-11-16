@@ -20,12 +20,12 @@
         <div class="UserLogin">
             <div class="UserLogin-guest">
                 <h3>Create Account</h3>
-                <p>Already a member? <a href="#" id="gotoLogin">Please login.</a>.</p>
+                <p>Already a member? <a href="#" id="gotoLogin" data-newtitle="Member Login">Please login.</a>.</p>
                 {{ m_user.regForm() }}
             </div>
             <div class="UserLogin-login">
                 <h3>Member Login</h3>
-                <p>New to Demaggs? Please <a href="#" id="gotoNewAccount">become a member.</a>.</p>
+                <p>New to Demaggs? Please <a href="#" id="gotoNewAccount" data-newtitle="Member Registration">become a member.</a>.</p>
                 {{ m_user.loginForm('/menu2') }}
             </div>
         </div>

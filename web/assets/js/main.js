@@ -118,18 +118,20 @@ $(document).ready(function () {
 		//alert($(this).text());
 	});
 
-	$('#gotoNewAccount').click(function() {
+	$('#gotoNewAccount, #gotoGuestCheckout').click(function() {
+		var newTitle = $(this).data('newtitle');
 		event.preventDefault();
 		$('.UserLogin-login').css('display', "none");
 		$('.UserLogin-guest').fadeIn(2000);
-		$('.userLoginTitle').text('New Member');
+		$('.userLoginTitle').text(newTitle ? newTitle : 'New Member');
 	});
 
-	$('#gotoLogin').click(function() {
+	$('#gotoLogin, #gotoMemberCheckout').click(function() {
+		var newTitle = $(this).data('newtitle');
 		event.preventDefault();
 		$('.UserLogin-guest').css('display', "none");
 		$('.UserLogin-login').fadeIn(2000);
-		$('.userLoginTitle').text('Member Login');
+		$('.userLoginTitle').text(newTitle ? newTitle : 'Member Login');
 	});
 
 	var sInitialClick = true;
