@@ -1,0 +1,60 @@
+field: c780fe9f-0051-4faa-bee4-6d13d55882d2
+fieldLayouts:
+  0152fca3-07db-4951-b620-a1d7cb01360d:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: e1e77fea-5a68-409a-bd68-8df9b976d601
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  e1e77fea-5a68-409a-bd68-8df9b976d601:
+    contentColumnType: text
+    fieldGroup: null
+    handle: menuItems
+    instructions: ''
+    name: 'Menu Items'
+    searchable: false
+    settings:
+      addRowLabel: 'Add an item'
+      columnType: text
+      columns:
+        __assoc__:
+          -
+            - col1
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Description
+                -
+                  - handle
+                  - desc
+                -
+                  - width
+                  - ''
+                -
+                  - type
+                  - singleline
+      defaults:
+        -
+          __assoc__:
+            -
+              - col1
+              - ''
+      maxRows: ''
+      minRows: '1'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Table
+handle: menu
+name: Menu
+sortOrder: 2

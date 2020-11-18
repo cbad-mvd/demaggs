@@ -990,6 +990,8 @@ footer {
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
   max-width: 1400px;
+  margin: 0 auto 4rem auto;
+  width: 95%;
   /*
 	 * PicBlock and TextBlock controlled by TextPic flex
 	 */
@@ -1044,6 +1046,21 @@ footer {
   color: #99b72d;
 }
 
+.TextPic .TextBlock div.variants {
+  display: inline-block;
+  width: 50%;
+}
+
+.TextPic .TextBlock div.variants label,
+.TextPic .TextBlock div.variants select {
+  width: 100%;
+}
+
+.TextPic .TextBlock div.variants label {
+  margin-left: 6px;
+  text-align: left;
+}
+
 .TextPic .TextBlock .topBorder {
   position: relative;
 }
@@ -1071,6 +1088,10 @@ footer {
 }
 
 @media (min-width: 750px) {
+  .TextPic {
+    width: 100%;
+    margin-bottom: 6rem;
+  }
   .TextPic .PicBlock {
     width: 56%;
   }
@@ -2251,6 +2272,10 @@ form label {
 
 form label.inline {
   display: inline;
+}
+
+form select.bm {
+  margin-bottom: 2rem;
 }
 
 form span.pw-wrapper {

@@ -1,0 +1,68 @@
+field: c780fe9f-0051-4faa-bee4-6d13d55882d2
+fieldLayouts:
+  4dcfdbd8-05a2-49f0-b859-b4e2a7ca588a:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: f75d668b-91f3-4b59-8ced-ebc05f2b3fdc
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: c62ed456-85cf-49d0-937b-2099cb584a8e
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  c62ed456-85cf-49d0-937b-2099cb584a8e:
+    contentColumnType: text
+    fieldGroup: null
+    handle: tagline
+    instructions: ''
+    name: Tagline
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Enter a tagline for the Special'
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  f75d668b-91f3-4b59-8ced-ebc05f2b3fdc:
+    contentColumnType: text
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Enter a name for the Special'
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: heading
+name: Heading
+sortOrder: 1

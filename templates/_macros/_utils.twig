@@ -1,0 +1,55 @@
+{# public macros for managing users #}
+
+{# create the password field #}
+{% macro showCategories(group=null) %}
+
+{% if group is defined %}
+    {% set myCategoryQuery = craft.categories().group(group) %}
+
+    {# Fetch the categories #}
+    {% set categories = myCategoryQuery.all() %}
+
+    {# Display the menu group navigation #}
+    <div id="select" class="row">
+        <section class="MenuChoices ItemGrid">
+        {% nav category in categories %}
+            {% switch group %}
+                {% case "foodGroups" %}
+                    {% set desc  = category.fiGroupDescription %}
+                    {% set btnText = globalVars.makeSelection %}
+                    {% set img = category.fiGroupImage.one() %}
+
+                {% case "specials" %}
+                    {% set desc  = category.catDesc %}
+                    {% set btnText = globalVars.makeSelection %}
+                    {% set img = category.catImg.one() %}
+
+                {% default %}
+                    {% set desc  = "" %}
+                    {% set btnText = globalVars.makeSelection %}
+                    {% set img = null %}
+            {% endswitch %}
+            
+            <div class="MenuChoices-item ItemGrid-item" style="min-height: 200px;">
+                <a href="{{ category.url }}" class="MenuChoices-overlay">
+                    <div class="MenuChoices-contents">
+                        <p class="MenuChoices-title">{{ category.title }}</p>
+                        <p class="MenuChoices-subtitle">{{ desc }}</p>
+                        <span class="MenuChoices-select">{{ btnText }}</span>
+                    </div>
+                </a>
+                <div class="MenuChoices-imgWrap">
+                    <div>
+                        {# should make lazy and responsive #}
+                        {% if img != null %}
+                        <img class="lazy" src="{{ img.url }}" alt="{{ img.altText }}"/>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endnav %}
+        </section>
+    </div>
+{% endif %}
+
+{% endmacro showCategories %}

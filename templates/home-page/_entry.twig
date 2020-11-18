@@ -26,44 +26,6 @@
 
 {% block content %}
 	{{ m_textpic.textpic(entry.tpBlocks) }}
-    {#
-        {% set swapClass = "" %}
-        {% for block in entry.tpBlocks.all() %}
-        {% if block.type == "textPic" %}
-
-            <section class="row TextPic">
-                <div class="TextBlock ~ {{ swapClass }}">
-                    <div class="topBorder"></div>
-                    <div>
-                        <h3>{{ block.itemTitle }}</h3>
-                        <h5>{{ block.itemSubtitle }}</h5>
-                        <p>{{ block.itemDesc }}</p>
-                    </div>
-                    <div>
-                        <span class="button">
-                            <a href="{{ block.itemBtnUrl }}">{{ block.itemBtn }}</a>
-                        </span>
-                    </div>
-                </div>
-                <div class="PicBlock">
-                    <img class="lazy" data-src="./assets/img/hero-primary-lg.jpg" data-srcset="
-                    ./assets/img/hero-primary-lg.jpg 750w,
-                    ./assets/img/hero-primary-lg.jpg 1500w,
-                    ./assets/img/hero-primary-lg.jpg 2000w,
-                    ./assets/img/hero-primary-lg.jpg 2400w" alt="Side Dishes"/>
-                </div>
-            </section>
-
-            {% if swapClass == "swapOrder" %}
-                {% set swapClass = "" %}
-            {% else %}
-                {% set swapClass = "swapOrder" %}
-            {% endif %}
-
-        {% endif %}
-        {% endfor %}
-        #}        
-            {# made sure the block order alternates on rows #}
 {% endblock content %}
 
 {% block subcontent %}

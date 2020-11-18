@@ -183,6 +183,8 @@ footer {
 	justify-content: space-between;
 	flex-flow: row wrap;
 	max-width: 1400px;
+	margin: 0 auto 4rem auto;
+	width: 95%;
 
 	div {
 		margin: 0;
@@ -225,6 +227,21 @@ footer {
 			color: darken($color-main-accent, 10%);
 		}
 
+		div.variants {
+			display: inline-block;
+			width: 50%;
+
+			label,
+			select {
+				width: 100%;
+			}
+
+			label {
+				margin-left: 6px;
+				text-align: left;
+			}
+		}
+
 		.topBorder {
 			position: relative;		
 
@@ -250,6 +267,9 @@ footer {
 	}
 		
 	@media (min-width: 750px) {
+		width: 100%;
+		margin-bottom: 6rem;
+
 		.PicBlock {
 			width: 56%;
 		}
@@ -1323,6 +1343,10 @@ form {
 		&.inline {
 			display: inline;
 		}
+	}
+
+	select.bm {
+		margin-bottom: 2rem;
 	}
 
 	span.pw-wrapper {

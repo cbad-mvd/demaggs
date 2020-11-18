@@ -1,0 +1,113 @@
+{% extends "_layouts/site-base-page.twig" %}
+
+{% import '_macros/_intros' as m_intros %}
+{% import '_macros/_menu' as m_menu %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} {{ 'specials' }}</title>
+{% endblock titleTag %}
+
+{% block headLinks %}
+	{{ parent() }}
+{% endblock headLinks %}
+
+{% block pageintro %}
+		{{ m_intros.showIntro('chef-special-choices') }}		{# must fix #}
+{% endblock pageintro %}
+
+{% block content %}
+    {% if category is defined %}
+        {% set products = craft.products.type('specials').relatedTo(category) %}
+        {% set textOnTop = false %}
+        {% set swapClass = "" %}                    
+
+        {% for product in products %}
+            {% set blocks = product.specialsMatrix %}
+
+            {% if blocks is not null %}
+                    <section class="row TextPic">
+                        <div class="TextBlock {{ swapClass }}">
+                            <div class="topBorder"></div>
+                            <form method="POST">
+                                <div>
+                                    <input type="hidden" name="action" value="commerce/cart/update-cart">
+                                    {# {{ redirectInput('/menu2') }} #} 
+                                    {{ csrfInput() }}
+                                    <input type="hidden" name="qty" value="1">
+
+                                    <h3>{{ product.title }}</h3>
+
+                                    {% for block in blocks.all() %}
+                                    {% switch block.type %}
+
+                                        {% case 'heading' %}
+                                            {% if block.tagline %}
+                                                <h5>{{ block.tagline }}</h5>
+                                            {% endif %}
+
+                                        {% case 'text' %}
+                                            {{ block.desc }}
+
+                                        {% case 'image' %}
+                                            {% if (block.image is defined) and (block.image.one() is not null) %}
+                                                {% set image = block.image.one() %}
+                                                <img class="lazyx" src="{{ image.url }}" alt="{{ image.altText }}" />
+                                            {% endif %}
+
+                                        {% case 'menu' %}
+                                            {% if block.menuItems %}
+                                                <ul>
+                                                {% for item in block.menuItems %}
+                                                    <li>{{ item.desc }}</li>
+                                                {% endfor %}
+                                                </ul>
+                                            {% endif %}
+
+                                    {% endswitch %}
+                                    {% endfor %}
+                                </div>
+                                <div class="variants">
+                                    <label for="purchasableId">Options</label>
+                                    <select name="purchasableId" class="bm">
+                                        {% for variant in product.getVariants() %}
+                                            <option value="{{ variant.id }}">{{ variant.title }} {{ variant.salePrice | currency('USD') }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <br />
+                                </div>
+                                <div class="addRow">
+                                    <input class="button" type="submit" value="Add Selection">                    
+                                </div>
+                            </form>
+                        </div>
+                        <div class="PicBlock">
+                            {% if (product.specialImage is defined) and (product.specialImage.one() is not null) %}
+                                {% set image = product.specialImage.one() %}
+                                <img class="lazyx" src="{{ image.url }}" alt="{{ image.altText }}" />
+                            {% endif %}
+                        </div>
+                    </section>
+
+                    {# made sure the block order alternates on rows #}
+                    {% if (textOnTop == true) or (swapClass == "swapOrder") %}
+                        {% set swapClass = "" %}
+                        {% if textOnTop == true %}
+                            {% set swapClass = "textOnTop" %}
+                        {% endif %}
+                    {% elseif textOnTop == false %}
+                        {% set swapClass = "swapOrder" %}
+                    {% endif %}
+
+
+
+                
+            {% endif %}  {# blocks is not null #} 
+        {% endfor %}  {# products loop #}      
+
+        {#
+        <div class="row" style="text-align: center">
+            <span class="FoodItem-button button" style="display: inline-block"><a href="/menu#select">Back to Selections</a></span>
+        </div>
+        #}
+    {% endif %}   {# category is defined #}
+{% endblock content %}

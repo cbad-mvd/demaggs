@@ -1,0 +1,113 @@
+descriptionFormat: ''
+handle: specials
+hasDimensions: false
+hasProductTitleField: true
+hasVariantTitleField: true
+hasVariants: true
+name: Specials
+productFieldLayouts:
+  ec85d781-89b7-4458-b7b0-222dda4d1965:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\commerce\fieldlayoutelements\ProductTitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 89f6c931-338b-4f0d-857b-7478eaa4fc28
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: eb2b2a18-4fa2-4c82-af2f-4449d64c3351
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: c780fe9f-0051-4faa-bee4-6d13d55882d2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+      -
+        elements:
+          -
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\commerce\fieldlayoutelements\VariantsField
+            warning: null
+        name: Variants
+        sortOrder: 2
+productTitleFormat: ''
+siteSettings:
+  6671a41b-84cc-4d94-91a7-02d6825a057c:
+    hasUrls: true
+    template: specials/_entry
+    uriFormat: 'specials/{slug}'
+skuFormat: '{product.slug}'
+titleFormat: '{product.title}'
+variantFieldLayouts:
+  ab6fa8d7-4334-4776-b660-36fff3100dc2:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\commerce\fieldlayoutelements\VariantTitleField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1

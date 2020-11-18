@@ -6,7 +6,7 @@
 {% import '_macros/_utils' as m_utils %}
 
 {% block titleTag %}
-	<title>{{ globalVars.pageTitleBase }} Create Menu</title>
+	<title>{{ globalVars.pageTitleBase }} Chef Specials</title>
 {% endblock titleTag %}
 
 {% block headLinks %}
@@ -18,7 +18,7 @@
 {% endblock pageintro %}
 
 {% block content %}
-	{{ m_utils.showCategories('foodGroups') }}
+	{{ m_utils.showCategories('specials') }}
 {% endblock content %}
 
 {% block subcontent %}
