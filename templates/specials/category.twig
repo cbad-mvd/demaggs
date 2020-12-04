@@ -17,7 +17,8 @@
 
 {% block content %}
     {% if category is defined %}
-        {% set products = craft.products.type('specials').relatedTo(category) %}
+        {% set cart = craft.commerce.carts.cart %}
+        {% set products = craft.products.type('specials').relatedTo(category).all() %}
         {% set textOnTop = false %}
         {% set swapClass = "" %}                    
 
@@ -31,9 +32,11 @@
                             <form method="POST">
                                 <div>
                                     <input type="hidden" name="action" value="commerce/cart/update-cart">
-                                    {{ redirectInput('/menu2') }} 
+                                    {{ redirectInput('/cart') }} 
                                     {{ csrfInput() }}
                                     <input type="hidden" name="qty" value="1">
+                                    <input type="hidden" name="message" value="check">
+                                    <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ globalVars.usCountryId }}">
 
                                     <h3>{{ product.title }}</h3>
 

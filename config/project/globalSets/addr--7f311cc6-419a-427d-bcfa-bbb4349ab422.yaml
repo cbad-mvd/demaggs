@@ -1,0 +1,108 @@
+fieldLayouts:
+  e8c52782-9d2e-4d74-b1c2-a40f34837ddd:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: e96d0469-d22c-4a84-9422-8be2acc6a7fe
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 75b32051-6c94-46bb-9eb8-5bbf7254ba85
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: c256b0bf-fd56-4665-a9fd-3793146d3316
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 99db63f4-337c-440e-bd49-ab491d55132f
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e7a8b370-fb48-41f8-8bb7-47c047f06b58
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 1a063c2b-1fb3-414d-b7c8-e4465413a0f3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 397bc95b-3422-4e27-a091-364d9224e788
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 5b0c1cfc-e60e-4bf3-a7f1-1e06edf3fda0
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 60dd487f-b3c4-494d-9939-d64626f9616e
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 7748eddc-99f3-4833-8d42-5d2725dac228
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: cc1c5c92-de8b-4153-9f68-29e0c3fb95b0
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: 'Address Labels'
+        sortOrder: 1
+handle: addr
+name: 'Address Labels'

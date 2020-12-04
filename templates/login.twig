@@ -16,18 +16,16 @@
 {% block content %}
 
     <section row>
-        <h1 class="userLoginTitle">Member Login</h1>
-        <div class="UserLogin">
-            <div class="UserLogin-guest">
-                <h3>Create Account</h3>
-                <p>Already a member? <a href="#" id="gotoLogin" data-newtitle="Member Login">Please login.</a>.</p>
-                {{ m_user.regForm() }}
-            </div>
-            <div class="UserLogin-login">
-                <h3>Member Login</h3>
-                <p>New to Demaggs? Please <a href="#" id="gotoNewAccount" data-newtitle="Member Registration">become a member.</a>.</p>
-                {{ m_user.loginForm('/menu2') }}
-            </div>
+       <div class="UserForm MemberLogin">
+                <h1 class="jsLoginTitle">Member Login</h1>
+                <div class="UserForm-block jsLoginMember">
+                    <p>New to Demaggs? Please <a href="#" id="gotoNewAccount" data-newtitle="Register as a Member">become a member.</a>.</p>
+                    {{ m_user.loginForm('/menu2') }}
+                </div>
+                <div class="UserForm-block jsLoginGuest">
+                    <p>Already a member? <a href="#" id="gotoLogin" data-newtitle="Member Login">Please login.</a>.</p>
+                    {{ m_user.regForm() }}
+                </div>
         </div>
     </section>
 

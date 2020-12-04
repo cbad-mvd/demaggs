@@ -103,4 +103,7 @@ input[type="button"] {
     &:hover {
         color: $color-btn-hover;
     }
+    &.off {
+        background-color: #ccc;
+    }
 }

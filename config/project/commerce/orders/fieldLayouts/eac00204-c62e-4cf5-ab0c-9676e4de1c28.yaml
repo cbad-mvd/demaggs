@@ -1,0 +1,86 @@
+tabs:
+  -
+    elements:
+      -
+        fieldUid: 98e6015a-4bed-43d1-abfa-512500355446
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: 74e3778a-f2df-4895-b606-8348f5b21f03
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: 222d4a41-0c49-4d9d-9515-1c813db459d6
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: 620f9ae2-385c-418d-8d7e-26e4c2d1e2f3
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: c61ea5d4-902e-496e-974f-44fef1e5a4e3
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: 793bc594-3a59-45d0-9195-2397a01acee9
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: aacbbc55-e13c-4a4c-ae75-49f4ddc60cc8
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: 25918f9a-ed20-4557-9c5a-86901d6dde2b
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: 75b32051-6c94-46bb-9eb8-5bbf7254ba85
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+    name: 'Custom Fields'
+    sortOrder: 1

@@ -1,0 +1,81 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+{% import '_macros/_user'    as m_user %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Edit Address</title>
+{% endblock titleTag %}
+
+{% block content %}
+<!-- Template: {{ _self }}.twig -->
+    {% set addressId = craft.app.request.param('addressId') %}
+    {% set redirect = craft.app.request.param('redirect') %}
+
+    {% if not address is defined and addressId %}
+        {% set address = craft.commerce.customers.customer.getAddressById(addressId) %}
+    {% endif %}
+    <form method="post" action="">
+        {{ csrfInput() }}
+        {# {{ actionInput('commerce/customer-addresses/save') }} #}
+        {{ actionInput('commerce/cart/update-cart') }}
+
+        {% if redirect %}
+            {{ redirectInput(redirect) }}
+        {% else %}
+            {{ redirectInput('checkout/review') }}
+        {% endif %}
+
+        <section row>
+            <div id="setAddr" class="UserForm AddrBlock">
+                <h1 class="jsLoginTitle">
+                    {% if addressId %}
+                        Edit address
+                    {% else %}
+                        Add address
+                    {% endif %}
+                </h1>
+
+                <div class="UserForm-block">
+
+                    {% if addressId %}
+                        {{ hiddenInput('shippingAddress[id]', addressId) }}
+                    {% endif %}
+
+                    {# add address form here #}
+                    {{ m_user.addressForm(cart, "shippingAddress", (address is defined) ? address : null, true) }}
+
+                    {% set isPrimaryBilling = cart.customer.primaryBillingAddressId == addressId %}
+                    {% set isPrimaryShipping = cart.customer.primaryShippingAddressId == addressId %}
+
+                    <hr class="my-3" />
+
+                    <div>
+                        <label for="makePrimaryShippingAddress" class="flex items-center"><input id="makePrimaryShippingAddress" class="mr-2" name="makePrimaryShippingAddress" type="checkbox" {{ isPrimaryShipping ? 'checked' :'' }}/><span class="label-body">Make this the primary shipping address</span></label>
+                    </div>
+
+                    <div>
+                        <label for="makePrimaryBillingAddress" class="flex items-center"><input id="makePrimaryBillingAddress" class="mr-2" name="makePrimaryBillingAddress" type="checkbox" {{ isPrimaryBilling ? 'checked' :'' }}/><span class="label-body">Make this the primary billing address</span></label>
+                    </div>
+
+                    <div class="">
+                        <div>
+                            {% if redirect %}
+                                <a class="button off" href="/{{ redirect }}">Cancel</a>
+                            {% else %}
+                                <a class="button" href="{{ url('checkout/review') }}">Cancel</a>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <input class="button js-saveAddress" data-xxx="" type="submit" value="Save Address">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}

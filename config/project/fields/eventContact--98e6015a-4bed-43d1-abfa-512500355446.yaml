@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 046e05e8-3ec3-4c53-9775-11b9a4aa98d0
+handle: eventContact
+instructions: ''
+name: 'Event Contact'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

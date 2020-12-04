@@ -53,3 +53,54 @@
 {% endif %}
 
 {% endmacro showCategories %}
+
+{% macro checkBoxField(item=null, fldVal=null, fldName="", fldId="") %}
+
+    {% if item is not null %}
+        {% set fldName = (fldName is not empty) ? fldName : 'fldName' %}
+        {% set fldId = (fldId is not empty) ? fldId : 'fldId' %}
+
+        {# Include a hidden input first so Craft knows to update the
+        existing value, if no checkboxes are checked. #}
+        {% set field = craft.app.fields.getFieldByHandle(fldName) %}
+
+        {{ hiddenInput('fields[fldName]', '') }} 
+
+        {% for option in field.options %}
+
+            {% set checked = (fldVal is not null)
+            ? fldVal.contains(option.value)
+            : option.default %}
+
+            <input type="checkbox"
+                id="{{ fldId }}"
+                name="fields[{{ fldName }}][]"
+                value="{{ option.value }}"
+                {% if checked %}checked{% endif %}>
+                
+        {% endfor %}
+    {% endif %}
+
+{% endmacro checkBoxField %}
+
+{% macro setProgress(progressState="s0", progressTitle="Checkout", showProgress=true) %}
+
+<script>
+	function setCheckoutProgress(newState, newTitle="", showProgress=true){
+		var $state = $("#jsProgressState");
+
+        if ( showProgress ) {
+            $('#jsProgressBar>div').show();
+            $state.removeClass();
+            $state.addClass('state '+newState); 
+        }
+        else {
+            $('#jsProgressBar>div').hide();
+        }
+        $('#jsCheckoutTitle').text(newTitle);       
+    };
+    setCheckoutProgress('{{ progressState }}', '{{ progressTitle }}', {{ showProgress }});
+</script>
+
+{% endmacro setProgress %}
+

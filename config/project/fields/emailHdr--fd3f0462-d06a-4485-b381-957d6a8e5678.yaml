@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: f78a9459-bb3a-4554-8d2b-b209b24378de
+handle: emailHdr
+instructions: ''
+name: 'Event Email Header'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

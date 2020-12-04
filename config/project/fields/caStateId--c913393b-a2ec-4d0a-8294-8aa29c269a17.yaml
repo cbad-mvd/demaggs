@@ -1,0 +1,19 @@
+contentColumnType: integer(10)
+fieldGroup: fabe0e87-64a6-48d8-ae62-b368f9ebd436
+handle: caStateId
+instructions: ''
+name: 'California State Id'
+searchable: false
+settings:
+  decimals: 0
+  defaultValue: null
+  max: null
+  min: '0'
+  prefix: ''
+  previewCurrency: ''
+  previewFormat: decimal
+  size: null
+  suffix: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Number

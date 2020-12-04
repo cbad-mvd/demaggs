@@ -1,0 +1,72 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+{% import '_macros/_utils'   as m_utils %}
+{% import '_macros/_user'    as m_user %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Payment</title>
+{% endblock titleTag %}
+
+{% block content %}
+    {% set cart = craft.commerce.carts.cart %}
+    {% set states = craft.commerce.states.allEnabledStates %}
+    {% set billingId = cart.billingAddressId %}
+    {% set addresses = craft.commerce.customers.customer.addresses %}
+    {% set shipping = cart.shippingAddress %}
+    {% set billing = cart.billingAddress %}
+    {% set startDate = now|date_modify('+1 day')|atom %} 
+
+    {% if shipping and not billing %}
+        {% set billing = shipping %}
+    {% endif %}
+
+    <form method="post">
+        <input type="hidden" name="action" value="commerce/cart/update-cart">                    
+        {{ redirectInput('checkout/payment') }} 
+        {{ csrfInput() }}
+        <input id="billingAddress-countryId" type="hidden" name="billingAddress[countryId]" value="{{ globalVars.usCountryId }}">
+
+        <section row>
+            <div class="UserForm AddrBlock">
+                <h1 class="">Billing Address</h1>
+                <div class="UserForm-block">
+                    {% if craft.app.session.getFlash("error") %}
+                        <div class="alert error" role="alert">
+                        {{ craft.app.session.getFlash("error") }}
+                        </div>
+                    {% endif %}
+                    <div>
+                        {## maybe need later 
+                        <div class="formRow">
+                            {% set sameAsVal = cart.billingSameAsShipping ? cart.billingSameAsShipping : 0 %}
+                            <span class="w100">
+                                {{ input('checkbox', "sameAs", sameAsVal, { class: 'jsSetSameAs', 'data-shippingid': cart.shippingAddressId  }) }} 
+                                <label class="inline" for="sameAs">Use Party Address for Billing ({{ cart.shippingAddressId }})</label>
+                            </span>
+                        </div>
+                        ##}
+                        {{ m_user.addressForm(cart, "billingAddress", billing, true) }}
+                        {% if billingId %}
+                            <input type="hidden" name="billingAddressId" value="{{ billingId }}">
+                        {% endif %}
+                    </div>
+                    <div class="btnRow">
+                        <a class="button off" href="/checkout/details">Previous</a>
+                        <input class="button" type="submit" value="Continue">
+                    </div>
+                </div>
+            </div>
+       </section>
+
+    </form>
+
+{% endblock content %}
+
+{% block pageJs %}
+    {{ m_utils.setProgress('s4', 'Checkout') }}
+{% endblock pageJs %}

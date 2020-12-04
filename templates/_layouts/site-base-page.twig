@@ -38,7 +38,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Merriweather:300i,400,400i">
 
         <!-- Stylesheets -->
-		<link href="/assets/css/styles.css" type="text/css" media="screen" rel="stylesheet">
+		<link href="/assets/css/styles.css" type="text/css" rel="stylesheet">
 
         <!-- FavIcon -->
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
@@ -60,10 +60,12 @@
         <confetti></confetti>
         <div id="content-container" class="bg-repeat header-background">
 
-    		<div class="row  nomargins" styles="min-height: 1600px">
-                {# -- Info header, including _navbar.twig -- #}
-                {% include "_partials/info-header.twig" %}
-            </div>
+            {% block pageHeader %}
+                <div class="row  nomargins">
+                    {# -- Info header, including _navbar.twig -- #}
+                    {% include "_partials/info-header.twig" %}
+                </div>
+            {% endblock pageHeader %}
 
             <main>
         		<div class="row  nomargins">
@@ -99,6 +101,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
 		<script src="/assets/js/jquery.slicknav.js"></script>
 		<script src="/assets/js/main.js"></script>
+        {% block pageJs %}
 		<script></script>
+        {% endblock pageJs %}
 {% endblock bodyJs %}
 

@@ -1,10 +1,11 @@
 {
   "require": {
     "barrelstrength/sprout-encode-email": "2.0.7",
-    "craftcms/cms": "3.5.15.1",
-    "craftcms/commerce": "3.2.11",
+    "craftcms/cms": "3.5.16",
+    "craftcms/commerce": "3.2.12",
     "craftcms/contact-form": "2.2.7",
-    "craftcms/redactor": "2.8.3",
+    "craftcms/redactor": "2.8.4",
+    "craftcms/simple-text": "2.0.2",
     "nystudio107/craft-typogrify": "1.1.18",
     "vlucas/phpdotenv": "^3.4.0"
   },

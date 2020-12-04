@@ -7,7 +7,7 @@
 {% import '_macros/_textpic' as m_textpic %}
 
 {% block titleTag %}
-	<title>{{ globalVars.pageTitleBase }} Place Order</title>
+	<title>{{ globalVars.pageTitleBase }} {{ events.billingHdr }}</title>
 {% endblock titleTag %}
 
 {% block pageintro %}
@@ -19,10 +19,10 @@
     {% set states = craft.commerce.states.allEnabledStates %}
     
     <section class="row">
-        <h1 class="checkoutTitle">Checkout</h1>
+        <h1 class="checkoutTitle">{{ events.billingHdr }}</h1>
         <div class="UserCheckout">
             <div class="UserCheckout-info">
-                <h5>Customer Address</h5>
+                <h5>{{ events.billingAddrHdr }}</h5>
                 {% if cart.shippingAddress %} 
                     {% set addressId = cart.shippingAddressId %}                                
                     {% set fname = cart.shippingAddress.firstName %}
@@ -47,51 +47,51 @@
                     <input type="hidden" name="action" value="commerce/cart/update-cart">
                     
                     {{ csrfInput() }}
-                    <input type="hidden" name="billingAddressSameAsShipping" value="1">
-                    <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ USCountryID }}">
+                    {# <input type="hidden" name="billingAddressSameAsShipping" value="1"> #}
+                    <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ globalVars.usCountryId }}">
 
                     <div class="formRow">
                         <span class="w45">
-                            <label for="shippingAddress-firstName">First Name*</label>
+                            <label for="shippingAddress-firstName">{{ addr.fname }}*</label>
                             <input type="text" id="shippingAddress-firstName"
                                     class=""
                                     name="shippingAddress[firstName]" value="{{ fname }}" >
                         </span>
 
                         <span class="w45">
-                            <label for="shippingAddress-lastName">Last Name*</label>
+                            <label for="shippingAddress-lastName">{{ addr.lname }}*</label>
                             <input type="text" id="shippingAddress-lastName"
                                     class=""
                                     name="shippingAddress[lastName]" value="{{ lname }}" >
                         </span>
                     </div>
                     <div class="formRow">
-                        <label for="shippingAddress-address1">Address One</label>
+                        <label for="shippingAddress-address1">{{ addr.addr1 }}</label>
                         <input type="text" id="shippingAddress-address1"
                                 class=""
                                 name="shippingAddress[address1]" value="{{ addr1 }}" >
                     </div>
                     <div class="formRow">
-                        <label for="shippingAddress-address2">Address Two</label>
+                        <label for="shippingAddress-address2">{{ addr.addr2 }}</label>
                         <input type="text" id="shippingAddress-address2"
                                 class=""
                                 name="shippingAddress[address2]" value="{{ addr2 }}" >
                     </div>
                     <div class="formRow">
                         <span class="w45">
-                            <label for="shippingAddress-city">City</label>
+                            <label for="shippingAddress-city">{{ addr.city }}</label>
                             <input type="text" id="shippingAddress-city"
                                     class=""
                                     name="shippingAddress[city]" value="{{ city }}" >
                         </span>
                         <span class="w30">
-                            <label for="shippingAddress-stateId">State</label>
+                            <label for="shippingAddress-stateId">{{ addr.state }}</label>
                             <select id="shippingAddress-stateId" name="shippingAddress[stateValue]">
                                 {% if state == "" %}
-                                    <option value="" selected disabled hidden>Select State</option>
+                                    <option value="" selected disabled hidden>{{ addr.selectState }}</option>
                                 {% endif %}
                                 {% for countryId, states in craft.commerce.states.allEnabledStatesAsListGroupedByCountryId %}
-                                    {% if countryId == USCountryID %}
+                                    {% if countryId == globalVars.usCountryId %}
                                         {% for stateId, stateName in states %}
                                             {% if state == stateId %}
                                                 <option value="{{ stateId }}" selected >{{ stateName }}</option>
@@ -105,7 +105,7 @@
 
                         </span>
                         <span class="w20">
-                            <label for="shippingAddress-zipCode">Zip</label>
+                            <label for="shippingAddress-zipCode">{{ addr.zip }}</label>
                             <input type="text" id="shippingAddress-zipCode"
                                     class=""
                                     name="shippingAddress[zipCode]" value="{{ zip }}" >
@@ -117,14 +117,17 @@
             </div>
 
             <div class="UserCheckout-payment">
-                <h5>Payment</h5>
-                <div class="alert error" role="alert">
-                  {{ craft.app.session.getFlash("error") }}
-                </div>
                 <form method="post">
                     <input type="hidden" name="action" value="commerce/payments/pay">
                     {{ redirectInput('/customer/order?number={number}') }}
                     <input type="hidden" name="paymentMethodId" value="1">
+
+                    <h5>Payment</h5>
+                    {% if craft.app.session.getFlash("error") %}
+                        <div class="alert error" role="alert">
+                        {{ craft.app.session.getFlash("error") }}
+                        </div>
+                    {% endif %}
                     
                     {% set formValues = {
                         firstName: paymentForm is defined ? paymentForm.firstName :

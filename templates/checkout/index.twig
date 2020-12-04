@@ -1,8 +1,8 @@
 {% if currentUser %}
-    {% redirect "/checkout/order" %} 
+    {% redirect "/checkout/details" %} 
 {% endif %}
 
-{% extends "_layouts/site-base-page.twig" %}
+{% extends "_layouts/site-base-checkout.twig" %}
 {% set cart = craft.commerce.carts.cart %}
 
 {# import macros #}
@@ -10,31 +10,31 @@
 {% import '_macros/_intros'  as m_intros %}
 {% import '_macros/_textpic' as m_textpic %}
 {% import '_macros/_user'    as m_user %}
+{% import '_macros/_utils'   as m_utils %}
 
 {% block titleTag %}
 	<title>{{ globalVars.pageTitleBase }} Checkout</title>
 {% endblock titleTag %}
 
-{% block pageintro %}
-	{{ m_intros.showIntro('checkout') }}
-{% endblock pageintro %}
-
 {% block content %}
     <section row>
-        <h1 class="userLoginTitle">Member Checkout</h1>
-        <div class="UserLogin">
-            <div class="UserLogin-login">
-                <h3>Member Checkout</h3>
+       <div class="UserForm CheckoutLogin">
+            <h1 class="jsLoginTitle">Guest Checkout</h1>
+            <div class="jsLoginMember UserForm-block">
                 <p>Not a member? <a href="#" id="gotoGuestCheckout" data-newtitle="Guest Checkout">Please use Guest Checkout</a>.</p>
-                {{ m_user.loginForm() }}
+                {{ m_user.loginForm("checkout/details") }}
             </div>
 
-            <div class="UserLogin-guest">
-                <h3>Guest Checkout</h3>
+            <div class="jsLoginGuest UserForm-block">
                 <p>Already a member? <a href="#" id="gotoMemberCheckout" data-newtitle="Member Checkout">Please use Member Checkout</a>.</p>
-                {{ m_user.guestCheckoutForm(cart) }}
-
+                {{ m_user.guestCheckoutForm(cart, "checkout/details") }}
             </div>
         </div>
-    </section>
+     </section>
 {% endblock content %}
+
+{% block pageJs %}
+    {{ m_utils.setProgress('s2', 'Checkout') }}
+{% endblock pageJs %}
+
+

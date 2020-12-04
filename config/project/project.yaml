@@ -1,4 +1,4 @@
-dateModified: 1605650736
+dateModified: 1607098414
 email:
   fromEmail: jmayall@surething.com
   fromName: 'Demaggs Dining'
@@ -20,6 +20,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 2.3.0
+  simple-text:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.2
   sprout-encode-email:
     edition: standard
     enabled: true
@@ -34,4 +38,4 @@ system:
   name: demaggs
   retryDuration: null
   schemaVersion: 3.5.13
-  timeZone: America/Los_Angeles
+  timeZone: UTC

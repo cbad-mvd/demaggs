@@ -36,7 +36,9 @@
 	{# -- General global variables -- #}
 	{% set baseUrl = alias('@web') ~ '/' %}
 	{% set gaTrackingId = getenv('GA_TRACKING_ID') %}
-	{% set USCountryID = 236 %}
+	{% set USCountryId = 236 %}
+	{% set CAStateId = 26 %}
+	
 
 	{# -- Twig output from the render; this must be in a block -- #}
 	{% block htmlPage %}

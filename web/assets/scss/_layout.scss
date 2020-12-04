@@ -456,6 +456,7 @@ footer {
 /*
  * 	 &-hdrNavRow: logo and navigation
  */
+.HdrCheckoutRow,
 .HdrNavRow {
     min-height: 3rem;
     margin: 0;
@@ -548,7 +549,15 @@ footer {
 			}
 		}
 	
-    }
+	}
+
+	.HdrNavRow {
+		min-height: 3rem;
+		margin: 0;
+		padding: 1.25rem 3rem;
+		position: relative;
+	
+	}
 
 	.mobile-nav {
         position: absolute;
@@ -688,6 +697,136 @@ footer {
     }
 }
 
+.CheckOutHeader {
+
+	background-color: $color-bg__dark;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+    z-index: 100;
+    transition: all 0.3s ease-out 0s;
+
+	> div {
+		margin: 0;
+		padding: 0 1rem;
+		width: 100%;
+	}
+
+	div.branding {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+	
+		height: 4rem;
+
+		.title, 
+		.logo {
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: center;
+
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			width: 50%;
+
+			img {
+				position: relative;
+				width: 10rem;
+			}
+		}
+
+		.title {
+			text-align: right;
+			text-transform: uppercase;
+		}
+	}
+	div.status {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+		padding-top: 0.5rem;
+		padding-bottom: 1rem;
+		background-color: #111;
+
+		div {
+			margin: 0;
+		}
+
+		.labels {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: center;
+
+			span {
+				width: 20%;
+				margin: 0;
+				color: white;
+				font-size: $font-size-small;
+			}
+		}
+
+		.track {
+			width: 100%;
+			height: 0.5rem;
+			background-color: #444;
+			border-radius: 0.25rem;
+			position: relative;
+
+			.state {
+				position: relative;
+				top: 0;
+				left: 0;
+				width: 0%;
+				height: 0.5rem;
+				background-color: $color-main-accent;
+				border-radius: 0.25rem;	
+
+				&.s0 {
+					width: 0%;
+				}
+				&.s1 {
+					width: 16.67%;
+				}
+				&.s2 {
+					width: 33.34%;
+				}
+				&.s3 {
+					width: 50%;
+				}
+				&.s4 {
+					width: 66.68%;
+				}
+				&.s5 {
+					width: 83.35%;
+				}
+				&.s6 {
+					width: 100%;
+				}
+			}
+		}
+	}
+/*
+	@media (min-width: 550px) {
+		>div {
+			padding: 0 2rem;
+		}
+	}
+*/
+	@media (min-width: 800px) {
+		>div {
+			padding: 0 4rem;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		>div {
+			padding: 0 5rem;
+		}
+	}
+
+}
 
 
 /*
@@ -1094,6 +1233,7 @@ h1.userLoginTitle {
 	}
 }
 
+
 .UserLogin {
 	display: flex;
 	flex-flow: row wrap;
@@ -1159,11 +1299,21 @@ h1.userLoginTitle {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+
+	hr {
+		color: $color-bg__dark50;
+		margin: 2rem 0;
+	}
  
 	h5 {
-		margin: 0 0 .5rem 0;
+		margin: 0 0 1rem 0;
 	}
 
+	.button {
+		margin-top: 2rem;
+	}
+
+	&-review,
 	&-payment,
 	&-info {
 		margin: 0 0.5rem 2rem 0.5rem;
@@ -1174,6 +1324,9 @@ h1.userLoginTitle {
 		min-height: 20rem;
 		width: 95%;
 
+		span.w90 {
+			width: 90%;
+		}
 		span.w45 {
 			width: 45%;
 		}
@@ -1190,16 +1343,84 @@ h1.userLoginTitle {
 
 	}
 
+	&-review {
+		form span {
+			display: inline-grid;
+		}
+		
+		& .qty {
+			width: 10%;
+			margin-right: 0.5rem;
+			text-align: right;
+		}
+
+		& input.qty {
+			padding: 0.2rem;
+			width: 10%;
+			margin-right: 0.5rem;
+			text-align: center;	
+			border-radius: 0;	
+			font-size: $font-size-small;	
+		}
+		& .name {
+			width: 55%;
+			margin-right: 0.5rem;
+		}
+		& .remove {
+			width: 12%;
+			text-align: right;
+		}
+		& .price {
+			width: 16%;
+			text-align: right;
+			margin-right: 0.25rem;
+
+			span {
+				text-align: right;
+			}
+		}
+
+		& div.itemRow {
+			margin-bottom: 0.5rem;
+
+			hr {
+				margin: 0;
+			}
+			span {
+				font-size: $font-size-small;
+				line-height: 1.2rem;
+			}
+
+			span.hdr {
+				font-weight: bold;
+				text-align: left;
+			}
+
+			span.hdr.price {
+				text-align: center;
+			}
+		}
+
+	}
+
 	@media (min-width: 800px) {
 		&-info {
 			width: 50%;
 		}
+
+		&-review {
+			width: 35%;
+		}
+
 		&-payment {
 			width: 30%;
 		}
 	}
 }
 
+.heavy {
+	font-weight: bold;
+}
 /*
  * User Order
  */
@@ -1210,6 +1431,12 @@ h1.userLoginTitle {
  
 	h3 {
 		margin: 0 0 .5rem 0;
+	}
+
+	.btnRow {
+		a {
+			margin-right: 2rem;
+		}
 	}
 
 	&-history,
@@ -1224,6 +1451,10 @@ h1.userLoginTitle {
 		h5,
 		p {
 			margin: 0;
+		}
+
+		.selections {
+			margin: 2rem 0;
 		}
 
 		.details {
@@ -1276,7 +1507,7 @@ h1.userLoginTitle {
 				background-color: $color-rowbg__alt;
 			}
 			&.hdr {
-				margin-top: 2rem;
+				margin-top: 0.5rem;
 				background-color: $color-rowbg__alt;
 			}
 			&.total {
@@ -1310,12 +1541,301 @@ h1.userLoginTitle {
 }
 
 /*
+ * structure for user account/checkout pages
+ */
+.UserForm {
+	width: 95%;
+	margin: 0 auto;
+
+	h1 {
+		margin: 0.5rem 0.75rem;
+		text-transform: uppercase;
+	}
+
+	h5 {
+		margin: 0 0 1rem 0;
+	}
+	
+	&-block {
+		margin: 0 1rem 2rem 1rem;
+		padding: 0.5rem;
+		background-color: $color-rowbg__alt;
+		border: 1px solid $color-rowborder;
+		border-radius: 1rem;
+		min-height: 20rem;
+
+		p {
+			margin-top: 0;
+		}
+
+		.group {
+			margin: 0 0 3rem 0;
+		}
+
+		>div {
+			margin: 0;
+		}
+	}
+
+	.btnRow {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-end;
+		margin-top: 3rem;
+
+		.button.off {
+			margin-right: 1rem;
+		}
+	}
+
+	@media (min-width: 750px) {
+		width: 50%;
+		&-block {
+			margin: 0 1rem;
+			padding: 1.5rem;
+		}
+	}
+
+	@media (min-width: 550px) {
+		width: 50%;
+		&-block {
+			margin: 0 .5rem;		
+		}
+	}
+
+}
+
+/*
+ * inner UserForm structures various page types
+ */
+.PaymentBlock,
+.DetailsBlock,
+.AddrBlock {
+	width: 65%;
+
+	.button.plus {
+		font-weight: normal;
+		font-size: 2.5rem;
+		line-height: 1.5rem;		
+	}
+
+	&-static {
+		margin-top: 1.5rem;
+
+		p {
+			margin: 0;
+		}
+		p.addr {
+			padding: 0;
+		}
+	}
+
+	@media (min-width: 750px) {
+		width: 60%;
+	}
+
+	@media (min-width: 550px) {
+		width: 60%;
+	}
+	 
+ }
+ 
+ .PaymentBlock {
+	width: 95%;
+
+	div {
+		margin: 0;
+	}
+
+	&-wrapper {
+		margin: 0;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+
+		>div {
+			margin: 0;
+		}
+		>div.seperator {
+			width: 5%;
+
+			>div {
+			margin: 0 auto;
+			width: 3px;
+			height: 100%;
+			border-left: 1px solid #ccc;
+			}
+		}
+		>div.review {
+			width: 45%;
+
+			div.Food .FoodMenu-choices {
+				width: 100%;
+
+				p {
+					margin-bottom: 0rem;
+				}
+			}
+			.Food .FoodMenu-total, .Food .FoodMenu-item {
+				font-size: 1rem;
+			}			
+		}
+		>div.pay {
+			width: 50%;
+		}
+	}
+	@media (min-width: 750px) {
+	   width: 70%;
+   }
+   @media (min-width: 550px) {
+	   width: 70%;
+   }
+}
+
+.PaymentBlockX {
+	width: 95%;
+	@media (min-width: 750px) {
+	   width: 75%;
+   }
+   @media (min-width: 550px) {
+	   width: 75%;
+   }
+}
+
+.ReviewBlock {
+	width: 95%;
+
+	span {
+		display: inline-grid;
+	}
+
+	.itemRow {
+		margin-bottom: 0.5rem;
+
+		& .qty {
+			width: 7%;
+			margin-right: 0.5rem;
+			text-align: right;
+		}
+	
+		& input.qty {
+			padding: 0.2rem;
+			width: 7%;
+			margin-right: 0.5rem;
+			text-align: center;	
+			border-radius: 0;	
+			font-size: $font-size-small;	
+		}
+		& .name {
+			width: 55%;
+			margin-right: 0.5rem;
+		}
+		& .remove {
+			width: 12%;
+			text-align: right;
+		}
+		& .price {
+			width: 16%;
+			text-align: right;
+			margin-right: 0.5rem;
+	
+			span {
+				text-align: right;
+			}
+		}
+	
+		hr {
+			margin: 0;
+		}
+		span {
+			
+			line-height: 1.2rem;
+		}
+
+		span.hdr {
+			font-weight: bold;
+			text-align: left;
+		}
+
+		span.hdr.price {
+			text-align: center;
+		}
+
+	 }
+	@media (min-width: 750px) {
+		width: 65%;
+	}
+
+	@media (min-width: 550px) {
+		width: 65%;
+	}
+
+}
+
+
+.CheckoutLogin {
+	.jsLoginMember {
+		display: none;
+	}
+	.jsLoginGuest
+	{
+		display: block;
+	}
+}
+
+.MemberLogin {
+	.jsLoginMember {
+		display: block;
+	}
+	.jsLoginGuest
+	{
+		display: none;
+	}
+}
+
+/*
  * default form styles (should move)
  */
 form {
+	margin: 0;
+
+	.formRow,
 	> div {
 		margin: 0 0 1rem 0;
 	}
+
+	.formRow {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+
+		span.w100 {
+			width: 100%;
+		}
+		span.w90 {
+			width: 90%;
+		}
+		span.w50 {
+			width: 50%;
+		}
+		span.w49 {
+			width: 49%;
+		}
+		span.w45 {
+			width: 45%;
+		}
+		span.w30 {
+			width: 30%;
+		}
+		span.w25 {
+			width: 25%;
+		}
+		span.w20 {
+			width: 20%;
+		}
+	}
+
+	textarea,
 	select,
 	input {
 		margin: 0;
@@ -1326,13 +1846,16 @@ form {
 
 
 	span.pw-wrapper,
+	textarea,
 	select,
+	input[type="date"],
+	input[type="time"],
 	input[type="email"],
 	input[type="number"],
 	input[type="password"],
 	input[type="text"] {
 			padding: 0.5rem;
-			width: 90%;
+			width: 100%;
 			border: 1px solid #ccc;
 			border-radius: 0.5rem;
 	}
@@ -1342,6 +1865,10 @@ form {
 
 		&.inline {
 			display: inline;
+		}
+
+		&.cbLabel {
+			margin: 0 0.5rem;
 		}
 	}
 
@@ -1490,6 +2017,15 @@ form {
 		color: red;
 		padding-left: 1rem;		
 	}
+}
+
+.alert,
+.error {
+	color: red;
+}
+
+.checkout main {
+	margin-top: 10rem;
 }
 
 /*

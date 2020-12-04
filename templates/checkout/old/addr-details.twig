@@ -1,0 +1,137 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+{% import '_macros/_user'    as m_user %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Checkout</title>
+{% endblock titleTag %}
+
+{% block content %}
+    {% set cart = craft.commerce.carts.cart %}
+    {% set states = craft.commerce.states.allEnabledStates %}
+    {% set addrId = cart.shippingAddressId %}
+    {% set addresses = craft.commerce.customers.customer.addresses %}
+    {% set address = cart.shippingAddress %}
+
+    {% set xxx = true %}
+
+{% if xxx %}
+    <form method="post">
+        <input type="hidden" name="action" value="commerce/cart/update-cart">                    
+        {{ csrfInput() }}
+        <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ globalVars.usCountryId }}">
+
+        <section row>
+            {% if addresses and address %}
+                <div id="setAddr" class="UserForm AddrBlock">
+                    <h1>Select Address:</h1>
+                    <div>
+                        <div class="formRow">
+                            <span class="w90">
+                                <label for="addresses">Select the address for your party:</label>
+                                <select class="jsSetAddressId" name="addresses" id="addresses">
+                                    {% for addr in addresses %}  
+                                        {% set sName = craft.commerce.states.getStateById(addr.stateId + 0) %}
+
+                                        {% set optionLine = addr.address1~" "~addr.address2~" "~addr.city~", "~sName %}                          
+                                    <option value="{{ addr.id }}" {{ addr.id == addrId ? "selected" : "" }}>
+                                            {# {{ addr.address1 }} {{ addr.address2 }} {{ addr.city }}, {{ addr.stateName }} #}
+                                            {{ optionLine }}
+                                        </option>
+                                    {% endfor %}
+                                </select> 
+                            </span>
+                        </div>
+
+                        <div class="AddrBlock-static">
+                            {% set sName = craft.commerce.states.getStateById(address.stateId + 0) %}
+                            <p style="font-weight: bold">Address:</p>
+                            <p class="addr">{{ address.firstName }} {{ address.lastName }}</p>
+                            <p class="addr">{{ address.address1 }}</p>
+                            {% if address.address2 %}
+                                <p class="addr">{{ address.address2 }}</p>
+                            {% endif %}
+                            <p class="addr">{{ address.city }}, {{ sName }} {{ address.zipCode }}</p>
+                            <p class="addr">{{ address.phone }}</p>                            
+                            <a class="edit" href="{{ url('checkout/editaddress?addressId='~ address.id ~'&redirect='~craft.app.request.fullPath)}}">Edit</a>
+                        </div>
+
+                        <div>
+                            <a class="button plus" title="Add New Address" href="{{ url('checkout/editaddress?addressId='~''~'&redirect='~craft.app.request.fullPath)}}">+</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div id="newAddr" class="UserForm AddrBlock" }}>
+                    <h1 class="jsLoginTitle">Add Address</h1>
+                    <div class="jsAddrUser">
+                        {# add address form here #}
+                        {{ m_user.addressForm("shippingAddress", null) }}
+                        <div>
+                            <input class="button" type="submit" value="Save Address">
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+       </section>
+    </form>
+{% else %}
+    {{ m_user.deleteAddressForm(addresses) }}
+{% endif %}
+
+{% endblock content %}
+
+{#  address fields
+     [id] => '56'
+    [isStoreLocation] => false
+    [attention] => ''
+    [title] => ''
+    [firstName] => 'Sean'
+    [lastName] => 'Mayall'
+    [fullName] => ''
+    [address1] => '337 Bond Street'
+    [address2] => ''
+    [address3] => ''
+    [city] => 'Bend'
+    [zipCode] => '97701'
+    [phone] => '760-519-4879'
+    [alternativePhone] => ''
+    [label] => ''
+    [businessName] => ''
+    [businessTaxId] => null
+    [businessId] => null
+    [stateName] => ''
+    [countryId] => '236'
+    [stateId] => '59'
+    [notes] => ''
+    [custom1] => ''
+    [custom2] => ''
+    [custom3] => ''
+    [custom4] => ''
+    {% set address = craft.commerce.customers.customer.getAddressById(cart.shippingAddressId) %}
+    [billingAddressId] => '3'
+    [shippingAddressId] => '63'
+
+#}
+
+
+{# some code for retrieving the order transactions #}
+{# Grab an order, where it's id is 15 #}
+{% set order = craft.commerce.orders.id(15).first() %}
+
+{% if order %}
+    {% Grab all of its transactions %}
+    {% set transactions = order.getTransactions() %}
+
+    {# Loop through all of them looking for the one(s) you're interested in on this order.  Here, we just grab the first. #}
+    {% set transaction = transactions[0] %}
+
+    {# Output the reference #}
+    {{ transaction.reference }}
+{% endif %}

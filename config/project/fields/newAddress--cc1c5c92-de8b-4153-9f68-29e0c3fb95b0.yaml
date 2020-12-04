@@ -1,0 +1,23 @@
+contentColumnType: string
+fieldGroup: a2824b51-3e31-478a-9fec-f6934e409460
+handle: newAddress
+instructions: ''
+name: 'Create New Address'
+searchable: false
+settings:
+  multi: true
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Create New Address?'
+        -
+          - value
+          - '0'
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Checkboxes

@@ -121,17 +121,23 @@ $(document).ready(function () {
 	$('#gotoNewAccount, #gotoGuestCheckout').click(function() {
 		var newTitle = $(this).data('newtitle');
 		event.preventDefault();
-		$('.UserLogin-login').css('display', "none");
-		$('.UserLogin-guest').fadeIn(2000);
-		$('.userLoginTitle').text(newTitle ? newTitle : 'New Member');
+		$('.jsLoginMember').css('display', "none");
+		$('.jsLoginGuest').fadeIn(2000);
+		$('.jsLoginTitle').text(newTitle ? newTitle : 'New Member');
 	});
 
 	$('#gotoLogin, #gotoMemberCheckout').click(function() {
 		var newTitle = $(this).data('newtitle');
 		event.preventDefault();
-		$('.UserLogin-guest').css('display', "none");
-		$('.UserLogin-login').fadeIn(2000);
-		$('.userLoginTitle').text(newTitle ? newTitle : 'Member Login');
+		$('.jsLoginGuest').css('display', "none");
+		$('.jsLoginMember').fadeIn(2000);
+		$('.jsLoginTitle').text(newTitle ? newTitle : 'Member Login');
+	});
+
+	$('#eventOven').click( function() {
+		var checked = ($(this).prop("checked") == true);
+		alert('has oven = ' + checked);
+		$(this).val( checked ? 0 : 1 );
 	});
 
 	var sInitialClick = true;
@@ -197,6 +203,98 @@ $(document).ready(function () {
 
 	});
 
+	$('.jsSetAddressId').change(function() {
+		var $this = $(this);
+		var val = $this.val();
+		var data = {
+			'action': 'commerce/cart/update-cart',
+			'shippingAddressId': val,
+		}
+
+		$.ajax({
+			type: "POST",
+			dataType: 'json',
+			headers: {
+				"X-CSRF-Token" : window.csrfTokenValue,
+			},
+			url: '/',
+			data: data,
+			success: function(response){
+				location.reload();
+				console.log("successfully updated cart", response, data);
+			},
+			fail :function(response) {
+				console.log("error updating cart", response, data);
+			}
+		});
+
+	});
+
+	$('.jsSetSameAs').change(function() {
+		var $this = $(this);
+		var val = $this.val();
+		var id = $this.data('shippingid');
+
+		val = (val >= 0) ? 1 : 0;
+		$this.val(val);
+
+		var data = {
+			'action': 'commerce/cart/update-cart',
+			'shippingAddressId': id,
+			'billingAddressId': id,
+		}
+		
+		$.ajax({
+			type: "POST",
+			dataType: 'json',
+			headers: {
+				"X-CSRF-Token" : window.csrfTokenValue,
+			},
+			url: '/',
+			data: data,
+			success: function(response){
+				location.reload();
+				console.log("successfully updated cart", response, data);
+			},
+			fail :function(response) {
+				console.log("error updating cart", response, data);
+			}
+		});
+
+	});
+
+	$('.js-saveAddress').click(function() {
+		var shippingId = $("input[name='shippingAddress[id]']").val();
+		var fName = $("input[name='shippingAddress[firstName]']").val();
+		var lName = $("input[name='shippingAddress[lastName]']").val();
+
+		var data = {
+			'action': 'commerce/cart/update-cart',
+			'shippingAddressId': shippingId,
+			'shippingAddress[fullName]': (fName + ' ' + lName),
+		}
+		alert(data["shippingAddress[fullName]"]);
+
+		$.ajax({
+			type: "POST",
+			dataType: 'json',
+			headers: {
+				"X-CSRF-Token" : window.csrfTokenValue,
+			},
+			url: '/',
+			data: data,
+			success: function(response){
+				location.reload();
+				console.log("successfully updated cart", response, data);
+			},
+			fail :function(response) {
+				console.log("error updating cart", response, data);
+			}
+		});
+
+	});
+
+
 	/*
 	 * toggle password visibilty
 	 */
@@ -224,6 +322,5 @@ $(document).ready(function () {
 			$('.jsShowPW').hide();			
 		}
 	});
-	
 	
 });

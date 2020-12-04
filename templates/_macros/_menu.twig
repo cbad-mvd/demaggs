@@ -43,12 +43,14 @@
 
 {% endmacro showMenuItems %}
 
-{% macro showCart() %}
+{% macro showCart(allowEdits = true) %}
 {% import _self as self %}
 
 {% set cart = craft.commerce.carts.cart %}
+    {# {% dd(cart.fields) %} #}  
 
     {% if cart.lineItems | length %}
+        {% if allowEdits %}    
         <form method="post">
             <input type="hidden" name="action"
                     value="commerce/cart/update-cart">
@@ -56,7 +58,8 @@
                     value="Updated line items.">
             {# {{ redirectInput('/store/cart') }} #}
             {{ csrfInput() }}
-    
+        {% endif %}
+            {#   <h5>Here's the custom field: {{ cart.myText }} </h5> #}
             <div class="FoodMenu-choices">
                 {# show items in cart #}
                 {% for item in cart.lineItems %}
@@ -64,7 +67,11 @@
                     <p class="qty">{{ item.qty }}</p>
                     <p class="name">{{ item.description }}</p>
                     <p class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</p>
-                    <p class="remove jsRemoveLineItem" data-line-item-id="{{ item.id }}" title="Remove">X</p>
+                    {% if allowEdits %}
+                        <p class="remove jsRemoveLineItem" data-line-item-id="{{ item.id }}" title="Remove">X</p>
+                    {% else %}
+                        <p class="remove" data-line-item-id="{{ item.id }}" title="Remove">&nbsp;</p>
+                    {% endif %}
                 </div>
                 {% endfor %}
 
@@ -78,18 +85,85 @@
                 </div>
             </div>
 
-            <span class="FoodItem-button button"><a href="/checkout">Checkout</a></span>
-
-
+        {% if allowEdits %}
+                <span class="FoodItem-button button"><a href="cart">Checkout</a></span>
         </form>
+        {% endif %}
 
 
     {% else %}
-        <form method="post">
+        {# <form method="post"> #}
             <div class="FoodMenu-item">
                 <p>You have no menu items selected. Please make a selection to get started.</p>
             </div>
-        </form>
+        {# </form> #}
     {% endif %}
 
 {% endmacro showCart %}
+
+
+{% macro showOrderDetails(cart = null) %}
+
+    {% if cart is not null %}
+        <div class="itemRow">
+            <span class="qty hdr">Qty</span>
+            <span class="name hdr">Description</span>
+            <span class="price hdr">Price</span>
+            <span class="remove hdr">Remove</span>
+        </div>
+        {% for item in cart.lineItems %}
+        <div class="itemRow">
+            {% set liID = ("lineItems["~item.id~"]") %}
+            {% set liRemove = ("lineItems["~item.id~"][remove]") %}
+            {% set liQty = ("lineItems["~item.id~"][qty]") %}
+
+            {{ hiddenInput(liID, item.id) }}
+            {{ input('number', liQty, item.qty, { class: 'qty', min: '1', max: '99',  }) }}
+            <span class="name">{{ item.description }}</span>
+            <span class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</span>
+            {{ input('checkbox', liRemove, '1', { class: 'remove'  }) }} 
+        </div>
+        {% endfor %}
+        <div class="itemRow">
+            <hr>
+        </div>
+        <div class="itemRow">
+            <span class="qty">&nbsp;</span>
+            <span class="name heavy">Order Total:</span>
+            <span class="price  heavy">{{ cart.totalPrice | currency(cart.currency) }}</span>
+            <span class="remove">&nbsp;</span>
+        </div>
+    {% endif %}   
+    
+{% endmacro showOrderDetails %}
+
+{#
+    <div class="itemRow">
+        <span class="qty hdr">Qty</span>
+        <span class="name hdr">Description</span>
+        <span class="price hdr">Price</span>
+        <span class="remove hdr">Remove</span>
+    </div>
+    {% for item in cart.lineItems %}
+    <div class="itemRow">
+        {% set liID = ("lineItems["~item.id~"]") %}
+        {% set liRemove = ("lineItems["~item.id~"][remove]") %}
+        {% set liQty = ("lineItems["~item.id~"][qty]") %}
+
+        {{ hiddenInput('entryId', liID) }}
+        {{ input('number', liQty, item.qty, { class: 'qty', min: '1', max: '99',  }) }}
+        <span class="name">{{ item.description }}</span>
+        <span class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</span>
+        {{ input('checkbox', liRemove, '1', { class: 'remove'  }) }} 
+    </div>
+    {% endfor %}
+    <div class="itemRow">
+        <hr>
+    </div>
+    <div class="itemRow">
+        <span class="qty">&nbsp;</span>
+        <span class="name heavy">Order Total:</span>
+        <span class="price  heavy">{{ cart.totalPrice | currency(cart.currency) }}</span>
+        <span class="remove">&nbsp;</span>
+    </div>
+#}

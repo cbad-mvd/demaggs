@@ -1,0 +1,35 @@
+
+{% import '_macros/_user' as m_user %}
+
+    		{% set myEntryQuery = craft.entries().section('globalHeader').limit(1) %}
+            {% set thisEntry = myEntryQuery.one() %}
+
+            {% set thisSlug = entry is defined ? entry.slug : "" %}
+
+            <header class="CheckOutHeader dark">
+                <div class="branding">
+                    <div class="logo">
+                        {% set image = thisEntry.siteLogo.one() %}
+                        <a href="{{ alias('@web') }}">
+                            <img class="lazyloaded" src="{{ image.url }}" alt="{{ image.altText }}">
+                        </a>
+                    </div>
+                    <div class="title">
+                        <h2 id="jsCheckoutTitle">Checkout</h2>
+                    </div>
+                </div>
+                <div id="jsProgressBar" class="status">
+                    <div class="labels">
+                        <span>Review</span>
+                        <span>Account</span>
+                        <span>Details</span>
+                        <span>Billing</span>
+                        <span>Payment</span>
+                        <span>Confirmation</span>
+                    </div>
+                    <div class="track">
+                        <div id="jsProgressState" class="state s0">
+                        </div>
+                    </div>
+                </div>
+			</header>

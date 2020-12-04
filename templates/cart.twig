@@ -1,0 +1,86 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+{% import '_macros/_menu'    as m_menu %}
+{% import '_macros/_user'    as m_user %}
+{% import '_macros/_utils'   as m_utils %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Order Review</title>
+{% endblock titleTag %}
+
+{% block content %}
+    {% set cart = craft.commerce.carts.cart %}
+    {% set states = craft.commerce.states.allEnabledStates %}
+    {% set addrId = cart.shippingAddressId %}
+    {% set addresses = craft.commerce.customers.customer.addresses %}
+    {% set address = cart.shippingAddress %}
+
+    <form method="post">
+        <input type="hidden" name="action" value="commerce/cart/update-cart">                    
+        {# {{ redirectInput('checkout') }} #}
+        {{ csrfInput() }}
+
+        <section row>
+            <div class="UserForm ReviewBlock">
+                <h1 class="">Review Order</h1>
+                <div class="UserForm-block">
+                    {% if craft.app.session.getFlash("error") %}
+                        <div class="alert error" role="alert">
+                        {{ craft.app.session.getFlash("error") }}
+                        </div>
+                    {% endif %}
+
+                    {{ m_menu.showOrderDetails(cart) }}
+
+                    <div class="btnRow">
+                        <input class="button off" type="submit" value="Update Order">
+                        <a class="button" href="/checkout">Checkout</a>
+                    </div>
+                </div>
+            </div>
+       </section>
+    </form>
+
+{% endblock content %}
+
+{% block pageJs %}
+    {{ m_utils.setProgress('s1', 'Order Review') }}
+{% endblock pageJs %}
+
+{#  address fields
+     [id] => '56'
+    [isStoreLocation] => false
+    [attention] => ''
+    [title] => ''
+    [firstName] => 'Sean'
+    [lastName] => 'Mayall'
+    [fullName] => ''
+    [address1] => '337 Bond Street'
+    [address2] => ''
+    [address3] => ''
+    [city] => 'Bend'
+    [zipCode] => '97701'
+    [phone] => '760-519-4879'
+    [alternativePhone] => ''
+    [label] => ''
+    [businessName] => ''
+    [businessTaxId] => null
+    [businessId] => null
+    [stateName] => ''
+    [countryId] => '236'
+    [stateId] => '59'
+    [notes] => ''
+    [custom1] => ''
+    [custom2] => ''
+    [custom3] => ''
+    [custom4] => ''
+    {% set address = craft.commerce.customers.customer.getAddressById(cart.shippingAddressId) %}
+    [billingAddressId] => '3'
+    [shippingAddressId] => '63'
+
+#}

@@ -1,0 +1,23 @@
+contentColumnType: string
+fieldGroup: 046e05e8-3ec3-4c53-9775-11b9a4aa98d0
+handle: eventOven
+instructions: ''
+name: 'Event Oven'
+searchable: false
+settings:
+  multi: true
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Is a working stove/oven available?'
+        -
+          - value
+          - '1'
+        -
+          - default
+          - '1'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Checkboxes
