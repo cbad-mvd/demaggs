@@ -136,7 +136,7 @@ $(document).ready(function () {
 
 	$('#eventOven').click( function() {
 		var checked = ($(this).prop("checked") == true);
-		alert('has oven = ' + checked);
+		
 		$(this).val( checked ? 0 : 1 );
 	});
 
