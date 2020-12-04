@@ -86,7 +86,7 @@
             </div>
 
         {% if allowEdits %}
-                <span class="FoodItem-button button"><a href="cart">Checkout</a></span>
+                <span class="FoodItem-button button"><a href="/cart">Checkout</a></span>
         </form>
         {% endif %}
 
@@ -133,6 +133,7 @@
             <span class="price  heavy">{{ cart.totalPrice | currency(cart.currency) }}</span>
             <span class="remove">&nbsp;</span>
         </div>
+    
     {% endif %}   
     
 {% endmacro showOrderDetails %}
