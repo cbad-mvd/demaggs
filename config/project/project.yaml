@@ -1,4 +1,4 @@
-dateModified: 1607098414
+dateModified: 1607203229
 email:
   fromEmail: jmayall@surething.com
   fromName: 'Demaggs Dining'
@@ -16,6 +16,72 @@ plugins:
     edition: standard
     enabled: false
     schemaVersion: 1.0.0
+  enupal-stripe:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.2.1
+    settings:
+      adminNotificationRecipients: null
+      adminNotificationReplyToEmail: null
+      adminNotificationSenderEmail: null
+      adminNotificationSenderName: null
+      adminNotificationSubject: null
+      adminNotificationTemplate: null
+      adminTemplateOverride: null
+      cancelAtPeriodEnd: false
+      capture: '1'
+      chargeDescription: 'Order from {email}'
+      chargeType: null
+      currentUserEmail: 0
+      customerNotificationReplyToEmail: null
+      customerNotificationSenderEmail: null
+      customerNotificationSenderName: null
+      customerNotificationSubject: null
+      customerNotificationTemplate: null
+      customerTemplateOverride: null
+      defaultCurrency: USD
+      displayTaxLabel: 0
+      enableAdminNotification: null
+      enableConnect: 0
+      enableCustomerNotification: null
+      enableTaxes: 0
+      enableVendorNotification: 0
+      globalRate: 1
+      liveClientId: null
+      livePublishableKey: ''
+      liveSecretKey: ''
+      loadCss: 1
+      loadJquery: 1
+      oneTimeSetupFeeLabel: 'One time set-up fee'
+      plansWithNickname: 0
+      returnUrl: null
+      syncDefaultFormId: null
+      syncDefaultStatusId: null
+      syncEnabledDateRange: false
+      syncEndDate: null
+      syncIfUserExists: false
+      syncLimit: 500
+      syncStartDate: null
+      syncType: 1
+      tax: null
+      taxType: 0
+      testClientId: null
+      testMode: '1'
+      testPublishableKey: pk_test_51HuqgqDkOOyVTArn5Ee3uzHcHko2QKDIIK6xG3dXjiFxMQkaEHf1Y6mBQmFjZGazlfUvtV5sJ0vGZxzwmsDUFEB000FnXq3Be8
+      testSecretKey: sk_test_51HuqgqDkOOyVTArnwXfHnWaEurOZGnI7JhmYXqYAiiBLEqQYPW4mt1xbOL3mnMHZjcPPEwV8jYgSqxlZEiA3uTAY00KncczEdb
+      updateCustomerEmailOnStripe: 0
+      useSca: ''
+      vendorNameFormat: null
+      vendorNotificationReplyToEmail: null
+      vendorNotificationSenderEmail: null
+      vendorNotificationSenderName: null
+      vendorNotificationSubject: null
+      vendorNotificationTemplate: null
+      vendorPaymentType: manually
+      vendorSkipAdminReview: 0
+      vendorTemplateOverride: null
+      vendorUserFieldId: null
+      vendorUserGroupId: null
   redactor:
     edition: standard
     enabled: true

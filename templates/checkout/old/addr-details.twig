@@ -135,3 +135,16 @@
     {# Output the reference #}
     {{ transaction.reference }}
 {% endif %}
+
+
+{# setting the form fields for payment gateway #}
+        {% set formValues = {
+            firstName: paymentForm is defined ? paymentForm.firstName :
+                        (cart.billingAddress ? cart.billingAddress.firstName : ""),
+            lastName: paymentForm is defined ? paymentForm.lastName :
+                        (cart.billingAddress ? cart.billingAddress.lastName : ""),
+            number: paymentForm is defined ? paymentForm.number : "",
+            cvv: paymentForm is defined ? paymentForm.cvv : "",
+            month: paymentForm is defined ? paymentForm.month : "1",
+            year: paymentForm is defined ? paymentForm.year : currentYear + 1,
+        } %}

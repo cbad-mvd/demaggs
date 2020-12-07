@@ -1,0 +1,149 @@
+field: a9e790af-96fa-43a2-a925-0e5d80b4c10b
+fieldLayouts:
+  fb318f3e-6df8-465c-a181-12fbeb916233:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 50b0a3b7-72b3-4efe-b8a1-e2c19997d85a
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 9946f386-1ec8-4778-82c5-4e93da7a3f5e
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 277978a7-40cb-4ec0-9c6e-3c3979754320
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ec644615-274e-4131-9c1c-415701f1ce40
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: c1dbba72-4df8-4e2c-b471-c8ddc7c355d3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  277978a7-40cb-4ec0-9c6e-3c3979754320:
+    contentColumnType: integer(10)
+    fieldGroup: null
+    handle: minValue
+    instructions: ''
+    name: 'Min Value'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: null
+      prefix: null
+      previewCurrency: null
+      previewFormat: decimal
+      size: null
+      suffix: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Number
+  50b0a3b7-72b3-4efe-b8a1-e2c19997d85a:
+    contentColumnType: text
+    fieldGroup: null
+    handle: label
+    instructions: ''
+    name: Label
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  9946f386-1ec8-4778-82c5-4e93da7a3f5e:
+    contentColumnType: text
+    fieldGroup: null
+    handle: fieldHandle
+    instructions: ''
+    name: Handle
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  c1dbba72-4df8-4e2c-b471-c8ddc7c355d3:
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: required
+    instructions: 'This field is required?'
+    name: Required
+    searchable: true
+    settings:
+      default: false
+      offLabel: null
+      onLabel: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Lightswitch
+  ec644615-274e-4131-9c1c-415701f1ce40:
+    contentColumnType: integer(10)
+    fieldGroup: null
+    handle: maxValue
+    instructions: ''
+    name: 'Max Value'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: null
+      prefix: null
+      previewCurrency: null
+      previewFormat: decimal
+      size: null
+      suffix: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Number
+handle: number
+name: Number
+sortOrder: 5

@@ -107,6 +107,23 @@
                     </div>
                     {% set oddClass = (oddClass == "") ? " oddRow" : "" %}
                     {% endfor %}
+
+                    {% if order.getTotalDiscount() %}
+                    <div class="lineItem{{ oddClass }}">
+                            <span class="itemQty hdr">
+                                &nbsp;
+                            </span>
+                            <span class="itemDesc hdr">
+                                &nbsp;
+                            </span>
+                            <span class="itemPrice">
+                                Discount:
+                            </span>
+                            <span class="itemTotal">
+                                {{ order.getTotalDiscount()|commerceCurrency(order.currency) }}
+                            </span>
+                    </div>
+                    {% endif %}
                     <div class="lineItem total">
                             <span class="itemQty hdr">
                                 &nbsp;
@@ -121,6 +138,7 @@
                                 {{ order.totalPrice | currency(order.currency) }}
                             </span>
                     </div>
+
                 </div>
             </div>
             <div class="btnRow">
@@ -128,6 +146,7 @@
                 <a class="button" href="/customer">Order History</a>
                 {% endif %}
                 <a class="button" href="/">Home Page</a>
+            </div>
         </div>
     </section>
 

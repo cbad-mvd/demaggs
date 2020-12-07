@@ -26,62 +26,66 @@
             {% set blocks = product.specialsMatrix %}
 
             {% if blocks is not null %}
+                <form method="POST">
+                    {{ actionInput('commerce/cart/update-cart') }}
+                    {{ hiddenInput('successMessage', ('Added '~ product.title ~' to the cart.')|hash) }}
+                    {{ csrfInput() }}
+                    {{ redirectInput('/cart') }} 
+
+                    <input type="hidden" name="qty" value="1">
+                    <input type="hidden" name="message" value="check">
+
                     <section class="row TextPic">
                         <div class="TextBlock {{ swapClass }}">
                             <div class="topBorder"></div>
-                            <form method="POST">
-                                <div>
-                                    <input type="hidden" name="action" value="commerce/cart/update-cart">
-                                    {{ redirectInput('/cart') }} 
-                                    {{ csrfInput() }}
-                                    <input type="hidden" name="qty" value="1">
-                                    <input type="hidden" name="message" value="check">
-                                    <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ globalVars.usCountryId }}">
+                            <div>
+                                <h3>{{ product.title }}</h3>
 
-                                    <h3>{{ product.title }}</h3>
+                                {% for block in blocks.all() %}
+                                {% switch block.type %}
 
-                                    {% for block in blocks.all() %}
-                                    {% switch block.type %}
+                                    {% case 'heading' %}
+                                        {% if block.tagline %}
+                                            <h5>{{ block.tagline }}</h5>
+                                        {% endif %}
 
-                                        {% case 'heading' %}
-                                            {% if block.tagline %}
-                                                <h5>{{ block.tagline }}</h5>
-                                            {% endif %}
+                                    {% case 'text' %}
+                                        {{ block.desc }}
 
-                                        {% case 'text' %}
-                                            {{ block.desc }}
+                                    {% case 'image' %}
+                                        {% if (block.image is defined) and (block.image.one() is not null) %}
+                                            {% set image = block.image.one() %}
+                                            <img class="lazyx" src="{{ image.url }}" alt="{{ image.altText }}" />
+                                        {% endif %}
 
-                                        {% case 'image' %}
-                                            {% if (block.image is defined) and (block.image.one() is not null) %}
-                                                {% set image = block.image.one() %}
-                                                <img class="lazyx" src="{{ image.url }}" alt="{{ image.altText }}" />
-                                            {% endif %}
+                                    {% case 'menu' %}
+                                        {% if block.menuItems %}
+                                            <ul>
+                                            {% for item in block.menuItems %}
+                                                <li>{{ item.desc }}</li>
+                                            {% endfor %}
+                                            </ul>
+                                        {% endif %}
 
-                                        {% case 'menu' %}
-                                            {% if block.menuItems %}
-                                                <ul>
-                                                {% for item in block.menuItems %}
-                                                    <li>{{ item.desc }}</li>
-                                                {% endfor %}
-                                                </ul>
-                                            {% endif %}
-
-                                    {% endswitch %}
+                                {% endswitch %}
+                                {% endfor %}
+                            </div>
+                            <div class="variants">
+                                <label for="purchasableId">Options</label>
+                                <select name="purchasableId" class="bm">
+                                    {% for variant in product.getVariants() %}
+                                        <option value="{{ variant.id }}">{{ variant.title }} {{ variant.salePrice | currency('USD') }}</option>
                                     {% endfor %}
-                                </div>
-                                <div class="variants">
-                                    <label for="purchasableId">Options</label>
-                                    <select name="purchasableId" class="bm">
-                                        {% for variant in product.getVariants() %}
-                                            <option value="{{ variant.id }}">{{ variant.title }} {{ variant.salePrice | currency('USD') }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <br />
-                                </div>
-                                <div class="addRow">
-                                    <input class="button" type="submit" value="Add Selection">                    
-                                </div>
-                            </form>
+                                </select>
+                                <br />
+                            </div>
+                            <div class="addRow">
+                                {% if product.availableForPurchase %}
+                                <input class="button" type="submit" value="Add Selection">
+                                {% else %}
+                                <input class="button" type="submit" value="Unavailable">
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="PicBlock">
                             {% if (product.specialImage is defined) and (product.specialImage.one() is not null) %}
@@ -100,10 +104,7 @@
                     {% elseif textOnTop == false %}
                         {% set swapClass = "swapOrder" %}
                     {% endif %}
-
-
-
-                
+                </form>
             {% endif %}  {# blocks is not null #} 
         {% endfor %}  {# products loop #}      
 

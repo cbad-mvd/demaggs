@@ -21,18 +21,19 @@
                 <p class="FoodItem-price">{{ variant.price | currency('USD') }}</p>
 
                 <form method="POST">
-                    <input type="hidden" name="action" value="commerce/cart/update-cart">
-                    <input type="hidden" name="cartUpdatedNotice" value="Added {{ item.title }} to the cart.">
-                    {# {{ redirectInput('/menu2') }} #} 
+                    {{ actionInput('commerce/cart/update-cart') }}
+                    {{ hiddenInput('successMessage', ('Added '~ item.title ~' to the cart.')|hash) }}
                     {{ csrfInput() }}
-                    {# <input type="hidden" name="qty" value="1"> #}
-                    <input type="hidden" name="purchasableId" value="{{ variant.id }}">
-                    
-                    <div class="addRow">
-                        <input class="button" type="submit" value="Add to Menu">                    
-                        <input class="qty" type="number" name="qty" min="1" max="99" value="1">
-                    </div>
 
+                    <input type="hidden" name="purchasableId" value="{{ variant.id }}">                    
+                    <div class="addRow">
+                        {% if item.availableForPurchase %}
+                        <input class="button" type="submit" value="Add to Menu">  
+                        <input class="qty" type="number" name="qty" min="1" max="99" value="1">
+                        {% else %}                  
+                        <input class="button" type="submit" value="Item Unavailable">  
+                        {% endif %}
+                    </div>
                 </form>
 
             </div>
@@ -75,14 +76,32 @@
                 </div>
                 {% endfor %}
 
-                {# show totals #}
-                <hr class="FoodMenu-seperator">
-                <div class="FoodMenu-total">
-                    <p class="qty">&nbsp;</p>
-                    <p class="name">Total: </p>
-                    <p class="price">{{ cart.totalPrice | currency(cart.currency) }}</p>
-                    <p class="remove" title="Remove">&nbsp;</p>
-                </div>
+                {% if not cart.hasErrors() %}
+                    {# show totals #}
+                    {% if cart.getTotalDiscount() %}
+                    <div class="FoodMenu-item">
+                        <p class="qty">&nbsp;</p>
+                        <p class="name">Subtotal: </p>
+                        <p class="price">{{ cart.itemTotalAsCurrency }}</p>
+                        <p class="remove" title="Remove">&nbsp;</p>
+                    </div>     
+                    {% endif %}                   
+                    <hr class="FoodMenu-seperator">
+                    {% if cart.getTotalDiscount() %}
+                    <div class="FoodMenu-item">
+                        <p class="qty">&nbsp;</p>
+                        <p class="name">Total Discounts: </p>
+                        <p class="price discounted">{{ cart.getTotalDiscount()|commerceCurrency(cart.currency) }}</p>
+                        <p class="remove" title="Remove">&nbsp;</p>
+                    </div>
+                    {% endif %}
+                    <div class="FoodMenu-total">
+                        <p class="qty">&nbsp;</p>
+                        <p class="name">Total: </p>
+                        <p class="price">{{ cart.totalPrice | commerceCurrency(cart.currency) }}</p>
+                        <p class="remove" title="Remove">&nbsp;</p>
+                    </div>                        
+                {% endif %}
             </div>
 
         {% if allowEdits %}
@@ -116,21 +135,45 @@
             {% set liID = ("lineItems["~item.id~"]") %}
             {% set liRemove = ("lineItems["~item.id~"][remove]") %}
             {% set liQty = ("lineItems["~item.id~"][qty]") %}
+            {% set liError = item.hasErrors() ? (' - '~item.getFirstError('qty')) : '' %}
+            {% set liErrorClass = '' %}
+            {% if item.getFirstError('qty') %}
+                {% set liErrorClass = 'itemError' %}
+            {% endif %}
 
             {{ hiddenInput(liID, item.id) }}
-            {{ input('number', liQty, item.qty, { class: 'qty', min: '1', max: '99',  }) }}
-            <span class="name">{{ item.description }}</span>
+            {{ input('number',  liQty, 
+                                item.qty, 
+                                { class: "qty "~liErrorClass, min: '1', max: '99',  }) }}
+            <span class="name {% if item.hasErrors() %}cartError{% endif %}">{{ item.description }}{{ liError }}</span>
             <span class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</span>
             {{ input('checkbox', liRemove, '1', { class: 'remove'  }) }} 
         </div>
         {% endfor %}
+        {% if cart.getTotalDiscount() %}
+        <div class="itemRow">
+            <span class="qty">&nbsp;</span>
+            <span class="name">Subtotal:</span>
+            <span class="price">{{ cart.itemTotalAsCurrency }}</span>
+            <span class="remove">&nbsp;</span>
+        </div>
+        {% endif %}
+
         <div class="itemRow">
             <hr>
         </div>
+        {% if cart.getTotalDiscount() %}
+        <div class="itemRow">
+            <span class="qty">&nbsp;</span>
+            <span class="name">Total Discounts:</span>
+            <span class="price discounted">{{ cart.getTotalDiscount()|commerceCurrency(cart.currency) }}</span>
+            <span class="remove">&nbsp;</span>
+        </div>
+        {% endif %}
         <div class="itemRow">
             <span class="qty">&nbsp;</span>
             <span class="name heavy">Order Total:</span>
-            <span class="price  heavy">{{ cart.totalPrice | currency(cart.currency) }}</span>
+            <span class="price heavy">{{ cart.totalPrice | currency(cart.currency) }}</span>
             <span class="remove">&nbsp;</span>
         </div>
     

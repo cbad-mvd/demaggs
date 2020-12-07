@@ -1,0 +1,23 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_srcset'  as m_srcset %}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_textpic' as m_textpic %}
+{% import '_macros/_user'    as m_user %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Checkout</title>
+{% endblock titleTag %}
+
+{% block content %}
+    {% set cart = craft.commerce.carts.cart %}
+    {% set states = craft.commerce.states.allEnabledStates %}
+    {% set addrId = cart.shippingAddressId %}
+    {% set addresses = craft.commerce.customers.customer.addresses %}
+    {% set address = cart.shippingAddress %}
+
+    {{ m_user.deleteAddressForm(addresses) }}
+{% endblock content %}
+

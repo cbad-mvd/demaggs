@@ -21,12 +21,12 @@
     {% set address = cart.shippingAddress %}
 
     <form method="post">
-        <input type="hidden" name="action" value="commerce/cart/update-cart">                    
-        {# {{ redirectInput('checkout') }} #}
+        {{ actionInput('commerce/cart/update-cart') }}
+        {{ hiddenInput('successMessage', 'The cart was updated.'|hash) }}
         {{ csrfInput() }}
 
         <section row>
-            <div class="UserForm ReviewBlock">
+            <div class="UserForm CartBlock">
                 <h1 class="">Review Order</h1>
                 <div class="UserForm-block">
                     {% if craft.app.session.getFlash("error") %}
@@ -36,10 +36,27 @@
                     {% endif %}
 
                     {{ m_menu.showOrderDetails(cart) }}
+                
+                    <div class="couponRow">
+                        <div class="{{ cart.getFirstError('couponCode') ? 'couponError' : 'couponCode' }} text-left max-w-sm w-full">
+                            {# Update Coupon form uses the single update controller action: #}
+                            <label class="couponLabel" for="couponCode">Coupon Code</label>
+                            {% if cart.getFirstError('couponCode') %}
+                                <div class="cartError">{{ cart.getFirstError('couponCode') }}</div>
+                            {% endif %}
+
+                            <input type="text" name="couponCode" width="11"
+                                    class="'inputEror' w-full {% if cart.getFirstError('couponCode') %}text-red-500{% endif %}"
+                                    value="{{ cart.couponCode }}"
+                                    placeholder="{{ "Coupon Code" }}">
+                        </div>
+                    </div>
+
 
                     <div class="btnRow">
+                        {{ redirectInput('cart') }}
                         <input class="button off" type="submit" value="Update Order">
-                        <a class="button" href="/checkout">Checkout</a>
+                        <a class="button" href="{{ url('checkout') }}">Checkout</a>
                     </div>
                 </div>
             </div>

@@ -44,9 +44,26 @@
                     <div class="PaymentBlock-wrapper">
                         <div class="review">
                             <h5>Order Review</h5>
+                            {% if ((cart.eventDate|date('D')) == 'Tue') %}
+                            <h5>Event Day: {{ cart.eventDate | date('D') }}</h5>
+                            {% endif %}
                             <div class="Food">
-                            {{ m_menu.showCart(false) }}
+                                {{ m_menu.showCart(false) }}
                             </div>
+                            
+                            {#  stripe stuff
+                            {% set options = {
+                                amount: 99.99, 
+                                quantity: 2, 
+                                calculateFinalAmount: false,
+                                itemName : 'Demaggs Dining',
+                                itemDescription : 'Demaggs Dining Experience',
+                                checkoutSuccessUrl: '/thank-you?number={number}',
+                                checkoutCancelUrl: '/uh-oh'
+                            } %}
+
+                            {{ craft.enupalstripe.paymentForm('paymentForm1', options) }}
+                            #}
                         </div>
 
                         <div class="seperator">

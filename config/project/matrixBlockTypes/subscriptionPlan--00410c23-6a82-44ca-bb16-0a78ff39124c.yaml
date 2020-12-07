@@ -1,0 +1,125 @@
+field: e707190a-29e3-488d-92b0-c2c88a8495d1
+fieldLayouts:
+  fafe41a6-4aa8-4dde-8ee1-a812ba7a64f3:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 56c516e9-1e1a-4bef-8c3f-0dd54be984af
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: f700f581-f6e0-4dcb-9f32-b0b05fda3fe9
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 8fecc6a8-2b85-4531-af9a-c466429e17af
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 6d232f57-4a59-40b9-a560-05b623eba1e1
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  56c516e9-1e1a-4bef-8c3f-0dd54be984af:
+    contentColumnType: string
+    fieldGroup: null
+    handle: selectPlan
+    instructions: 'Can''t see your plans? Go to [Subscriptions](https://demaggs.local/admin/enupal-stripe/settings/subscriptions) and click on Refresh Plans'
+    name: 'Select Plan'
+    searchable: true
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - 'Select Plan...'
+            -
+              - value
+              - ''
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Dropdown
+  6d232f57-4a59-40b9-a560-05b623eba1e1:
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: default
+    instructions: 'Please make sure that just one default is enabled'
+    name: Default
+    searchable: true
+    settings:
+      default: false
+      offLabel: null
+      onLabel: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Lightswitch
+  8fecc6a8-2b85-4531-af9a-c466429e17af:
+    contentColumnType: 'decimal(12,2)'
+    fieldGroup: null
+    handle: setupFee
+    instructions: 'Setup Fee for the first payment'
+    name: 'Setup Fee'
+    searchable: true
+    settings:
+      decimals: '2'
+      defaultValue: null
+      max: null
+      min: null
+      prefix: null
+      previewCurrency: null
+      previewFormat: decimal
+      size: null
+      suffix: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Number
+  f700f581-f6e0-4dcb-9f32-b0b05fda3fe9:
+    contentColumnType: text
+    fieldGroup: null
+    handle: customLabel
+    instructions: 'Override the default text displayed for each plan (i.e. “Nickname amount/interval”)'
+    name: 'Custom Label'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Awesome Plan $35.00/month'
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+handle: subscriptionPlan
+name: 'Subscription Plan'
+sortOrder: 1

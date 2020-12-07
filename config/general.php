@@ -56,6 +56,14 @@ return [
         'omitScriptNameInUrls' => true,
         'useEmailAsUsername' => true,
         'usePathInfo' => true,    
+
+        'xxxstripePayments' => [
+            'testPublishableKey' => getenv('STRIPE_PUBLIC_KEY'),
+            'testSecretKey' =>  getenv('STRIP_PRIVATE_KEY'),
+            'testMode' => 1,
+            // This setting is only needed is Stripe Connect is enabled 
+            // 'testClientId' => getenv('YOUR_TEST_CLIENT_ID'),
+        ]        
         
     ],
 

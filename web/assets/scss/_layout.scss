@@ -206,6 +206,7 @@ footer {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		align-items: flex-start;
 		order: 2;
 	
 		h3, h5, p {
@@ -258,6 +259,7 @@ footer {
 
 		&.swapOrder {
 			order: 2;
+			align-items: flex-end;
 		}
 
 		&.textOnTop {
@@ -1059,7 +1061,7 @@ footer {
 			border-radius: 0.5rem;
 			background-color: rgba(255,255,255,0.1);			
 		}
-	
+
 		&-total,
 		&-item {
 			display: flex;
@@ -1378,6 +1380,11 @@ h1.userLoginTitle {
 			span {
 				text-align: right;
 			}
+
+			&.discounted {
+				color: inherit;
+			}
+
 		}
 
 		& div.itemRow {
@@ -1702,11 +1709,15 @@ h1.userLoginTitle {
    }
 }
 
-.ReviewBlock {
+.CartBlock {
 	width: 95%;
 
 	span {
 		display: inline-grid;
+	}
+
+	.cartError {
+		color: red;
 	}
 
 	.itemRow {
@@ -1739,6 +1750,10 @@ h1.userLoginTitle {
 			text-align: right;
 			margin-right: 0.5rem;
 	
+			&.discounted {
+				color: inherit;
+			}
+
 			span {
 				text-align: right;
 			}
@@ -1761,7 +1776,32 @@ h1.userLoginTitle {
 			text-align: center;
 		}
 
-	 }
+	}
+
+	.couponRow {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-end;
+
+		> div {
+			width: 16rem;
+
+			> div {
+				margin: 0;
+			}
+
+			.cartError {
+				margin-left: 0.2rem;
+			}
+
+			.couponLabel {
+				font-weight: bold;;
+			}
+
+		}
+		
+	}
+
 	@media (min-width: 750px) {
 		width: 65%;
 	}
@@ -1891,12 +1931,15 @@ form {
 		}
 		span.eyeball {
 			display: none;
-			width: 6%;
-			height: 1.2rem;
+			width: 4%;
 			cursor: pointer;
 			background-image: url('/assets/img/icons/icon-eye-on.svg');
 			background-repeat: no-repeat;
+			background-position: left center;
+		}
 
+		span.spacer {
+			width: 1%;
 		}
 	}
 
@@ -2078,3 +2121,4 @@ form {
 										</div>
 										</div>
 **/
+

@@ -1030,6 +1030,9 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
@@ -1087,6 +1090,9 @@ footer {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .TextPic .TextBlock.textOnTop {
@@ -2308,6 +2314,10 @@ h1.checkoutTitle {
   text-align: right;
 }
 
+.UserCheckout-review .price.discounted {
+  color: inherit;
+}
+
 .UserCheckout-review div.itemRow {
   margin-bottom: 0.5rem;
 }
@@ -2762,26 +2772,30 @@ h1.checkoutTitle {
   }
 }
 
-.ReviewBlock {
+.CartBlock {
   width: 95%;
 }
 
-.ReviewBlock span {
+.CartBlock span {
   display: -ms-inline-grid;
   display: inline-grid;
 }
 
-.ReviewBlock .itemRow {
+.CartBlock .cartError {
+  color: red;
+}
+
+.CartBlock .itemRow {
   margin-bottom: 0.5rem;
 }
 
-.ReviewBlock .itemRow .qty {
+.CartBlock .itemRow .qty {
   width: 7%;
   margin-right: 0.5rem;
   text-align: right;
 }
 
-.ReviewBlock .itemRow input.qty {
+.CartBlock .itemRow input.qty {
   padding: 0.2rem;
   width: 7%;
   margin-right: 0.5rem;
@@ -2790,51 +2804,84 @@ h1.checkoutTitle {
   font-size: 0.75rem;
 }
 
-.ReviewBlock .itemRow .name {
+.CartBlock .itemRow .name {
   width: 55%;
   margin-right: 0.5rem;
 }
 
-.ReviewBlock .itemRow .remove {
+.CartBlock .itemRow .remove {
   width: 12%;
   text-align: right;
 }
 
-.ReviewBlock .itemRow .price {
+.CartBlock .itemRow .price {
   width: 16%;
   text-align: right;
   margin-right: 0.5rem;
 }
 
-.ReviewBlock .itemRow .price span {
+.CartBlock .itemRow .price.discounted {
+  color: inherit;
+}
+
+.CartBlock .itemRow .price span {
   text-align: right;
 }
 
-.ReviewBlock .itemRow hr {
+.CartBlock .itemRow hr {
   margin: 0;
 }
 
-.ReviewBlock .itemRow span {
+.CartBlock .itemRow span {
   line-height: 1.2rem;
 }
 
-.ReviewBlock .itemRow span.hdr {
+.CartBlock .itemRow span.hdr {
   font-weight: bold;
   text-align: left;
 }
 
-.ReviewBlock .itemRow span.hdr.price {
+.CartBlock .itemRow span.hdr.price {
   text-align: center;
 }
 
+.CartBlock .couponRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.CartBlock .couponRow > div {
+  width: 16rem;
+}
+
+.CartBlock .couponRow > div > div {
+  margin: 0;
+}
+
+.CartBlock .couponRow > div .cartError {
+  margin-left: 0.2rem;
+}
+
+.CartBlock .couponRow > div .couponLabel {
+  font-weight: bold;
+}
+
 @media (min-width: 750px) {
-  .ReviewBlock {
+  .CartBlock {
     width: 65%;
   }
 }
 
 @media (min-width: 550px) {
-  .ReviewBlock {
+  .CartBlock {
     width: 65%;
   }
 }
@@ -2978,11 +3025,15 @@ form span.pw-wrapper input[type="password"] {
 
 form span.pw-wrapper span.eyeball {
   display: none;
-  width: 6%;
-  height: 1.2rem;
+  width: 4%;
   cursor: pointer;
   background-image: url("/assets/img/icons/icon-eye-on.svg");
   background-repeat: no-repeat;
+  background-position: left center;
+}
+
+form span.pw-wrapper span.spacer {
+  width: 1%;
 }
 
 /*
