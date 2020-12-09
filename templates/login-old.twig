@@ -1,0 +1,46 @@
+{% extends "_layouts/site-base-page.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_user' as m_user %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Login</title>
+{% endblock titleTag %}
+
+{% block pageintro %}
+	{{ m_intros.showIntro('account') }}
+{% endblock pageintro %}
+
+{% block content %}
+
+    <section row>
+       <div class="UserForm MemberLogin">
+
+
+                <h1 class="jsLoginTitle">Member Login</h1>
+                <div class="UserForm-block jsLoginMember">
+                    <p>New to Demaggs? Please <a href="#" id="gotoNewAccount" data-newtitle="Create Account">create an account.</a>.</p>
+                    {% include "_partials/loginform" %}
+                </div>
+
+                <div class="UserForm-block jsLoginGuest">
+                    <p>Already a member? <a href="#" id="gotoLogin" data-newtitle="Member Login">Please login.</a>.</p>
+                    {% include "_partials/newaccount.twig" %}
+                </div>
+
+        </div>
+    </section>
+
+{% endblock content %}
+
+{% block pageJs %}
+    <script>
+
+    $(document).ready(function () {
+        $('.jsErrorMsg').text('');
+    });
+
+    </script>
+{% endblock pageJs %}

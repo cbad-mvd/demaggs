@@ -454,7 +454,6 @@ footer {
 	}
 }
 
-
 /*
  * 	 &-hdrNavRow: logo and navigation
  */
@@ -464,6 +463,10 @@ footer {
     margin: 0;
     padding: 1.25rem 3rem;
     position: relative;
+
+	&.nav-wrapper {
+		min-height: 0;
+	}
 
     .logo {
         position: absolute;
@@ -477,6 +480,7 @@ footer {
         }
     }
 
+	.checkoutNav,
     .nav {
         position: absolute;
         top: 0;
@@ -553,6 +557,18 @@ footer {
 	
 	}
 
+	.checkoutNav {
+        &-menu {
+			margin: 0.25rem;
+			padding-right: 0;
+		}
+		div.usermenu {
+			top: 2.5rem;
+			right: 0;
+			background-color: #111;
+		}
+	}
+
 	.HdrNavRow {
 		min-height: 3rem;
 		margin: 0;
@@ -571,8 +587,6 @@ footer {
 			width: 24px;
 			height: 24px;
 		}
-
-
 	}
 
     &--downx {
@@ -599,7 +613,9 @@ footer {
             img {
                 width: 9rem;
             }
-        }
+		}
+		
+		.checkoutNav,
         .nav {
 			display: block;
 
@@ -607,6 +623,12 @@ footer {
                 margin-top: 1rem;
             }
 		}
+		.checkoutNav {
+			&-menu {
+				margin: 0.25rem;
+			}
+		}
+
 		.mobile-nav {
 			display: none;
 		}
@@ -634,7 +656,8 @@ footer {
             img {
                 width: 12rem;
             }
-        }
+		}
+		.checkoutNav,
         .nav {
             &-menu {
 				margin-top: 1.75rem;
@@ -644,6 +667,12 @@ footer {
 				}
 	
             }
+		}
+
+		.checkoutNav {
+			&-menu {
+				margin: 0.25rem;
+			}
 		}
 
         &--down {
@@ -672,7 +701,8 @@ footer {
             img {
                 width: 12rem;
             }
-        }
+		}
+		.checkoutNav,
         .nav {
             height: 3.5rem;
 
@@ -680,6 +710,11 @@ footer {
                 top: 1.75rem;
             }	
         }
+		.checkoutNav {
+			&-menu {
+				margin: 0.25rem;
+			}
+		}
 
         &--down {
             .logo {
@@ -733,6 +768,10 @@ footer {
 			height: 100%;
 			width: 50%;
 
+			h2 {
+				margin: 0;
+			}
+
 			img {
 				position: relative;
 				width: 10rem;
@@ -748,12 +787,15 @@ footer {
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: center;
-		padding-top: 0.5rem;
-		padding-bottom: 1rem;
 		background-color: #111;
 
 		div {
 			margin: 0;
+		}
+
+		.progress {
+			padding-top: 0.5rem;
+			padding-bottom: 0.75rem;	
 		}
 
 		.labels {
@@ -1195,6 +1237,10 @@ footer {
 		margin-top: 3rem;
 		margin-bottom: 0;
 		padding: 0;
+
+		&.off {
+			margin-top: 1rem;
+		}
 	}
 
 	&-price {
@@ -1403,8 +1449,9 @@ h1.userLoginTitle {
 				text-align: left;
 			}
 
+			span.hdr.remove,
 			span.hdr.price {
-				text-align: center;
+				text-align: right;
 			}
 		}
 
@@ -1593,6 +1640,15 @@ h1.userLoginTitle {
 		.button.off {
 			margin-right: 1rem;
 		}
+
+		&.left {
+			justify-content: flex-start;
+		}
+
+		span.leftButton{
+			width: 90%;
+			display: inline-block;
+		}
 	}
 
 	@media (min-width: 750px) {
@@ -1772,8 +1828,9 @@ h1.userLoginTitle {
 			text-align: left;
 		}
 
+		span.hdr.remove,
 		span.hdr.price {
-			text-align: center;
+			text-align: right;
 		}
 
 	}

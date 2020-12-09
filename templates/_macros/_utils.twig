@@ -85,22 +85,22 @@
 
 {% macro setProgress(progressState="s0", progressTitle="Checkout", showProgress=true) %}
 
-<script>
 	function setCheckoutProgress(newState, newTitle="", showProgress=true){
 		var $state = $("#jsProgressState");
 
         if ( showProgress ) {
-            $('#jsProgressBar>div').show();
+            $('#jsProgressBar>div.nav-wrapper').hide();
+            $('#jsProgressBar>div.progress').show();
             $state.removeClass();
             $state.addClass('state '+newState); 
         }
         else {
-            $('#jsProgressBar>div').hide();
+            $('#jsProgressBar>div.progress').hide();
+            $('#jsProgressBar>div.nav-wrapper').show();
         }
         $('#jsCheckoutTitle').text(newTitle);       
     };
     setCheckoutProgress('{{ progressState }}', '{{ progressTitle }}', {{ showProgress }});
-</script>
 
 {% endmacro setProgress %}
 

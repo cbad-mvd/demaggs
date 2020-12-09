@@ -48,7 +48,7 @@
                                     ? cart.eventDate|date('Y-m-d', timezone='UTC')
                                     : startDate|date('Y-m-d', timezone='UTC') %}
 
-                                {# <input type="date" name="fields[myFieldHandle]" value="{{ currentDate }}"> #}
+                                <input type="hidden" name="fields[eventDayOfWeek]" id="eventDayOfWeek" value="Wed"> 
 
                                 <label for="custom-eDate">{{ events.dateHdr }}*</label>
                                 <input type="date" id="custom-eDate"
@@ -160,7 +160,7 @@
                             </div>
                             <div class="btnRow">
                                 <a class="button off" href="/cart">Previous</a>
-                                <input class="button" type="submit" value="Continue">
+                                <input id="xxx" class="button" type="submit" value="Continue">
                             </div>
                         {% else %}
                             {# add address form here #}
@@ -168,7 +168,7 @@
 
                             <div class="btnRow">
                                 <a class="button off" href="/cart">Previous</a>
-                                <input class="button" type="submit" value="Continue">
+                                <input id="xxx" class="button jsOrderDetails" type="submit" value="Continue">
                             </div>
                         {% endif %}
                     </div>
@@ -182,7 +182,9 @@
 {% endblock content %}
 
 {% block pageJs %}
+    <script>
     {{ m_utils.setProgress('s3', 'Checkout') }}
+    </script>
 {% endblock pageJs %}
 
 {#  address fields

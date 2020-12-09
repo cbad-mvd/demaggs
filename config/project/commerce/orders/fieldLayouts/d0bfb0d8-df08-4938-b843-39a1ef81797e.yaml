@@ -38,6 +38,15 @@ tabs:
         warning: null
         width: 100
       -
+        fieldUid: ccce1da0-b1a4-4bdb-9e57-1c39c23e04f6
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
         fieldUid: c61ea5d4-902e-496e-974f-44fef1e5a4e3
         instructions: null
         label: null

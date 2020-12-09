@@ -1,0 +1,36 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+
+{# import macros #}
+{% import '_macros/_intros'  as m_intros %}
+{% import '_macros/_user' as m_user %}
+{% import '_macros/_utils' as m_utils %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Create Account</title>
+{% endblock titleTag %}
+
+{% block content %}
+
+    <section class="row">
+        <div class="UserForm MemberLogin" style="min-height: 600px">
+            <div class="UserForm-wrapper" style="display: none; margin: 0;">
+            <h1 class="jsLoginTitle">Create Account</h1>
+            <div class="UserForm-block jsLoginGuestxxx">
+                <p>Already a member? <a href="{{ url('login') }}">Please login.</a>.</p>
+                {% include "_partials/newaccount.twig" %}
+            </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
+
+{% block pageJs %}
+    <script>
+    $(document).ready(function () {
+        $('.jsErrorMsg').text('');
+        $('.UserForm-wrapper').fadeIn(1500);    
+    });
+    {{ m_utils.setProgress('s0', 'Account', 'false') }} 
+    </script>
+{% endblock pageJs %}

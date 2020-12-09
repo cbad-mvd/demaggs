@@ -22,19 +22,25 @@
             <h1 class="jsLoginTitle">Guest Checkout</h1>
             <div class="jsLoginMember UserForm-block">
                 <p>Not a member? <a href="#" id="gotoGuestCheckout" data-newtitle="Guest Checkout">Please use Guest Checkout</a>.</p>
-                {{ m_user.loginForm("checkout/details") }}
+                {# {{ m_user.loginForm("checkout/details") }} #}
+                {% set landingPage = "checkout/details" %}
+                {% include "_partials/loginform.twig" %}
             </div>
 
             <div class="jsLoginGuest UserForm-block">
                 <p>Already a member? <a href="#" id="gotoMemberCheckout" data-newtitle="Member Checkout">Please use Member Checkout</a>.</p>
-                {{ m_user.guestCheckoutForm(cart, "checkout/details") }}
+                {# {{ m_user.guestCheckoutForm(cart, "checkout/details") }} #}
+                {% set landingPage = "checkout/details" %}
+                {% include "_partials/guestcheckout.twig" %}
             </div>
         </div>
      </section>
 {% endblock content %}
 
 {% block pageJs %}
+    <script>
     {{ m_utils.setProgress('s2', 'Checkout') }}
+    </script>
 {% endblock pageJs %}
 
 

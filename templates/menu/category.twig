@@ -14,11 +14,13 @@
 				</div>
 				<div class="FoodMenu dark">
 					<h5 class="FoodMenu-title">My Selections:</h5>
-				    {{ m_menu.showCart() }}
+				    {{ m_menu.showCart(true, true) }}
 				</div>
 			</div>
 		</div>
+		{#
         <div class="row" style="text-align: center">
             <span class="FoodItem-button button" style="display: inline-block"><a href="/menu#select">Back to Selections</a></span>
 		</div>
+		#}
 {% endblock content %}

@@ -44,7 +44,7 @@
 
 {% endmacro showMenuItems %}
 
-{% macro showCart(allowEdits = true) %}
+{% macro showCart(allowEdits = true, showSelectBtn = false) %}
 {% import _self as self %}
 
 {% set cart = craft.commerce.carts.cart %}
@@ -105,7 +105,10 @@
             </div>
 
         {% if allowEdits %}
-                <span class="FoodItem-button button"><a href="/cart">Checkout</a></span>
+                <span class="FoodItem-button button"><a href="{{ url('cart') }}">Checkout</a></span>
+                {% if showSelectBtn %}
+                <span class="FoodItem-button button off"><a href="{{ url('menu#select') }}">Back to Selections</a></span>
+                {% endif %}
         </form>
         {% endif %}
 

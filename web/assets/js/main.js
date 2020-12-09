@@ -323,4 +323,40 @@ $(document).ready(function () {
 		}
 	});
 	
+	$('#custom-eDate').change( function() {
+		var val = $(this).val().split("-");
+		var date = new Date(val[0], val[1] - 1, val[2]);
+		var day = date.getDay();
+		var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+		var weekday = weekdays[day];
+		$('#eventDayOfWeek').val(weekday);
+	});
+
+	$('#xxxx').click( function() {
+		alert($('#eventDayOfWeek').val());
+	});
+
+	$('.jsCheckRequired').click( function() {
+		var $this = $(this);
+		var flds = $this.data('required');
+		var errorId = flds['errorId'];
+		var errorMsg = "";
+		var fldVal = "";
+		var fldMsg = "";
+
+		$('.jsErrorMsg').text('');
+		$.each( flds, function( key, value ) {
+			fldVal = $(key).val();
+			fldMsg = value;
+
+			if ( key != "errorId" ) {
+				if ( (fldVal == null) || (fldVal == '') ) {
+					// alert('setting '+errorId+' to '+value);
+					errorMsg = (errorMsg == '') ? fldMsg : (errorMsg + '<br>' + fldMsg);
+					$(errorId).html(errorMsg);
+					event.preventDefault();
+				}
+			}
+		});
+	});
 });

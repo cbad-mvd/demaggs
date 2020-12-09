@@ -144,6 +144,9 @@
             <div class="btnRow">
                 {% if currentUser %}
                 <a class="button" href="/customer">Order History</a>
+                {% else %}
+                
+                <a class="button" href="/login?name=jim&case=killer">Create Account   </a>
                 {% endif %}
                 <a class="button" href="/">Home Page</a>
             </div>
@@ -153,5 +156,7 @@
 {% endblock %}
 
 {% block pageJs %}
+    <script>
     {{ m_utils.setProgress('s6', 'Order Confirmation', 'false') }}
+    </script>
 {% endblock pageJs %}

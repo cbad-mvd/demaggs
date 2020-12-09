@@ -1,33 +1,35 @@
-{% extends "_layouts/site-base-page.twig" %}
-{% set cart = craft.commerce.carts.cart %}
+{% extends "_layouts/site-base-checkout.twig" %}
 
 {# import macros #}
 {% import '_macros/_intros'  as m_intros %}
 {% import '_macros/_user' as m_user %}
+{% import '_macros/_utils' as m_utils %}
 
 {% block titleTag %}
-	<title>{{ globalVars.pageTitleBase }} Login</title>
+	<title>{{ globalVars.pageTitleBase }} Account</title>
 {% endblock titleTag %}
-
-{% block pageintro %}
-	{{ m_intros.showIntro('account') }}
-{% endblock pageintro %}
 
 {% block content %}
 
     <section row>
-       <div class="UserForm MemberLogin">
-                <h1 class="jsLoginTitle">Member Login</h1>
-                <div class="UserForm-block jsLoginMember">
-                    <p>New to Demaggs? Please <a href="#" id="gotoNewAccount" data-newtitle="Register as a Member">become a member.</a>.</p>
-                    {{ m_user.loginForm('/menu2') }}
-                </div>
-                <div class="UserForm-block jsLoginGuest">
-                    <p>Already a member? <a href="#" id="gotoLogin" data-newtitle="Member Login">Please login.</a>.</p>
-                    {{ m_user.regForm() }}
-                </div>
+        <div class="UserForm MemberLogin" style="display: none; min-height: 600px">
+            <h1 class="jsLoginTitle">Member Login</h1>
+            <div class="UserForm-block jsLoginGuestxxx">
+                <p>New to Demaggs? <a href="{{ url('register') }}">Create an account</a>.</p>
+                {% include "_partials/loginform.twig" %}
+            </div>
         </div>
     </section>
 
-
 {% endblock content %}
+
+{% block pageJs %}
+    <script>
+    $(document).ready(function () {
+        $('.jsErrorMsg').text('');
+        $('.MemberLogin').fadeIn(1500);
+    });
+    {{ m_utils.setProgress('s0', 'Account', 'false') }}
+    </script>
+{% endblock pageJs %}
+

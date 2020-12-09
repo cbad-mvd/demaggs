@@ -1302,6 +1302,11 @@ footer {
   /* Larger than standard desktop */
 }
 
+.HdrCheckoutRow.nav-wrapper,
+.HdrNavRow.nav-wrapper {
+  min-height: 0;
+}
+
 .HdrCheckoutRow .logo,
 .HdrNavRow .logo {
   position: absolute;
@@ -1316,7 +1321,9 @@ footer {
   width: 9rem;
 }
 
+.HdrCheckoutRow .checkoutNav,
 .HdrCheckoutRow .nav,
+.HdrNavRow .checkoutNav,
 .HdrNavRow .nav {
   position: absolute;
   top: 0;
@@ -1328,7 +1335,9 @@ footer {
   min-height: 2.5rem;
 }
 
+.HdrCheckoutRow .checkoutNav-menu,
 .HdrCheckoutRow .nav-menu,
+.HdrNavRow .checkoutNav-menu,
 .HdrNavRow .nav-menu {
   width: 100%;
   display: -webkit-box;
@@ -1343,14 +1352,18 @@ footer {
   padding-right: 1.5rem;
 }
 
+.HdrCheckoutRow .checkoutNav-menu li,
 .HdrCheckoutRow .nav-menu li,
+.HdrNavRow .checkoutNav-menu li,
 .HdrNavRow .nav-menu li {
   display: inline-block;
   margin-left: 0.25rem;
   margin-bottom: 0;
 }
 
+.HdrCheckoutRow .checkoutNav-menu li a,
 .HdrCheckoutRow .nav-menu li a,
+.HdrNavRow .checkoutNav-menu li a,
 .HdrNavRow .nav-menu li a {
   display: inline-block;
   text-transform: uppercase;
@@ -1361,23 +1374,31 @@ footer {
   padding: 0 0.5rem;
 }
 
+.HdrCheckoutRow .checkoutNav-menu li a:hover,
 .HdrCheckoutRow .nav-menu li a:hover,
+.HdrNavRow .checkoutNav-menu li a:hover,
 .HdrNavRow .nav-menu li a:hover {
   color: #b3d146;
 }
 
+.HdrCheckoutRow .checkoutNav-menu li a.active,
 .HdrCheckoutRow .nav-menu li a.active,
+.HdrNavRow .checkoutNav-menu li a.active,
 .HdrNavRow .nav-menu li a.active {
   color: #b3d146;
 }
 
+.HdrCheckoutRow .checkoutNav-menu li.active a,
 .HdrCheckoutRow .nav-menu li.active a,
+.HdrNavRow .checkoutNav-menu li.active a,
 .HdrNavRow .nav-menu li.active a {
   background: #2f2f35 none repeat scroll 0 0;
   color: #b2d338;
 }
 
+.HdrCheckoutRow .checkoutNav div.usermenu,
 .HdrCheckoutRow .nav div.usermenu,
+.HdrNavRow .checkoutNav div.usermenu,
 .HdrNavRow .nav div.usermenu {
   display: none;
   position: absolute;
@@ -1388,7 +1409,9 @@ footer {
   background-color: #212125;
 }
 
+.HdrCheckoutRow .checkoutNav div.usermenu > ul,
 .HdrCheckoutRow .nav div.usermenu > ul,
+.HdrNavRow .checkoutNav div.usermenu > ul,
 .HdrNavRow .nav div.usermenu > ul {
   font-size: 0.75rem;
   list-style: none;
@@ -1396,19 +1419,38 @@ footer {
   padding: 0.75rem;
 }
 
+.HdrCheckoutRow .checkoutNav div.usermenu > ul li.last,
 .HdrCheckoutRow .nav div.usermenu > ul li.last,
+.HdrNavRow .checkoutNav div.usermenu > ul li.last,
 .HdrNavRow .nav div.usermenu > ul li.last {
   margin-bottom: 0;
 }
 
+.HdrCheckoutRow .checkoutNav div.usermenu > ul li a,
 .HdrCheckoutRow .nav div.usermenu > ul li a,
+.HdrNavRow .checkoutNav div.usermenu > ul li a,
 .HdrNavRow .nav div.usermenu > ul li a {
   color: white;
 }
 
+.HdrCheckoutRow .checkoutNav div.usermenu > ul li a:hover,
 .HdrCheckoutRow .nav div.usermenu > ul li a:hover,
+.HdrNavRow .checkoutNav div.usermenu > ul li a:hover,
 .HdrNavRow .nav div.usermenu > ul li a:hover {
   color: #b3d146;
+}
+
+.HdrCheckoutRow .checkoutNav-menu,
+.HdrNavRow .checkoutNav-menu {
+  margin: 0.25rem;
+  padding-right: 0;
+}
+
+.HdrCheckoutRow .checkoutNav div.usermenu,
+.HdrNavRow .checkoutNav div.usermenu {
+  top: 2.5rem;
+  right: 0;
+  background-color: #111;
 }
 
 .HdrCheckoutRow .HdrNavRow,
@@ -1461,13 +1503,21 @@ footer {
   .HdrNavRow .logo img {
     width: 9rem;
   }
+  .HdrCheckoutRow .checkoutNav,
   .HdrCheckoutRow .nav,
+  .HdrNavRow .checkoutNav,
   .HdrNavRow .nav {
     display: block;
   }
+  .HdrCheckoutRow .checkoutNav-menu,
   .HdrCheckoutRow .nav-menu,
+  .HdrNavRow .checkoutNav-menu,
   .HdrNavRow .nav-menu {
     margin-top: 1rem;
+  }
+  .HdrCheckoutRow .checkoutNav-menu,
+  .HdrNavRow .checkoutNav-menu {
+    margin: 0.25rem;
   }
   .HdrCheckoutRow .mobile-nav,
   .HdrNavRow .mobile-nav {
@@ -1496,13 +1546,21 @@ footer {
   .HdrNavRow .logo img {
     width: 12rem;
   }
+  .HdrCheckoutRow .checkoutNav-menu,
   .HdrCheckoutRow .nav-menu,
+  .HdrNavRow .checkoutNav-menu,
   .HdrNavRow .nav-menu {
     margin-top: 1.75rem;
   }
+  .HdrCheckoutRow .checkoutNav-menu li a,
   .HdrCheckoutRow .nav-menu li a,
+  .HdrNavRow .checkoutNav-menu li a,
   .HdrNavRow .nav-menu li a {
     padding: 0 0.5rem;
+  }
+  .HdrCheckoutRow .checkoutNav-menu,
+  .HdrNavRow .checkoutNav-menu {
+    margin: 0.25rem;
   }
   .HdrCheckoutRow--down .logo,
   .HdrNavRow--down .logo {
@@ -1528,13 +1586,21 @@ footer {
   .HdrNavRow .logo img {
     width: 12rem;
   }
+  .HdrCheckoutRow .checkoutNav,
   .HdrCheckoutRow .nav,
+  .HdrNavRow .checkoutNav,
   .HdrNavRow .nav {
     height: 3.5rem;
   }
+  .HdrCheckoutRow .checkoutNav-menu,
   .HdrCheckoutRow .nav-menu,
+  .HdrNavRow .checkoutNav-menu,
   .HdrNavRow .nav-menu {
     top: 1.75rem;
+  }
+  .HdrCheckoutRow .checkoutNav-menu,
+  .HdrNavRow .checkoutNav-menu {
+    margin: 0.25rem;
   }
   .HdrCheckoutRow--down .logo,
   .HdrNavRow--down .logo {
@@ -1606,6 +1672,12 @@ footer {
   width: 50%;
 }
 
+.CheckOutHeader div.branding .title h2, .CheckOutHeader div.branding .title .compenent-title,
+.CheckOutHeader div.branding .logo h2,
+.CheckOutHeader div.branding .logo .compenent-title {
+  margin: 0;
+}
+
 .CheckOutHeader div.branding .title img,
 .CheckOutHeader div.branding .logo img {
   position: relative;
@@ -1628,13 +1700,16 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
   background-color: #111;
 }
 
 .CheckOutHeader div.status div {
   margin: 0;
+}
+
+.CheckOutHeader div.status .progress {
+  padding-top: 0.5rem;
+  padding-bottom: 0.75rem;
 }
 
 .CheckOutHeader div.status .labels {
@@ -2105,6 +2180,10 @@ footer {
   padding: 0;
 }
 
+.FoodItem-button.off {
+  margin-top: 1rem;
+}
+
 .FoodItem-price {
   font-weight: bold;
 }
@@ -2336,8 +2415,9 @@ h1.checkoutTitle {
   text-align: left;
 }
 
+.UserCheckout-review div.itemRow span.hdr.remove,
 .UserCheckout-review div.itemRow span.hdr.price {
-  text-align: center;
+  text-align: right;
 }
 
 @media (min-width: 800px) {
@@ -2617,6 +2697,17 @@ h1.checkoutTitle {
   margin-right: 1rem;
 }
 
+.UserForm .btnRow.left {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.UserForm .btnRow span.leftButton {
+  width: 90%;
+  display: inline-block;
+}
+
 @media (min-width: 750px) {
   .UserForm {
     width: 50%;
@@ -2841,8 +2932,9 @@ h1.checkoutTitle {
   text-align: left;
 }
 
+.CartBlock .itemRow span.hdr.remove,
 .CartBlock .itemRow span.hdr.price {
-  text-align: center;
+  text-align: right;
 }
 
 .CartBlock .couponRow {

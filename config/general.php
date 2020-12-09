@@ -36,6 +36,8 @@ return [
         'siteUrl' => App::env('SITE_URL'),
         'testToEmailAddress' => (bool)App::env('TEST_TO_EMAIL', false),
         'useEmailAsUsername' => (bool)App::env('EMAIL_TO_USERNAME', true),
+        'setPasswordPath' => App::env('SET_PASSWORD_PATH'),
+        'setPasswordRequestPath' => App::env('SET_PASSWORD_REQUEST_PATH'),
 
         // Craft config settings from constants
 		'useProjectConfigFile' => false,

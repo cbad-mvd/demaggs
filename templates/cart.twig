@@ -55,6 +55,10 @@
 
                     <div class="btnRow">
                         {{ redirectInput('cart') }}
+                        <span class='leftButton'>
+                            {% set pageLink = craft.app.request.getReferrer() %}
+                            <a class="button off" href="{{ pageLink }}">Previous Page</a>
+                        </span>
                         <input class="button off" type="submit" value="Update Order">
                         <a class="button" href="{{ url('checkout') }}">Checkout</a>
                     </div>
@@ -66,7 +70,9 @@
 {% endblock content %}
 
 {% block pageJs %}
+    <script>
     {{ m_utils.setProgress('s1', 'Order Review') }}
+    </script>
 {% endblock pageJs %}
 
 {#  address fields
