@@ -81,15 +81,6 @@
                         </div>
 
                         <div class="formRow">
-                            <span class="w100">
-                                <label for="eventComments">{{ events.commentsHdr }}</label>
-                                <textarea id="eventComments" name="fields[eventComments]" rows="4">
-                                    {%- if cart is defined and cart.eventComments %}{{ cart.eventComments }}{% endif -%}
-                                </textarea>
-                            </span>
-                        </div>
-
-                        <div class="formRow">
                             <span class="w90">
 
                                 {% if cart is defined and cart.eventOven %}
@@ -158,6 +149,17 @@
                             <div class="">
                                 <a class="button plus" title="Add New Address" href="{{ url('checkout/editaddress?addressId='~''~'&redirect='~craft.app.request.fullPath)}}">+</a>
                             </div>
+                            
+                            <div class="formRow">
+                                <span class="w100">
+                                    <label for="eventComments">{{ events.commentsHdr }}</label>
+                                    <textarea id="eventComments" name="fields[eventComments]" rows="4">
+                                        {%- if cart is defined and cart.eventComments %}{{ cart.eventComments }}{% endif -%}
+                                    </textarea>
+                                </span>
+                            </div>
+
+
                             <div class="btnRow">
                                 <a class="button off" href="/cart">Previous</a>
                                 <input id="xxx" class="button" type="submit" value="Continue">
@@ -166,11 +168,22 @@
                             {# add address form here #}
                             {{ m_user.addressForm(cart, "shippingAddress", null, true) }}
 
+                            <div class="formRow">
+                                <span class="w100">
+                                    <label for="eventComments">{{ events.commentsHdr }}</label>
+                                    <textarea id="eventComments" name="fields[eventComments]" rows="4">
+                                        {%- if cart is defined and cart.eventComments %}{{ cart.eventComments }}{% endif -%}
+                                    </textarea>
+                                </span>
+                            </div>
+
+
                             <div class="btnRow">
                                 <a class="button off" href="/cart">Previous</a>
                                 <input id="xxx" class="button jsOrderDetails" type="submit" value="Continue">
                             </div>
                         {% endif %}
+                        
                     </div>
                 </div>
 
