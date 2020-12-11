@@ -49,7 +49,6 @@
 
 {% set cart = craft.commerce.carts.cart %}
     {# {% dd(cart.fields) %} #}  
-
     {% if cart.lineItems | length %}
         {% if allowEdits %}    
         <form method="post">
@@ -60,47 +59,67 @@
             {# {{ redirectInput('/store/cart') }} #}
             {{ csrfInput() }}
         {% endif %}
+
             {#   <h5>Here's the custom field: {{ cart.myText }} </h5> #}
             <div class="FoodMenu-choices">
                 {# show items in cart #}
+                {% set totalDiscounts = {} %}
+
                 {% for item in cart.lineItems %}
-                <div class="FoodMenu-item">
-                    <p class="qty">{{ item.qty }}</p>
-                    <p class="name">{{ item.description }}</p>
-                    <p class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</p>
-                    {% if allowEdits %}
-                        <p class="remove jsRemoveLineItem" data-line-item-id="{{ item.id }}" title="Remove">X</p>
-                    {% else %}
-                        <p class="remove" data-line-item-id="{{ item.id }}" title="Remove">&nbsp;</p>
-                    {% endif %}
-                </div>
+                    <div class="FoodMenu-item">
+                        <p class="qty">{{ item.qty }}</p>
+                        <p class="name">{{ item.description }}</p>
+                        <p class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</p>
+                        {% if allowEdits %}
+                            <p class="remove jsRemoveLineItem" data-line-item-id="{{ item.id }}" title="Remove">X</p>
+                        {% else %}
+                            <p class="remove" data-line-item-id="{{ item.id }}" title="Remove">&nbsp;</p>
+                        {% endif %}
+                    </div>
+
+                    {# calculate total discounts for order #}
+                    {% for adjustment in item.adjustments %}
+                        {% set amount = adjustment.amount %}
+                        {% for key, discount in totalDiscounts %}
+                            {% if key == adjustment.name %}
+                                {% set amount = amount + discount %}
+                            {% endif %}
+                        {% endfor %}
+                        {% set discount = {(adjustment.name): amount} %}
+                        {% set totalDiscounts = totalDiscounts | merge(discount) %}                          
+                    {% endfor %}
+
                 {% endfor %}
 
                 {% if not cart.hasErrors() %}
                     {# show totals #}
+                    
                     {% if cart.getTotalDiscount() %}
                     <div class="FoodMenu-item">
                         <p class="qty">&nbsp;</p>
                         <p class="name">Subtotal: </p>
-                        <p class="price">{{ cart.itemTotalAsCurrency }}</p>
+                        <p class="price">{{ cart.itemSubtotal |commerceCurrency(cart.currency) }}</p>
                         <p class="remove" title="Remove">&nbsp;</p>
                     </div>     
                     {% endif %}                   
                     <hr class="FoodMenu-seperator">
+
                     {% if cart.getTotalDiscount() %}
-                    <div class="FoodMenu-item">
-                        <p class="qty">&nbsp;</p>
-                        <p class="name">Total Discounts: </p>
-                        <p class="price discounted">{{ cart.getTotalDiscount()|commerceCurrency(cart.currency) }}</p>
-                        <p class="remove" title="Remove">&nbsp;</p>
-                    </div>
+                        {% for key, discount in totalDiscounts %} 
+                            <div class="FoodMenu-item">
+                                <p class="qty">&nbsp;</p>
+                                <p class="name">{{ key }} </p>
+                                <p class="price discounted">{{ discount | commerceCurrency(cart.currency) }}</p>
+                                <p class="remove" title="Remove">&nbsp;</p>
+                            </div>
+                        {% endfor %}                 
                     {% endif %}
                     <div class="FoodMenu-total">
                         <p class="qty">&nbsp;</p>
                         <p class="name">Total: </p>
                         <p class="price">{{ cart.totalPrice | commerceCurrency(cart.currency) }}</p>
                         <p class="remove" title="Remove">&nbsp;</p>
-                    </div>                        
+                    </div>   
                 {% endif %}
             </div>
 
@@ -133,31 +152,46 @@
             <span class="price hdr">Price</span>
             <span class="remove hdr">Remove</span>
         </div>
-        {% for item in cart.lineItems %}
-        <div class="itemRow">
-            {% set liID = ("lineItems["~item.id~"]") %}
-            {% set liRemove = ("lineItems["~item.id~"][remove]") %}
-            {% set liQty = ("lineItems["~item.id~"][qty]") %}
-            {% set liError = item.hasErrors() ? (' - '~item.getFirstError('qty')) : '' %}
-            {% set liErrorClass = '' %}
-            {% if item.getFirstError('qty') %}
-                {% set liErrorClass = 'itemError' %}
-            {% endif %}
 
-            {{ hiddenInput(liID, item.id) }}
-            {{ input('number',  liQty, 
-                                item.qty, 
-                                { class: "qty "~liErrorClass, min: '1', max: '99',  }) }}
-            <span class="name {% if item.hasErrors() %}cartError{% endif %}">{{ item.description }}{{ liError }}</span>
-            <span class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</span>
-            {{ input('checkbox', liRemove, '1', { class: 'remove'  }) }} 
-        </div>
+        {% set totalDiscounts = {} %}
+        {% for item in cart.lineItems %}
+            <div class="itemRow">
+                {% set liID = ("lineItems["~item.id~"]") %}
+                {% set liRemove = ("lineItems["~item.id~"][remove]") %}
+                {% set liQty = ("lineItems["~item.id~"][qty]") %}
+                {% set liError = item.hasErrors() ? (' - '~item.getFirstError('qty')) : '' %}
+                {% set liErrorClass = '' %}
+                {% if item.getFirstError('qty') %}
+                    {% set liErrorClass = 'itemError' %}
+                {% endif %}
+
+                {{ hiddenInput(liID, item.id) }}
+                {{ input('number',  liQty, 
+                                    item.qty, 
+                                    { class: "qty "~liErrorClass, min: '1', max: '99',  }) }}
+                <span class="name {% if item.hasErrors() %}cartError{% endif %}">{{ item.description }}{{ liError }}</span>
+                <span class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</span>
+                {{ input('checkbox', liRemove, '1', { class: 'remove'  }) }} 
+            </div>
+
+            {# calculate total discounts for order #}
+            {% for adjustment in item.adjustments %}
+                {% set amount = adjustment.amount %}
+                {% for key, discount in totalDiscounts %}
+                    {% if key == adjustment.name %}
+                        {% set amount = amount + discount %}
+                    {% endif %}
+                {% endfor %}
+                {% set discount = {(adjustment.name): amount} %}
+                {% set totalDiscounts = totalDiscounts | merge(discount) %}                          
+            {% endfor %}
         {% endfor %}
+
         {% if cart.getTotalDiscount() %}
         <div class="itemRow">
             <span class="qty">&nbsp;</span>
             <span class="name">Subtotal:</span>
-            <span class="price">{{ cart.itemTotalAsCurrency }}</span>
+            <span class="price">{{ cart.itemSubtotal | commerceCurrency(cart.currency) }}</span>
             <span class="remove">&nbsp;</span>
         </div>
         {% endif %}
@@ -166,12 +200,14 @@
             <hr>
         </div>
         {% if cart.getTotalDiscount() %}
-        <div class="itemRow">
-            <span class="qty">&nbsp;</span>
-            <span class="name">Total Discounts:</span>
-            <span class="price discounted">{{ cart.getTotalDiscount()|commerceCurrency(cart.currency) }}</span>
-            <span class="remove">&nbsp;</span>
-        </div>
+            {% for key, discount in totalDiscounts %} 
+                <div class="itemRow">
+                    <span class="qty">&nbsp;</span>
+                    <span class="name">{{ key }} </span>
+                    <span class="price discounted">{{ discount | commerceCurrency(cart.currency) }}</span>
+                    <span class="remove" title="Remove">&nbsp;</span>
+                </div>
+            {% endfor %}                 
         {% endif %}
         <div class="itemRow">
             <span class="qty">&nbsp;</span>

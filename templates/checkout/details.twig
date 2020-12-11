@@ -48,7 +48,8 @@
                                     ? cart.eventDate|date('Y-m-d', timezone='UTC')
                                     : startDate|date('Y-m-d', timezone='UTC') %}
 
-                                <input type="hidden" name="fields[eventDayOfWeek]" id="eventDayOfWeek" value="Wed"> 
+                                {% set dayOfWeek = (cart is defined and cart.eventDayOfWeek) ? cart.eventDayOfWeek : "" %}
+                                <input type="hidden" name="fields[eventDayOfWeek]" id="eventDayOfWeek" value="{{ dayOfWeek }}"> 
 
                                 <label for="custom-eDate">{{ events.dateHdr }}*</label>
                                 <input type="date" id="custom-eDate"
@@ -149,7 +150,7 @@
                             <div class="">
                                 <a class="button plus" title="Add New Address" href="{{ url('checkout/editaddress?addressId='~''~'&redirect='~craft.app.request.fullPath)}}">+</a>
                             </div>
-                            
+
                             <div class="formRow">
                                 <span class="w100">
                                     <label for="eventComments">{{ events.commentsHdr }}</label>
