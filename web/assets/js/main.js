@@ -206,28 +206,30 @@ $(document).ready(function () {
 	$('.jsSetAddressId').change(function() {
 		var $this = $(this);
 		var val = $this.val();
-		var data = {
-			'action': 'commerce/cart/update-cart',
-			'shippingAddressId': val,
-		}
+		var selected = null;
+		var href1="https://demaggs.local/checkout/editaddress?addressId=";
+		var href2="&redirect=checkout/details";
+		var href = "";
 
-		$.ajax({
-			type: "POST",
-			dataType: 'json',
-			headers: {
-				"X-CSRF-Token" : window.csrfTokenValue,
-			},
-			url: '/',
-			data: data,
-			success: function(response){
-				location.reload();
-				console.log("successfully updated cart", response, data);
-			},
-			fail :function(response) {
-				console.log("error updating cart", response, data);
+		$("#addresses option").each(function() {
+			if ( $(this).val() == val ) {
+				selected = $(this).data('full-address');
+
+				$('#aName').text(selected.firstName + ' ' + selected.lastName);
+				$('#aAddr1').text(selected.address1);
+				if ( selected.address2 ) {
+					$('#aAddr2').text(selected.address2);
+				}
+				$('#aCSZ').text(selected.city + ', ' +selected.state.name + ' ' + selected.zipCode);
+				$('#aPhone').text(selected.phone);
+								
+				href = href1 + selected.id + href2;
+				$('#aLink').attr('href', href);
+
+				return(false);
 			}
+			
 		});
-
 	});
 
 	$('.jsSetSameAs').change(function() {
@@ -273,7 +275,6 @@ $(document).ready(function () {
 			'shippingAddressId': shippingId,
 			'shippingAddress[fullName]': (fName + ' ' + lName),
 		}
-		alert(data["shippingAddress[fullName]"]);
 
 		$.ajax({
 			type: "POST",

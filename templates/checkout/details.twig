@@ -123,9 +123,22 @@
                                     <select class="jsSetAddressId" name="shippingAddressId" id="addresses">
                                         {% for addr in addresses %}  
                                             {% set sName = craft.commerce.states.getStateById(addr.stateId + 0) %}
+                                            {% set fullAddress = 
+                                                {
+                                                    "id": addr.id,
+                                                    "firstName": addr.firstName,
+                                                    "lastName": addr.lastName,
+                                                    "address1": addr.address1,
+                                                    "address2": addr.address2,
+                                                    "city": addr.city,
+                                                    "state": sName,
+                                                    "zipCode": addr.zipCode,
+                                                    "phone": addr.phone,
+                                                }|json_encode|raw
+                                            %}
 
                                             {% set optionLine = addr.address1~" "~addr.address2~" "~addr.city~", "~sName %}                          
-                                        <option value="{{ addr.id }}" {{ addr.id == addrId ? "selected" : "" }}>
+                                            <option value="{{ addr.id }}" data-full-address="{{ fullAddress }}" {{ addr.id == addrId ? "selected" : "" }}>
                                                 {# {{ addr.address1 }} {{ addr.address2 }} {{ addr.city }}, {{ addr.stateName }} #}
                                                 {{ optionLine }}
                                             </option>
@@ -137,14 +150,14 @@
                             <div class="AddrBlock-static">
                                 {% set sName = craft.commerce.states.getStateById(address.stateId + 0) %}
                                 <p style="font-weight: bold">Address:</p>
-                                <p class="addr">{{ address.firstName }} {{ address.lastName }}</p>
-                                <p class="addr">{{ address.address1 }}</p>
+                                <p id="aName" class="addr">{{ address.firstName }} {{ address.lastName }}</p>
+                                <p id="aAddr1" class="addr">{{ address.address1 }}</p>
                                 {% if address.address2 %}
-                                    <p class="addr">{{ address.address2 }}</p>
+                                    <p id="aAddr2" class="addr">{{ address.address2 }}</p>
                                 {% endif %}
-                                <p class="addr">{{ address.city }}, {{ sName }} {{ address.zipCode }}</p>
-                                <p class="addr">{{ address.phone }}</p>                            
-                                <a class="edit" href="{{ url('checkout/editaddress?addressId='~ address.id ~'&redirect='~craft.app.request.fullPath)}}">Edit</a>
+                                <p id="aCSZ" class="addr">{{ address.city }}, {{ sName }} {{ address.zipCode }}</p>
+                                <p id="aPhone" class="addr">{{ address.phone }}</p>                            
+                                <a id="aLink" class="edit" href="{{ url('checkout/editaddress?addressId='~ address.id ~'&redirect='~craft.app.request.fullPath)}}">Edit</a>
                             </div>
 
                             <div class="">

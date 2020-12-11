@@ -41,37 +41,40 @@
                 <div class="details">
                     <span>
                         <h5>Customer Information</h5>
-                        <p>Contact: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</p>
+                        <p>{{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}</p>
                         <p>Phone: {{ order.shippingAddress.phone }}</p>
-                        <p>Email: {{ order.email }}</p>
                         <p>&nbsp;</p>
                         <p>Order Number: {{ m_fmt.OrderNum(order.id) }}</p>
                         <p>Order Date: {{ order.dateOrdered | date }}</p>
                         <p>Order Total: {{ order.totalPrice | currency(order.currency) }}</p>
+                        <p>&nbsp;</p>
+                        <h5>Customer Comments</h5>
+                        {% if order.eventComments %}
+                            <p>{{ order.eventComments }}</p>
+                        {% endif %}
+
+
                     </span>
                     <span>
                     {% if order.shippingAddress %}
                         <h5>Event Details</h5>
+                        <p>{{ order.eventDate | date('l F j, Y') }}</p>
+                        <p>Starts at: {{ order.eventTime | date('g:i A') }}</p>
+                        <p>Meal Served at: {{ order.eventMealTime ? order.eventMealTime | date('g:i A') : order.eventTime | date('g:i A') }}</p>
+                        <p>{{ (order.eventOven[0] == '1') ? "A Stove/Oven is available" : "A Stove/Oven is not available" }}</p>
+                        <p>&nbsp;</p>
+                        <h5>Event Address</h5>
                         <p>{{ order.shippingAddress.address1 }}</p>
                         {% if order.shippingAddress.address2 %}
                             <p>{{ order.shippingAddress.address2 }}</p>
                         {% endif %}
                         <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.state }} {{ order.shippingAddress.zipCode }}</p>
                         <p>&nbsp;</p>
-                        <p>{{ order.eventDate | date('l F j, Y') }}</p>
-                        <p>Starts at: {{ order.eventTime | date('g:i A') }}</p>
-                        <p>Meal Served at: {{ order.eventMealTime ? order.eventMealTime | date('g:i A') : order.eventTime | date('g:i A') }}</p>
-                        <p>{{ (order.eventOven[0] == '1') ? "A Stove/Oven is available" : "A Stove/Oven is not available" }}</p>
+                        <p>Contact: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</p>
+                        <p>Email: {{ order.email }}</p>
                     {% endif %}
                     </span>
                 </div>
-
-                {% if order.eventComments %}
-                <div class="comments">
-                    <h5>Customer Comments</h5>
-                    <p>{{ order.eventComments }}</p>
-                </div>
-                {% endif %}
 
                 <div class="selections">
                     <h5>Menu Selections</h5>
@@ -102,7 +105,7 @@
                                 {{ item.price | currency(order.currency) }}
                             </span>
                             <span class="itemTotal">
-                                {{ item.total | currency(order.currency) }}
+                                {{ item.subTotal | currency(order.currency) }}
                             </span>
                     </div>
                     {% set oddClass = (oddClass == "") ? " oddRow" : "" %}
