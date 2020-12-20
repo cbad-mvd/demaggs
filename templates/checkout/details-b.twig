@@ -19,15 +19,9 @@
     {% set addresses = craft.commerce.customers.customer.addresses %}
     {% set address = cart.shippingAddress %}
     {% set startDate = now|date_modify('+1 day')|atom %} 
-    {% set gotoBilling = url('checkout/billing')|hash %}
-    {% set gotoPayment = url('checkout/payment')|hash %}
-    {% set sameAsShipping = (cart.shippingAddressId == cart.billingAddressId) ? 1 : 0 %}
 
     <form id="jsDetails" method="post">
-        <input type="hidden" name="action" value="commerce/cart/update-cart">  
-        {{ redirectInput(sameAsShipping ? url('checkout/payment') : url('checkout/billing'), {"id": "jsNextRedirect" }) }}
-
-
+        <input type="hidden" name="action" value="commerce/cart/update-cart">                    
         {{ csrfInput() }}
         <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ globalVars.usCountryId }}">
 
@@ -89,19 +83,11 @@
                         <div class="formRow">
                             <span class="w90">
 
-                                {% if cart is defined %}
+                                {% if cart is defined and cart.eventOven %}
                                     {% set fldVal = cart.eventOven %}
-                                    
-                                    {# {{ m_utils.checkBoxField( cart, cart.eventOven, 'eventOven', 'eventOven') }}  #}
-                                    {{ hiddenInput('fields[eventOven]', fldVal, {id: "jsHiddenOven"} ) }} 
-                                    <input type="checkbox"
-                                        id="eventOvenCB"
-                                        name="e"
-                                        value=fldVal
-                                        {% if (fldVal == 'true') %}checked{% endif %}>
-                            
-                                    <label for="eventOven" class="inline cbLabel">{{ events.hasOvenHdr }}</label>
+                                    {{ m_utils.checkBoxField( cart, cart.eventOven, 'eventOven', 'eventOven') }} {# #}
                                 {% endif %}
+                                <label for="eventOven" class="inline cbLabel">{{ events.hasOvenHdr }}</label>
                             </span>
                         </div>
 
@@ -130,10 +116,11 @@
                         <h5>Event Contact and Location</h5>
 
                         {% if addresses and address %}
+                        {% endif %}
                             <div class="formRow">
                                 <span class="w90">
                                     <label for="addresses">Select the address for your party:</label>
-                                    <select class="jsSetAddressId" name="shippingAddressId" data-doform="false" id="addresses">
+                                    <select class="jsSetAddressId" data-doform="true" name="shippingAddressId" id="addresses">
                                         {% for addr in addresses %}  
                                             {% set sName = craft.commerce.states.getStateById(addr.stateId + 0) %}
                                             {% set fullAddress = 
@@ -157,9 +144,13 @@
                                             </option>
                                         {% endfor %}
                                     </select> 
+                                    {{ hiddenInput('shippingAddress[id]', addrId, {id: 'setAddressId'}) }}
                                 </span>
                             </div>
 
+                            {{ m_user.addressForm(cart, "shippingAddress", address, true) }}
+
+{####
                             <div class="AddrBlock-static">
                                 {% set sName = craft.commerce.states.getStateById(address.stateId + 0) %}
                                 <p style="font-weight: bold">Address:</p>
@@ -173,24 +164,10 @@
                                 <a id="aLink" class="edit" href="{{ url('checkout/editaddress?addressId='~ address.id ~'&redirect='~craft.app.request.fullPath)}}">Edit</a>
                             </div>
 
-                            <div class="formRow">
-                                <span class="w90">
-                                    {{ hiddenInput('billingAddressSameAsShipping', sameAsShipping, {id: "jsSameAsShipping"}) }}
-
-                                    <input type="checkbox"
-                                        id="sameas"
-                                        name="j"
-                                        data-billing={{ gotoBilling }}
-                                        data-payment={{ gotoPayment }}
-                                        value=sameAsShipping
-                                        {% if sameAsShipping %}checked{% endif %}>
-                            
-                                    <label for="sameas" class="inline cbLabel">Use this address for billing</label>
-                                </span>
-                            </div>
                             <div class="">
-                                <a class="button " title="Add New Address" href="{{ url('checkout/editaddress?addressId='~''~'&redirect='~craft.app.request.fullPath)}}">New Address</a>
+                                <a class="button plus" title="Add New Address" href="{{ url('checkout/editaddress?addressId='~''~'&redirect='~craft.app.request.fullPath)}}">+</a>
                             </div>
+####}                            
 
                             <div class="formRow">
                                 <span class="w100">
@@ -201,11 +178,15 @@
                                 </span>
                             </div>
 
+
                             <div class="btnRow">
                                 <a class="button off" href="/cart">Previous</a>
-                                <input class="button" type="submit" value="Continue">
+                                
+                                {{ redirectInput('checkout/billing') }}
+                                <input id="xxx" class="button" type="submit" value="Continue">
                             </div>
-                        {% else %}
+                            {% if addresses and address %}
+                            {% else %}
                             {# add address form here #}
                             {{ m_user.addressForm(cart, "shippingAddress", null, true) }}
 

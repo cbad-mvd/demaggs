@@ -1,0 +1,167 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_menu'    as m_menu %}
+{% import '_macros/_utils'   as m_utils %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Payment</title>
+{% endblock titleTag %}
+
+{% block content %}
+{% set cart = craft.commerce.carts.cart %}
+{% set addrId = cart.shippingAddressId %}
+{% set addresses = craft.commerce.customers.customer.addresses %}
+{% set address = cart.shippingAddress %}
+{% set startDate = now|date_modify('+1 day')|atom %} 
+
+<section row>
+    <div class="UserForm MemberLogin" style="min-height: 600px">
+        <h1>Party Details - FF</h1>
+        <div class="UserForm-block">
+
+            {% set form = craft.freeform.form("orderDetails", {
+                id: "freeForm",
+                action: "",
+                errorClass: "formError",
+                rowClass: "formRow",
+                submitClass: "button",
+
+                formAttributes: { "data-error-message": "Please fix the errors displayed below and try again" },
+            }) %}
+            
+            {{ form.renderTag }}
+            
+            {% if form.hasErrors %}
+                <div class="freeform-form-has-errors">
+                    {{ "Error! Please review the form and try submitting again."|t('freeform') }}
+                    {% if form.errors|length %}
+                        <ul>
+                            {% for error in form.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endif %}
+            
+            <div class="group">
+                <h5>Event Details</h5>
+
+                {% for index, row in form %}
+                    {% set numCols = row|length %}
+                    {% if index == 0 %}
+                    {% elseif index == 2 %}
+                    </div>
+                    <div class="group">
+                        <h5>Event Contacts and Location</h5>
+                    {% endif %}
+                        
+                    <div class="{{ form.customAttributes.rowClass }}">
+                        {% for field in row %}
+                            {% switch numCols %}
+                                {% case 2 %}
+                                    {% set columnClass = 'w49 ' %}                            
+                                {% case 3 %}
+                                    {% set columnClass = 'w30 ' %}                        
+                                {% default %}
+                                    {% set columnClass = 'w100 ' %}
+                            {% endswitch %}
+                            
+                            {% set columnClass = columnClass ~ form.customAttributes.columnClass %}
+                            {% if field.type == "submit" %}
+                                {% set columnClass = columnClass ~ " btnRow" %}
+                            {% endif %}
+                
+                            {% if field.type == "password" %}
+                                {% set pw = form.get('password') %}
+
+                                <div class="{{ columnClass }}"{{ field.rulesHtmlData }}>
+                                    <div class="loginPassword">
+                                        {{ field.renderLabel() }}
+                                        <span class="pw-wrapper">
+                                            {{ field.renderInput({
+                                                class: "jsPWField",
+                                            }) }}
+                                            <span class="jsShowPW eyeball" title="Show Password"></span>
+                                            <span class="spacer">&nbsp;</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            {% elseif field.handle == "selectAddress" %}
+                                <div class="w90">
+
+                                    <label for="addresses">Select the address for your party:</label>
+                                    <select name="shippingAddressId" id="addresses" class="jsSetAddressId">
+                                        {% for addr in addresses %}  
+                                            {% set sName = craft.commerce.states.getStateById(addr.stateId + 0) %}
+                                            {% set fullAddress = 
+                                                {
+                                                    "id": addr.id,
+                                                    "firstName": addr.firstName,
+                                                    "lastName": addr.lastName,
+                                                    "address1": addr.address1,
+                                                    "address2": addr.address2,
+                                                    "city": addr.city,
+                                                    "state": addr.state,
+                                                    "zipCode": addr.zipCode,
+                                                    "phone": addr.phone,
+                                                }|json_encode|raw
+                                            %}
+
+                                            {% set optionLine = addr.address1~" "~addr.address2~" "~addr.city~", "~sName %}                          
+                                            <option value="{{ addr.id }}" data-full-address="{{ fullAddress }}" {{ addr.id == addrId ? "selected" : "" }}>
+                                                {{ optionLine }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            {% else %}
+                                {% switch field.handle %}
+                                    {% case "firstName" %}
+                                        {% set newVal = address.firstName %}
+                                    {% case "lastName" %}
+                                        {% set newVal = address.lastName %}
+                                    {% case "address1" %}
+                                        {% set newVal = address.address1 %}
+                                    {% case "address2" %}
+                                        {% set newVal = address.address2 %}
+                                    {% case "city" %}
+                                        {% set newVal = address.city %}
+                                    {% case "state" %}
+                                        {% set newVal = address.state %}
+                                    {% case "zipCode" %}
+                                        {% set newVal = address.zipCode %}
+                                    {% case "phone" %}
+                                        {% set newVal = address.phone %}
+                                    {% case "email" %}
+                                        {% set newVal = (cart is defined and cart.eventEmail) ? cart.eventEmail : "" %}
+                                    {% default %}
+                                        {% set newVal = field.value %}                                    
+                                {% endswitch %}
+                                
+                                <div class="{{ columnClass }}"{{ field.rulesHtmlData }}>
+                                    {{ field.render({
+                                        class: field.type != "submit" ? "" : "",
+                                        labelClass: "sample-label" ~ (field.required ? " required" : ""),
+                                        errorClass: "formError",
+                                        overrideValue: newVal,
+                                        instructionsClass: "sample-instructions",
+                                    }) }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            
+            
+            {{ form.renderClosingTag }}
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

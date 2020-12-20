@@ -1,0 +1,48 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_menu'    as m_menu %}
+{% import '_macros/_utils'   as m_utils %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Payment</title>
+{% endblock titleTag %}
+
+{% block content %}
+{% set cart = craft.commerce.carts.cart %}
+{% set addrId = cart.shippingAddressId %}
+{% set addresses = craft.commerce.customers.customer.addresses %}
+{% set address = cart.shippingAddress %}
+{% set startDate = now|date_modify('+1 day')|atom %} 
+{% set formHandle = "stripePayment" %}
+
+<section row>
+    <div class="UserForm MemberLogin" style="min-height: 600px">
+        <h1>Stripe Payment - FF</h1>
+        {% include "_partials/payment-block" %}
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block pageJs %}
+<script>
+
+/**
+$(document).ready( function() {
+    $("input[name='paymentAmount']").val("445.45");
+});
+**/
+$(document).ready( function() {
+    //$("input[name='hiddenAmount']").val("445.45");
+});
+
+document.addEventListener("freeform-stripe-styling", function (event) {
+    event.style.base = {
+        fontSize: "34px",
+    }
+});
+
+</script>
+{% endblock %}

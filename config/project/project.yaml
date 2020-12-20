@@ -1,95 +1,94 @@
-dateModified: 1607535785
+dateModified: 1608381679
 email:
   fromEmail: jmayall@surething.com
   fromName: 'Demaggs Dining'
   replyToEmail: jmayall@surething.com
-  template: ''
+  template: _emails/test
   transportSettings:
-    command: ''
-  transportType: craft\mail\transportadapters\Sendmail
+    apiKey: d2bb89bcc1ea72f352801914471f7e5a-e5da0167-aa75a5d1
+    domain: mg.demaggs.com
+    endpoint: 'https://api.mailgun.net'
+  transportType: craft\mailgun\MailgunAdapter
 plugins:
   commerce:
     edition: pro
     enabled: true
-    schemaVersion: 3.2.9
+    schemaVersion: 3.2.13
   contact-form:
     edition: standard
     enabled: false
     schemaVersion: 1.0.0
-  enupal-stripe:
+  freeform:
+    edition: pro
+    enabled: true
+    schemaVersion: 3.1.0
+    settings:
+      ajaxByDefault: '1'
+      alertNotificationRecipients: null
+      autoScrollToErrors: '1'
+      badgeType: all
+      blockedEmails: null
+      blockedEmailsError: 'Invalid Email Address'
+      blockedIpAddresses: null
+      blockedKeywords: null
+      blockedKeywordsError: 'Invalid Entry Data'
+      customErrorMessage: null
+      customHoneypotName: null
+      defaultTemplates: '1'
+      defaultView: submissions
+      digestRecipients: null
+      displayFeed: true
+      emailTemplateDirectory: null
+      emailTemplateStorage: db
+      fieldDisplayOrder: name
+      fillWithGet: ''
+      footerScripts: false
+      formSubmitDisable: ''
+      formSubmitExpiration: null
+      formTemplateDirectory: null
+      formattingTemplate: flexbox.html
+      freeformHoneypot: true
+      freeformHoneypotEnhancement: false
+      hideBannerDemo: '1'
+      hideBannerOldFreeform: false
+      minimumSubmitTime: null
+      pluginName: Freeform
+      purgableSpamAgeInDays: null
+      purgableSubmissionAgeInDays: '0'
+      purgableUnfinalizedAssetAgeInMinutes: 180
+      recaptchaBehaviour: display_error
+      recaptchaEnabled: false
+      recaptchaErrorMessage: 'Please verify that you are not a robot.'
+      recaptchaKey: null
+      recaptchaMinScore: 0.5
+      recaptchaSecret: null
+      recaptchaSize: normal
+      recaptchaTheme: light
+      recaptchaType: v2_checkbox
+      removeNewlines: ''
+      renderFormHtmlInCpViews: '1'
+      salesforce_client_id: null
+      salesforce_client_secret: null
+      salesforce_password: null
+      salesforce_username: null
+      scriptInsertLocation: footer
+      sessionEntryMaxCount: 50
+      sessionEntryTTL: 10800
+      showErrorsForBlockedEmails: false
+      showErrorsForBlockedKeywords: false
+      showTutorial: ''
+      spamFolderEnabled: true
+      spamProtectionBehaviour: simulate_success
+      submissionThrottlingCount: null
+      submissionThrottlingTimeFrame: null
+  mailgun:
     edition: standard
     enabled: true
-    schemaVersion: 3.2.1
-    settings:
-      adminNotificationRecipients: null
-      adminNotificationReplyToEmail: null
-      adminNotificationSenderEmail: null
-      adminNotificationSenderName: null
-      adminNotificationSubject: null
-      adminNotificationTemplate: null
-      adminTemplateOverride: null
-      cancelAtPeriodEnd: false
-      capture: '1'
-      chargeDescription: 'Order from {email}'
-      chargeType: null
-      currentUserEmail: 0
-      customerNotificationReplyToEmail: null
-      customerNotificationSenderEmail: null
-      customerNotificationSenderName: null
-      customerNotificationSubject: null
-      customerNotificationTemplate: null
-      customerTemplateOverride: null
-      defaultCurrency: USD
-      displayTaxLabel: 0
-      enableAdminNotification: null
-      enableConnect: 0
-      enableCustomerNotification: null
-      enableTaxes: 0
-      enableVendorNotification: 0
-      globalRate: 1
-      liveClientId: null
-      livePublishableKey: ''
-      liveSecretKey: ''
-      loadCss: 1
-      loadJquery: 1
-      oneTimeSetupFeeLabel: 'One time set-up fee'
-      plansWithNickname: 0
-      returnUrl: null
-      syncDefaultFormId: null
-      syncDefaultStatusId: null
-      syncEnabledDateRange: false
-      syncEndDate: null
-      syncIfUserExists: false
-      syncLimit: 500
-      syncStartDate: null
-      syncType: 1
-      tax: null
-      taxType: 0
-      testClientId: null
-      testMode: '1'
-      testPublishableKey: pk_test_51HuqgqDkOOyVTArn5Ee3uzHcHko2QKDIIK6xG3dXjiFxMQkaEHf1Y6mBQmFjZGazlfUvtV5sJ0vGZxzwmsDUFEB000FnXq3Be8
-      testSecretKey: sk_test_51HuqgqDkOOyVTArnwXfHnWaEurOZGnI7JhmYXqYAiiBLEqQYPW4mt1xbOL3mnMHZjcPPEwV8jYgSqxlZEiA3uTAY00KncczEdb
-      updateCustomerEmailOnStripe: 0
-      useSca: ''
-      vendorNameFormat: null
-      vendorNotificationReplyToEmail: null
-      vendorNotificationSenderEmail: null
-      vendorNotificationSenderName: null
-      vendorNotificationSubject: null
-      vendorNotificationTemplate: null
-      vendorPaymentType: manually
-      vendorSkipAdminReview: 0
-      vendorTemplateOverride: null
-      vendorUserFieldId: null
-      vendorUserGroupId: null
+    schemaVersion: 1.0.0
   redactor:
     edition: standard
     enabled: true
     schemaVersion: 2.3.0
-  simple-text:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.2
   sprout-encode-email:
     edition: standard
     enabled: true

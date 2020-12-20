@@ -1,6 +1,8 @@
 color: green
 default: true
-description: null
+description: ''
+emails:
+  0f2c1dc3-e474-4f62-b3bf-ff5c997c563c: 0f2c1dc3-e474-4f62-b3bf-ff5c997c563c
 handle: new
 name: New
 sortOrder: 99

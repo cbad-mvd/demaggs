@@ -13,6 +13,24 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            fieldUid: 800f0fcb-1113-4acc-891c-05c5a562e6a5
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: b68a9644-d98b-4b6d-a0b0-c5c4f709028d
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
             fieldUid: f6097bdb-7a29-47d3-a3ec-08c794858f59
             instructions: null
             label: null

@@ -1,10 +1,11 @@
 bcc: null
 cc: null
 enabled: true
+language: orderLanguage
 name: 'Order Confirmation'
 plainTextTemplatePath: ''
 recipientType: customer
 replyTo: jmayall@surething.com
 subject: 'Congratulations! Your Event with Demaggs Dining has been booked!'
-templatePath: /customer/_email/order-confirmation
+templatePath: emails/test
 to: null

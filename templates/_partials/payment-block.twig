@@ -1,0 +1,108 @@
+<div class="UserForm-block">
+    {% set form = craft.freeform.form(formHandle, {
+        id: formHandle,
+        errorClass: "formError",
+        rowClass: "formRow",
+        submitClass: "button",
+        formAttributes: { "data-error-message": "Please fix the errors displayed below and try again" },
+        overrideValues: {
+            "hiddenAmount": cart.totalPrice,
+        }
+    }) %}
+
+    {{ form.renderTag }}    
+    
+    {% if form.hasErrors %}
+        <div class="freeform-form-has-errors">
+            {{ "Error! Please review the form and try submitting again."|t('freeform') }}
+            {% if form.errors|length %}
+                <ul>
+                    {% for error in form.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+    
+    <div class="group">
+        <h5>Payment Details</h5>
+    
+        {% for index, row in form %}
+
+            {% if index == 1 %}
+            <div class="ccRow">
+            {% else %}
+            <div class="formRow">
+            {% endif %}
+                
+                {% for field in row %}
+                    {% if field.layoutRows is defined %}
+                        {% for layoutRow in field.layoutRows %}
+                            <div class="freeform-row formRow">
+                                {% for layoutField in layoutRow %}
+                                    {% set numCols = layoutRow|length %}
+                                    {% switch numCols %}
+                                    {% case 2 %}
+                                        {% set columnClass = 'w49 ' %}                            
+                                    {% case 3 %}
+                                        {% set columnClass = 'w30 ' %}                        
+                                    {% default %}
+                                        {% set columnClass = 'w100 ' %}
+                                    {% endswitch %}
+
+                                    <div class="{{ columnClass }}">
+                                        {{ layoutField.render({
+                                        class: "freeform-input",
+                                        labelClass: "freeform-label" ~ (layoutField.inputOnly ? " freeform-input-only-label" : "") ~ (layoutField.required ? " freeform-required" : ""),
+                                        errorClass: "freeform-errors",
+                                        instructionsClass: "freeform-instructions",
+                                        }) }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% set numCols = row|length %}
+                        {% switch numCols %}
+                        {% case 2 %}
+                            {% set columnClass = 'w49 ' %}                            
+                        {% case 3 %}
+                            {% set columnClass = 'w30 ' %}                        
+                        {% default %}
+                            {% set columnClass = 'w100 ' %}
+                        {% endswitch %}
+                                
+                        {% set columnClass = columnClass ~ form.customAttributes.columnClass %}
+                        {% if field.type == "submit" %}
+                            {% set columnClass = columnClass ~ " btnRow" %}
+                        {% endif %}
+
+
+                        {% switch field.handle %}
+                            {% case "paymentAmount" %}
+                                {% set newVal = cart.totalPrice %}
+                            {% default %}
+                                {% set newVal = field.value %}                                    
+                        {% endswitch %}
+                    
+                        <div class="{{ columnClass }}"{{ field.rulesHtmlData }}>
+                            {{ field.render({
+                                class: field.type != "submit" ? "" : "",
+                                labelClass: "sample-label" ~ (field.required ? " required" : ""),
+                                errorClass: "formError",
+                                overrideValue: newVal,
+                                instructionsClass: "sample-instructions",
+                            }) }}
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        {% endfor %}
+    
+    </div>
+    
+    
+    {{ form.renderClosingTag }}
+</div>

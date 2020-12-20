@@ -1,8 +1,8 @@
 contentColumnType: string
 fieldGroup: 046e05e8-3ec3-4c53-9775-11b9a4aa98d0
-handle: eventOven
+handle: eventOvenCB
 instructions: ''
-name: 'Event Oven'
+name: 'Event Oven Checkbox'
 searchable: false
 settings:
   multi: true

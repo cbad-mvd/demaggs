@@ -2,5 +2,7 @@
 /.idea
 /vendor
 .DS_Store
+/templatesx
 /templates/shop
-
+/templates/forms
+/web/assets/forms

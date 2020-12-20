@@ -27,7 +27,6 @@ $(document).ready(function () {
 
 	/*
 	 * add mobile menu management
-	 */
 	var gNavMenu = '#global-nav-menu';
 	$('#global-nav-slick').slicknav({
 		label: '',
@@ -35,6 +34,7 @@ $(document).ready(function () {
 		closeOnClick: true,
 		showChildren: true
 	});
+	 */
 
 	/*
 	 * toggle availability off drop-down when in mobile menu mode
@@ -92,16 +92,13 @@ $(document).ready(function () {
 			$(".MainHdr").addClass("nav--goin-out");
 		}
 	});
-
-
+	
 	$(".MenuChoices-item").hover(
 		function () {
 			$(this).children(":first").fadeIn(500);
 		}, function () {
 			$(this).children(":first").fadeOut(100);
 		}
-		/***
-		***/
 	);
 
 	$("#jsMobileClose").click(function() {
@@ -212,24 +209,62 @@ $(document).ready(function () {
 		var href = "";
 
 		$("#addresses option").each(function() {
+			var doForm = $(this).data('doForm');
+
 			if ( $(this).val() == val ) {
-				selected = $(this).data('full-address');
+				var selected = $(this).data('full-address');
 
-				$('#aName').text(selected.firstName + ' ' + selected.lastName);
-				$('#aAddr1').text(selected.address1);
-				if ( selected.address2 ) {
-					$('#aAddr2').text(selected.address2);
+				if ( doForm ){
+					$('#shippingAddress-firstName').val(selected.firstName);
+					$('#shippingAddress-lastName').val(selected.lastName);
+					$('#shippingAddress-address1').val(selected.address1);
+					$('#shippingAddress-address2').val(selected.address2);
+					$('#shippingAddress-city').val(selected.city);
+					$('#shippingAddress-state').val(selected.state);
+					$('#shippingAddress-zipCode').val(selected.zipCode);
+					$('#shippingAddress-phone').val(selected.phone);
+					$('#setAddressId').val(selected.id);
 				}
-				$('#aCSZ').text(selected.city + ', ' +selected.state.name + ' ' + selected.zipCode);
-				$('#aPhone').text(selected.phone);
-								
-				href = href1 + selected.id + href2;
-				$('#aLink').attr('href', href);
-
+				else {
+					href = href1 + selected.id + href2;
+					$('#aLink').attr('href', href);
+	
+					$('#aName').text(selected.firstName + ' ' + selected.lastName);
+					$('#aAddr1').text(selected.address1);
+					if ( selected.address2 ) {
+						$('#aAddr2').text(selected.address2);
+					}
+					$('#aCSZ').text(selected.city + ', ' +selected.state.name + ' ' + selected.zipCode);
+					$('#aPhone').text(selected.phone);
+									
+					href = href1 + selected.id + href2;
+					$('#aLink').attr('href', href);	
+				}
+							
 				return(false);
 			}
 			
 		});
+	});
+
+	$('#eventOvenCB').change( function(){
+		var checked = ($(this).prop("checked") == true);
+		$("#jsHiddenOven").val( checked ? 'true' : 'false' );
+	});
+	
+	$('#sameas').change( function(){
+		var checked = ($(this).prop("checked") == true);
+		var gotoBilling = $(this).data('billing');
+		var gotoPayment = $(this).data('payment');
+		
+		$("#jsSameAsShipping").val( checked ? '1' : '0' );
+		$("#jsNextRedirect").val( checked ? gotoPayment : gotoBilling );
+	});
+
+	$('#jsDetails').click( function(){
+		//$('#jsDetails').hide;
+		//$('#jsDetails')[0].submit();
+		event.preventDefault;
 	});
 
 	$('.jsSetSameAs').change(function() {

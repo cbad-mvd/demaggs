@@ -1,6 +1,6 @@
 {# public macros for managing users #}
 
-{# create the password field #}
+{# show categories #}
 {% macro showCategories(group=null) %}
 
 {% if group is defined %}
@@ -64,7 +64,7 @@
         existing value, if no checkboxes are checked. #}
         {% set field = craft.app.fields.getFieldByHandle(fldName) %}
 
-        {{ hiddenInput('fields[fldName]', '') }} 
+        {{ hiddenInput('fields[{{ fldName }}]', '') }} 
 
         {% for option in field.options %}
 

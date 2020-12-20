@@ -1,0 +1,123 @@
+{% set buttonColor = '#2980b9' %}
+{% import 'emails/includes/email_macros' as m %}
+{% import 'emails/includes/email_macros' as m %}
+{% extends 'emails/includes/email_layout' %}
+
+{% import '_macros/_fmt'     as m_fmt %}
+
+{% block preview %}
+Urgent message, be sure to open it.
+{% endblock %}
+
+{% block header %}
+<span style="width: 100%; display: block; margin: 0; text-align: center">
+    {% set logo = globalVars.companyLogoEmail.one() %}
+    <img style="display: inline-block; width: 200px;" src="{{ logo.url }}" alt="{{ logo.altText }}" />
+</span>
+{% endblock %}
+
+{% block footer %}
+Click HERE to unsubscribe
+{% endblock %}
+
+{% block content %}
+
+{% if order is defined %}
+    {{m.title('Thank you for your order!')}}
+    <table style="width:100%;">
+        <thead>
+        <tr>
+            <th class="align-left" style="width: 49%"><h2>Customer Information</h2></th>
+            <th class="align-left" style="width: 49%"><h2>Event Details</h2></th>
+        </tr>
+        </thead>
+        <tbody>
+        <style>
+            td h5,
+            td p {
+                margin: 0;
+            }
+        </style>
+        <tr>
+            <td class="align-left" style="vertical-align: top;">
+                <p>{{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}</p>
+                <p>Phone: {{ order.shippingAddress.phone }}</p>
+                <p>&nbsp;</p>
+                <p>Order Number: {{ m_fmt.OrderNum(order.id) }}</p>
+                <p>Order Date: {{ order.dateOrdered | date }}</p>
+                <p>Order Total: {{ order.totalPrice | currency(order.currency) }}</p>
+                <p>&nbsp;</p>
+                <h5>Customer Comments</h5>
+                {% if order.eventComments %}
+                    <p>{{ order.eventComments }}</p>
+                {% endif %}
+            </th>
+            <td class="align-left" style="vertical-align: top;">
+                    {% if order.shippingAddress %}
+                        <p>{{ order.eventDate | date('l F j, Y') }}</p>
+                        <p>Starts at: {{ order.eventTime | date('g:i A') }}</p>
+                        <p>Meal Served at: {{ order.eventMealTime ? order.eventMealTime | date('g:i A') : order.eventTime | date('g:i A') }}</p>
+                        <p>{{ (order.eventOven[0] == '1') ? "A Stove/Oven is available" : "A Stove/Oven is not available" }}</p>
+                        <p>&nbsp;</p>
+                        <h5>Event Address</h5>
+                        <p>{{ order.shippingAddress.address1 }}</p>
+                        {% if order.shippingAddress.address2 %}
+                            <p>{{ order.shippingAddress.address2 }}</p>
+                        {% endif %}
+                        <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.state }} {{ order.shippingAddress.zipCode }}</p>
+                        <p>&nbsp;</p>
+                        <p>Contact: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</p>
+                        <p>Email: {{ order.email }}</p>
+                    {% endif %}
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <h2 style="margin-top: 32px">Menu Selections</h2>
+    <table style="width:100%;">
+        <thead>
+        <tr>
+            <th class="align-center">Qty</th>
+            <th class="align-left">Description</th>
+            <th class="align-right">Price</th>
+            <th class="align-right">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in order.lineItems %}
+            <tr>
+                <td class="align-center" style="width:10%;">
+                    {{ item.qty }}
+                </td>
+                <td>
+                    {{ item.description }}
+                </td>
+                <td  class="align-right" style="width:20%;">
+                    {{ item.price | currency(order.currency) }}
+                </td>
+                <td  class="align-right" style="width:20%;" class="align-right">
+                    {{ item.subtotal | currency(order.currency) }}
+                </td>
+            </tr>
+            {% endfor %}
+            {% if order.getTotalDiscount() %}
+            <div class="lineItem">
+                <td class="align-center">&nbsp;</th>
+                <td class="align-right"></th>
+                <td class="align-right">Discount:</th>
+                <td class="align-right">{{ order.getTotalDiscount()|commerceCurrency(order.currency) }}</th>
+            </div>
+            {% endif %}
+            <tr>
+                <td class="align-center">&nbsp;</th>
+                <td class="align-right"></th>
+                <td class="align-right">Total:</th>
+                <td class="align-right">{{ order.totalPrice | currency(order.currency) }}</th>
+            </tr>
+        </tbody>
+    </table>
+{% else %}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo dignissimos, nostrum quam illo unde quaerat facere perspiciatis. Voluptatum, amet nesciunt explicabo! Id nam vitae distinctio repudiandae voluptatibus ducimus.
+{% endif %}
+
+{% endblock %}

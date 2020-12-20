@@ -3001,9 +3001,50 @@ form {
   margin: 0;
 }
 
+form .ccRow,
 form .formRow,
-form > div {
+form div {
+  margin: 0 0 0.5rem 0;
+}
+
+form div.freeform-form-has-errors,
+form div.ff-form-errors {
   margin: 0 0 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #d02e2e;
+  border-radius: 6px;
+  background-color: #fff6f6;
+}
+
+form div.freeform-form-has-errors p,
+form div.ff-form-errors p {
+  margin: 0;
+  padding: 0.25rem 0;
+  color: #d02e2e;
+}
+
+form div.freeform-form-has-errors ul,
+form div.ff-form-errors ul {
+  margin: 0;
+  color: #d02e2e;
+}
+
+form div.freeform-form-has-errors ul li,
+form div.ff-form-errors ul li {
+  margin: 0;
+}
+
+form ul.formError,
+form ul.ff-errors {
+  margin: 0;
+  padding: 0.25rem 0 0;
+  list-style: none;
+  color: #d02e2e;
+}
+
+form ul.formError li,
+form ul.ff-errors li {
+  margin: 0;
 }
 
 form .formRow {
@@ -3019,34 +3060,46 @@ form .formRow {
           justify-content: space-between;
 }
 
+form .formRow > div {
+  margin: 0;
+}
+
+form .formRow div.w100,
 form .formRow span.w100 {
   width: 100%;
 }
 
+form .formRow div.w90,
 form .formRow span.w90 {
   width: 90%;
 }
 
+form .formRow div.w50,
 form .formRow span.w50 {
   width: 50%;
 }
 
+form .formRow div.w49,
 form .formRow span.w49 {
   width: 49%;
 }
 
+form .formRow div.w45,
 form .formRow span.w45 {
   width: 45%;
 }
 
+form .formRow div.w30,
 form .formRow span.w30 {
   width: 30%;
 }
 
+form .formRow div.w25,
 form .formRow span.w25 {
   width: 25%;
 }
 
+form .formRow div.w20,
 form .formRow span.w20 {
   width: 20%;
 }
@@ -3061,6 +3114,7 @@ form span {
   display: inline-block;
 }
 
+form .freeform-input.StripeElement,
 form span.pw-wrapper,
 form textarea,
 form select,
@@ -3070,10 +3124,18 @@ form input[type="email"],
 form input[type="number"],
 form input[type="password"],
 form input[type="text"] {
-  padding: 0.5rem;
+  padding: 0.333rem;
   width: 100%;
   border: 1px solid #ccc;
-  border-radius: 0.5rem;
+  border-radius: 0.333rem;
+}
+
+form .freeform-input.StripeElement {
+  background-color: white;
+}
+
+form .ElementsApp input {
+  font-size: 2rem;
 }
 
 form label {
@@ -3126,6 +3188,24 @@ form span.pw-wrapper span.eyeball {
 
 form span.pw-wrapper span.spacer {
   width: 1%;
+}
+
+form.loose .formRow,
+form.loose > div {
+  margin: 0 0 1rem 0;
+}
+
+form.loose span.pw-wrapper,
+form.loose textarea,
+form.loose select,
+form.loose input[type="date"],
+form.loose input[type="time"],
+form.loose input[type="email"],
+form.loose input[type="number"],
+form.loose input[type="password"],
+form.loose input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 /*
@@ -3286,6 +3366,17 @@ form span.pw-wrapper span.spacer {
 .entrance-left {
   -webkit-animation: slide-left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
           animation: slide-left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/***
+ Freeform fixups
+ ***/
+div.flatpickr-calendar {
+  margin: 0;
+}
+
+div.flatpickr-calendar div {
+  margin: 0;
 }
 
 /**

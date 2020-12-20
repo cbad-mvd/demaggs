@@ -2,12 +2,8 @@
 {% set cart = craft.commerce.carts.cart %}
 
 {# import macros #}
-{% import '_macros/_srcset'  as m_srcset %}
-{% import '_macros/_intros'  as m_intros %}
-{% import '_macros/_textpic' as m_textpic %}
 {% import '_macros/_menu'    as m_menu %}
 {% import '_macros/_utils'   as m_utils %}
-{% import '_macros/_user'    as m_user %}
 
 {% block titleTag %}
 	<title>{{ globalVars.pageTitleBase }} Payment</title>
@@ -25,11 +21,6 @@
     {% if shipping and not billing %}
         {% set billing = shipping %}
     {% endif %}
-
-    <form method="post">
-        <input type="hidden" name="action" value="commerce/payments/pay">
-        {{ redirectInput('/customer/order?number={number}') }}
-        <input type="hidden" name="paymentMethodId" value="1">
 
         <section row>
             <div class="UserForm PaymentBlock">
@@ -50,20 +41,6 @@
                             <div class="Food">
                                 {{ m_menu.showCart(false) }}
                             </div>
-                            
-                            {#  stripe stuff
-                            {% set options = {
-                                amount: 99.99, 
-                                quantity: 2, 
-                                calculateFinalAmount: false,
-                                itemName : 'Demaggs Dining',
-                                itemDescription : 'Demaggs Dining Experience',
-                                checkoutSuccessUrl: '/thank-you?number={number}',
-                                checkoutCancelUrl: '/uh-oh'
-                            } %}
-
-                            {{ craft.enupalstripe.paymentForm('paymentForm1', options) }}
-                            #}
                         </div>
 
                         <div class="seperator">
@@ -71,101 +48,108 @@
                         </div>
 
                         <div class="pay">
-                            <h5>Payment Method</h5>
+                            <form method="post">
+                                <input type="hidden" name="action" value="commerce/payments/pay">
+                                {{ redirectInput('/customer/order?number={number}') }}
+                                <input type="hidden" name="paymentMethodId" value="1">
 
-                            {% set formValues = {
-                            firstName: paymentForm is defined ? paymentForm.firstName : (cart.billingAddress ? cart.billingAddress.firstName : ''),
-                            lastName: paymentForm is defined ? paymentForm.lastName : (cart.billingAddress ? cart.billingAddress.lastName : ''),
-                            number: paymentForm is defined ? paymentForm.number : '',
-                            cvv: paymentForm is defined ? paymentForm.cvv : '',
-                            month: paymentForm is defined ? paymentForm.month : 1,
-                            year: paymentForm is defined ? paymentForm.year : currentYear + 1,
-                            } %}                            
-                            {{ csrfInput() }}
-                            <div class="formRow">
-                                <span class="w49">
-                                    <label for="billingAddress-firstName">Cardholder</label>
-                                    <input type="text" name="firstName"
-                                            class=""
-                                            maxlength="70"
-                                            value="{{ formValues.firstName }}" >
-                                </span>
 
-                                <span class="w49">
-                                    <label for="billingAddress-lastName">&nbsp;</label>
-                                    <input type="text" name="lastName"
-                                            class=""
-                                            maxlength="70"
-                                            value="{{ formValues.lastName }}" >
-                                </span>
-                            </div>
+                                <h5>Payment Method</h5>
 
-                            <div class="formRow">
-                                <span class="w100">
-                                    <label for="billingAddress-address1">Card Number</label>
-                                    <input type="text" name="number"
-                                            class=""
-                                            maxlength="19"
-                                            value="{{ formValues.number }}" >
-                                </span>
-                            </div>
+                                {% set formValues = {
+                                firstName: paymentForm is defined ? paymentForm.firstName : (cart.billingAddress ? cart.billingAddress.firstName : ''),
+                                lastName: paymentForm is defined ? paymentForm.lastName : (cart.billingAddress ? cart.billingAddress.lastName : ''),
+                                number: paymentForm is defined ? paymentForm.number : '',
+                                cvv: paymentForm is defined ? paymentForm.cvv : '',
+                                month: paymentForm is defined ? paymentForm.month : 1,
+                                year: paymentForm is defined ? paymentForm.year : currentYear + 1,
+                                } %}                            
+                                {{ csrfInput() }}
+                                <div class="formRow">
+                                    <span class="w49">
+                                        <label for="billingAddress-firstName">Cardholder</label>
+                                        <input type="text" name="firstName"
+                                                class=""
+                                                maxlength="70"
+                                                value="{{ formValues.firstName }}" >
+                                    </span>
 
-                            <div class="formRow">
-                                <span class="w30">
-                                    <label>Exp: Month</label>
-                                    <select name="month">
-                                        {% for month in 1..12 %}
-                                        <option value="{{ month }}" 
-                                                {% if formValues.month == month %} selected{% endif %}>
-                                                {{ month }} 
-                                        </option>
-                                        {% endfor %}
-                                    </select>
-                                </span>
-                                
-                                <span class="w30">
-                                    <label>Year</label>
-                                    <select name="year">
-                                        {% for year in currentYear..(currentYear + 12) %}
-                                        <option value="{{ year }}" 
-                                                {% if formValues.year == year %} selected{% endif %}>
-                                                {{ year }} 
-                                        </option>
-                                        {% endfor %}
-                                    </select>
-                                </span>
+                                    <span class="w49">
+                                        <label for="billingAddress-lastName">&nbsp;</label>
+                                        <input type="text" name="lastName"
+                                                class=""
+                                                maxlength="70"
+                                                value="{{ formValues.lastName }}" >
+                                    </span>
+                                </div>
 
-                                <span class="w30">
-                                    <label for="cvv">CVC</label>
-                                    <input type="text" name="cvv"
-                                            placeholder="CVC"
-                                            class=""
-                                            value="{{ formValues.cvv }}" >
-                                </span>
-                            </div>
+                                <div class="formRow">
+                                    <span class="w100">
+                                        <label for="billingAddress-address1">Card Number</label>
+                                        <input type="text" name="number"
+                                                class=""
+                                                maxlength="19"
+                                                value="{{ formValues.number }}" >
+                                    </span>
+                                </div>
 
-                            {% set errors = [] %}
-                            {%if paymentForm is defined %}
-                            {% for attributeKey in ['firstName', 'lastName', 'number', 'month', 'year', 'cvv'] %}
-                                {% set errors = errors|merge(paymentForm.getErrors(attributeKey)) %}
-                            {% endfor %}
-                            {% endif %}
-
-                            {% if errors|length > 0 %}
-                            <div class="ErrorList">
-                                <p>Please fix the following errors:</p>
-                                <ul>
-                                    {% for error in errors %}
-                                        <li>&nbsp;{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            {% endif %}
+                                <div class="formRow">
+                                    <span class="w30">
+                                        <label>Exp: Month</label>
+                                        <select name="month">
+                                            {% for month in 1..12 %}
+                                            <option value="{{ month }}" 
+                                                    {% if formValues.month == month %} selected{% endif %}>
+                                                    {{ month }} 
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </span>
                                     
+                                    <span class="w30">
+                                        <label>Year</label>
+                                        <select name="year">
+                                            {% for year in currentYear..(currentYear + 12) %}
+                                            <option value="{{ year }}" 
+                                                    {% if formValues.year == year %} selected{% endif %}>
+                                                    {{ year }} 
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </span>
+
+                                    <span class="w30">
+                                        <label for="cvv">CVC</label>
+                                        <input type="text" name="cvv"
+                                                placeholder="CVC"
+                                                class=""
+                                                value="{{ formValues.cvv }}" >
+                                    </span>
+                                </div>
+
+                                {% set errors = [] %}
+                                {%if paymentForm is defined %}
+                                {% for attributeKey in ['firstName', 'lastName', 'number', 'month', 'year', 'cvv'] %}
+                                    {% set errors = errors|merge(paymentForm.getErrors(attributeKey)) %}
+                                {% endfor %}
+                                {% endif %}
+
+                                {% if errors|length > 0 %}
+                                <div class="ErrorList">
+                                    <p>Please fix the following errors:</p>
+                                    <ul>
+                                        {% for error in errors %}
+                                            <li>&nbsp;{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                                        
+                            </form>
                         </div>
                     </div>
                     <div class="btnRow">
-                        <a class="button off" href="/checkout/billing">Previous</a>
+                        <a class="button off" href="{{ craft.app.request.getReferrer() }}">Previous</a>
                         <input class="button" type="submit" value="Submit Order">
                     </div>
                 </div>
