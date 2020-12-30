@@ -1,19 +1,23 @@
-dateModified: 1608381679
+dateModified: 1609349166
 email:
   fromEmail: jmayall@surething.com
   fromName: 'Demaggs Dining'
   replyToEmail: jmayall@surething.com
-  template: _emails/test
+  template: emails/test
   transportSettings:
-    apiKey: d2bb89bcc1ea72f352801914471f7e5a-e5da0167-aa75a5d1
+    apiKey: $MAILGUN_API
     domain: mg.demaggs.com
-    endpoint: 'https://api.mailgun.net'
+    endpoint: $MAILGUN_ENDPOINT
   transportType: craft\mailgun\MailgunAdapter
 plugins:
   commerce:
     edition: pro
     enabled: true
     schemaVersion: 3.2.13
+  commerce-stripe:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.2.0
   contact-form:
     edition: standard
     enabled: false
@@ -38,8 +42,8 @@ plugins:
       defaultView: submissions
       digestRecipients: null
       displayFeed: true
-      emailTemplateDirectory: null
-      emailTemplateStorage: db
+      emailTemplateDirectory: emails/payments/
+      emailTemplateStorage: template
       fieldDisplayOrder: name
       fillWithGet: ''
       footerScripts: false

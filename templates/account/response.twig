@@ -1,0 +1,8 @@
+{% set success = craft.app.request.param('success') %}
+{% set order = craft.app.request.param('order') %}
+
+{% if success == 'true' %}
+<h1>SUCCESS!!! - {{ order }}</h1>
+{% else %}
+<h1>FAILURE!!! - {{ success }}</h1>    
+{% endif %}

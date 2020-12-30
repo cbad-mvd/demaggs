@@ -15,34 +15,53 @@
 {% set addresses = craft.commerce.customers.customer.addresses %}
 {% set address = cart.shippingAddress %}
 {% set startDate = now|date_modify('+1 day')|atom %} 
+
 {% set formHandle = "stripePayment" %}
+{% set wrapperClass = "UserForm-block" %}
+{% set optionalBtn = {
+    href: craft.app.request.getReferrer(),
+    class: "button off",
+    text: "Previous"} %}
 
 <section row>
     <div class="UserForm MemberLogin" style="min-height: 600px">
         <h1>Stripe Payment - FF</h1>
-        {% include "_partials/payment-block" %}
+
+        <div class="UserForm-block">
+            <div class="group">
+                <h5>Event Details</h5>
+
+                <form method="post">
+                    {{ csrfInput() }}
+                    {{ hiddenInput('action', 'commerce/cart/update-cart') }}
+                    {{ hiddenInput('gatewayId', 2) }}
+                
+                    <input type="text"
+                        name="email"
+                        class="{% if cart.getFirstError('email') %}has-error{% endif %}"
+                        value="{{ cart.email }}"
+                        placeholder="{{ "your@email.com"|t }}"
+                    >
+                
+                    <button type="submit">Update Cart Gateway</button>
+                <form>
+                
+                {{ cart.gateway.getPaymentFormHtml({})|raw }}  
+{# {% dd(cart) %} #}
+
+            </div>
+        </div>
+    
+        {#
+            {% include "_partials/payment-block" %}
+        #}    
     </div>
 </section>
 
 {% endblock content %}
 
 {% block pageJs %}
+
 <script>
-
-/**
-$(document).ready( function() {
-    $("input[name='paymentAmount']").val("445.45");
-});
-**/
-$(document).ready( function() {
-    //$("input[name='hiddenAmount']").val("445.45");
-});
-
-document.addEventListener("freeform-stripe-styling", function (event) {
-    event.style.base = {
-        fontSize: "34px",
-    }
-});
-
 </script>
 {% endblock %}

@@ -1,0 +1,40 @@
+{# subject: New submission from your {{ form.name }} form #}
+{# fromEmail: {{ craft.app.systemSettings.getSettings('email').fromEmail }} #}
+{# fromName: {{ craft.app.systemSettings.getSettings('email').fromName }} #}
+{# replyToEmail: {{ craft.app.systemSettings.getSettings('email').fromEmail }} #}
+{# includeAttachments: true #}
+{# description: Reports a failed payment attempt with Stripe #}
+
+{% set buttonColor = '#2980b9' %}
+{% import 'emails/includes/email_macros' as m %}
+{% import 'emails/includes/email_macros' as m %}
+{% extends 'emails/includes/email_layout' %}
+
+{% import '_macros/_fmt'     as m_fmt %}
+
+{% block preview %}
+Urgent message, be sure to open it.
+{% endblock %}
+
+{% block header %}
+<span style="width: 100%; display: block; margin: 0; text-align: center">
+    {% set logo = globalVars.companyLogoEmail.one() %}
+    <img style="display: inline-block; width: 200px;" src="{{ logo.url }}" alt="{{ logo.altText }}" />
+</span>
+{% endblock %}
+
+{% block footer %}
+Click HERE to unsubscribe
+{% endblock %}
+
+{% block content %}
+<h1>FAILURE!!!</h1>
+<p>The following submission came in on {{ dateCreated|date('l, F j, Y \\a\\t g:ia') }}.</p>
+
+<ul>
+  {% for field in allFields if field.valueAsString %}
+    <li>{{ field.label }}: {{ field.valueAsString }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

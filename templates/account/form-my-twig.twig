@@ -1,0 +1,159 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+{% set cart = craft.commerce.carts.cart %}
+
+{# import macros #}
+{% import '_macros/_menu'    as m_menu %}
+{% import '_macros/_utils'   as m_utils %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Payment</title>
+{% endblock titleTag %}
+
+{% block content %}
+{% set cart = craft.commerce.carts.cart %}
+{% set addrId = cart.shippingAddressId %}
+{% set addresses = craft.commerce.customers.customer.addresses %}
+{% set address = cart.shippingAddress %}
+{% set startDate = now|date_modify('+1 day')|atom %} 
+{% set formHandle = "stripePayment" %}
+
+<section row>
+    <div class="UserForm MemberLogin" style="min-height: 600px">
+        <h1>Stripe Payment - FF</h1>
+        
+        {# begin {% include "_partials/payment-block" %} #}
+        <div class="UserForm-block">
+            {% set form = craft.freeform.form(formHandle, {
+                id: formHandle,
+                errorClass: "formError",
+                rowClass: "formRow",
+                submitClass: "button",
+                formAttributes: { "data-error-message": "Please fix the errors displayed below and try again" },
+                overrideValues: {
+                    "hiddenAmount": cart.totalPrice,
+                }
+            }) %}
+        
+            {{ form.renderTag }}    
+            
+            {% if form.hasErrors %}
+                <div class="freeform-form-has-errors">
+                    {{ "Error! Please review the form and try submitting again."|t('freeform') }}
+                    {% if form.errors|length %}
+                        <ul>
+                            {% for error in form.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endif %}
+            
+            <div class="group">
+                <h5>Payment Details</h5>
+            
+                {% for index, row in form %}
+        
+                    {% if index == 1 %}
+                    <div class="ccRow">
+                    {% else %}
+                    <div class="formRow">
+                    {% endif %}
+                        
+                        {% for field in row %}
+                            {% if field.layoutRows is defined %}
+                                {% for layoutRow in field.layoutRows %}
+                                    <div class="freeform-row formRow">
+                                        {% for layoutField in layoutRow %}
+                                            {% set numCols = layoutRow|length %}
+                                            {% switch numCols %}
+                                            {% case 2 %}
+                                                {% set columnClass = 'w49 ' %}                            
+                                            {% case 3 %}
+                                                {% set columnClass = 'w30 ' %}                        
+                                            {% default %}
+                                                {% set columnClass = 'w100 ' %}
+                                            {% endswitch %}
+        
+                                            <div class="{{ columnClass }}">
+                                                {{ layoutField.render({
+                                                class: "freeform-input",
+                                                labelClass: "freeform-label" ~ (layoutField.inputOnly ? " freeform-input-only-label" : "") ~ (layoutField.required ? " freeform-required" : ""),
+                                                errorClass: "freeform-errors",
+                                                instructionsClass: "freeform-instructions",
+                                                }) }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% set numCols = row|length %}
+                                {% switch numCols %}
+                                {% case 2 %}
+                                    {% set columnClass = 'w49 ' %}                            
+                                {% case 3 %}
+                                    {% set columnClass = 'w30 ' %}                        
+                                {% default %}
+                                    {% set columnClass = 'w100 ' %}
+                                {% endswitch %}
+                                        
+                                {% set columnClass = columnClass ~ form.customAttributes.columnClass %}
+                                {% if field.type == "submit" %}
+                                    {% set columnClass = columnClass ~ " btnRow" %}
+                                {% endif %}
+        
+        
+                                {% switch field.handle %}
+                                    {% case "paymentAmount" %}
+                                        {% set newVal = cart.totalPrice %}
+                                    {% default %}
+                                        {% set newVal = field.value %}                                    
+                                {% endswitch %}
+                            
+                                <div class="{{ columnClass }}"{{ field.rulesHtmlData }}>
+                                    {{ field.render({
+                                        class: field.type != "submit" ? "" : "",
+                                        labelClass: "sample-label" ~ (field.required ? " required" : ""),
+                                        errorClass: "formError",
+                                        overrideValue: newVal,
+                                        instructionsClass: "sample-instructions",
+                                    }) }}
+                                </div>
+                            {% endif %}
+        
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            
+            </div>
+            
+            
+            {{ form.renderClosingTag }}
+        </div>
+        {# end {% include "_partials/payment-block" %} #}
+        
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block pageJs %}
+<script>
+
+/**
+$(document).ready( function() {
+    $("input[name='paymentAmount']").val("445.45");
+});
+**/
+$(document).ready( function() {
+    //$("input[name='hiddenAmount']").val("445.45");
+});
+
+document.addEventListener("freeform-stripe-styling", function (event) {
+    event.style.base = {
+        fontSize: "34px",
+    }
+});
+
+</script>
+{% endblock %}

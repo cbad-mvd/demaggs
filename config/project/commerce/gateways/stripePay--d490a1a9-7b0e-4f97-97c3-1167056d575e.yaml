@@ -1,0 +1,11 @@
+handle: stripePay
+isFrontendEnabled: true
+name: 'Stripe Pay'
+paymentType: purchase
+settings:
+  apiKey: $STRIPE_PRIVATE_KEY
+  publishableKey: $STRIPE_PUBLIC_KEY
+  sendReceiptEmail: ''
+  signingSecret: $STRIPE_WEBHOOK
+sortOrder: 99
+type: craft\commerce\stripe\gateways\PaymentIntents

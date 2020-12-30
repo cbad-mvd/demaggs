@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d53d57f2bb8cd1db59e3ee5268932e1",
+    "content-hash": "48561aa9fce58ff5c6504f293e66e80f",
     "packages": [
         {
             "name": "barrelstrength/sprout-encode-email",
@@ -559,6 +559,56 @@
                 "rss": "https://github.com/craftcms/commerce/releases.atom"
             },
             "time": "2020-12-15T13:31:42+00:00"
+        },
+        {
+            "name": "craftcms/commerce-stripe",
+            "version": "2.3.2.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/craftcms/commerce-stripe/zipball/04b1650241b21888c0b0d6f87548c89de9883758",
+                "reference": "04b1650241b21888c0b0d6f87548c89de9883758",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.1.5",
+                "craftcms/commerce": "^2.2.0|^3.0",
+                "stripe/stripe-php": "^7.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Stripe for Craft Commerce",
+                "handle": "commerce-stripe",
+                "documentationUrl": "https://github.com/craftcms/commerce-stripe/blob/master/README.md"
+            },
+            "autoload": {
+                "psr-4": {
+                    "craft\\commerce\\stripe\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pixel & Tonic",
+                    "homepage": "https://pixelandtonic.com/"
+                }
+            ],
+            "description": "Stripe integration for Craft Commerce 2 & 3",
+            "keywords": [
+                "commerce",
+                "craftcms",
+                "stripe",
+                "yii2"
+            ],
+            "support": {
+                "email": "support@craftcms.com",
+                "issues": "https://github.com/craftcms/commerce-stripe/issues?state=open",
+                "source": "https://github.com/craftcms/commerce-stripe",
+                "docs": "https://github.com/craftcms/commerce-stripe/blob/master/README.md",
+                "rss": "https://github.com/craftcms/commerce-stripe/commits/master.atom"
+            },
+            "time": "2020-11-02T10:25:01+00:00"
         },
         {
             "name": "craftcms/contact-form",
