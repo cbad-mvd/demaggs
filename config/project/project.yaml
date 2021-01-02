@@ -1,4 +1,4 @@
-dateModified: 1609349166
+dateModified: 1609429377
 email:
   fromEmail: jmayall@surething.com
   fromName: 'Demaggs Dining'
@@ -14,6 +14,40 @@ plugins:
     edition: pro
     enabled: true
     schemaVersion: 3.2.13
+    settings:
+      activeCartDuration: 3600
+      allowEmptyCartOnCheckout: false
+      autoSetNewCartAddresses: true
+      cartVariable: cart
+      defaultView: commerce/orders
+      dimensionUnits: mm
+      emailSenderAddress: info@demaggs.com
+      emailSenderAddressPlaceholder: null
+      emailSenderName: ''
+      emailSenderNamePlaceholder: null
+      freeOrderPaymentStrategy: complete
+      gatewayPostRedirectTemplate: ''
+      loadCartRedirectUrl: null
+      minimumTotalPriceStrategy: default
+      orderPdfFilenameFormat: 'Order-{number}'
+      orderPdfPath: shop/special/receipt
+      orderReferenceFormat: '{{number[:7]}}'
+      paymentCurrency: null
+      pdfAllowRemoteImages: false
+      pdfPaperOrientation: portrait
+      pdfPaperSize: letter
+      purgeInactiveCarts: true
+      purgeInactiveCartsDuration: 7776000
+      requireBillingAddressAtCheckout: false
+      requireShippingAddressAtCheckout: false
+      requireShippingMethodSelectionAtCheckout: false
+      showCustomerInfoTab: true
+      updateBillingDetailsUrl: ''
+      updateCartSearchIndexes: true
+      useBillingAddressForTax: false
+      validateBusinessTaxIdAsVatId: false
+      validateCartCustomFieldsOnSubmission: false
+      weightUnits: g
   commerce-stripe:
     edition: standard
     enabled: true

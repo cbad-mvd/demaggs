@@ -2641,6 +2641,15 @@ h1.checkoutTitle {
   }
 }
 
+.ConfirmOrder-header {
+  text-align: center;
+}
+
+.ConfirmOrder-header a {
+  display: inline-block;
+  width: 15rem;
+}
+
 /*
  * structure for user account/checkout pages
  */
@@ -3206,6 +3215,47 @@ form.loose input[type="password"],
 form.loose input[type="text"] {
   padding: 0.5rem;
   border-radius: 0.5rem;
+}
+
+.stripe-payment-intents-form {
+  width: 100%;
+}
+
+.stripe-payment-intents-form fieldset {
+  border: none;
+  margin: 0;
+}
+
+.stripe-payment-intents-form fieldset input {
+  margin: 0;
+}
+
+.stripe-payment-intents-form fieldset.card-holder {
+  padding: 0 0 0.5rem 0;
+}
+
+.stripe-payment-intents-form fieldset.card-holder div.grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.stripe-payment-intents-form fieldset.card-holder div.grid div {
+  width: 49%;
+}
+
+.stripe-payment-intents-form fieldset.card-data {
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 
 /*

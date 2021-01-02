@@ -45,7 +45,7 @@
 
                 <form method="post">
                     <input type="hidden" name="action" value="commerce/cart/update-cart">
-                    
+                    {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}                    
                     {{ csrfInput() }}
                     {# <input type="hidden" name="billingAddressSameAsShipping" value="1"> #}
                     <input id="shippingAddress-countryId" type="hidden" name="shippingAddress[countryId]" value="{{ globalVars.usCountryId }}">

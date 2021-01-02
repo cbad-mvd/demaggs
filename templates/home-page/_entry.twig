@@ -42,16 +42,16 @@
 							</span>
 
                             {% for contact in entry.contactInfo %}                   
-                            <p>{{ contact.addressOne }}, {{ contact.city }}, {{ contact.state }} {{ contact.postalCode }}</p>
-                            <p>Phone: {{ contact.phone }}</p>
-                            <p>Fax: {{ contact.fax }}</p>
+                            <p>{{ globalVars.companyStreet }}, {{ globalVars.companyCSZ }}</p>
+                            <p>Phone: {{ globalVars.companyPhone }}</p>
+                            <p>Fax: {{ globalVars.companyPhone }}</p>
                             <p>email:
-                                <a href="mailto:{{ contact.email }}?subject={{ contact.emailSubject }}">{{ contact.email }}</a>
+                                <a href="mailto:{{ globalVars.companyEmail }}?subject={{ contact.emailSubject }}">{{ globalVars.companyEmail }}</a>
                             </p>
 
 							<p>&nbsp;</p>
-                            <span class="button">
-							    <a href="mailto:{{ contact.email }}?subject={{ contact.emailSubject }}">{{ contact.button }}</a>
+                            <span>
+							    <a  class="button" href="mailto:{{ globalVars.companyEmail }}?subject={{ contact.emailSubject }}">{{ contact.button }}</a>
                             </span>
                             {% endfor %}
 						</div>

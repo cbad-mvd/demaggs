@@ -28,6 +28,7 @@
             {% if blocks is not null %}
                 <form method="POST">
                     {{ actionInput('commerce/cart/update-cart') }}
+                    {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
                     {{ hiddenInput('successMessage', ('Added '~ product.title ~' to the cart.')|hash) }}
                     {{ csrfInput() }}
                     {{ redirectInput('/cart') }} 

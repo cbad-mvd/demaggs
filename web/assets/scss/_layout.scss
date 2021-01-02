@@ -1594,6 +1594,16 @@ h1.userLoginTitle {
 	}
 }
 
+.ConfirmOrder {
+	&-header {
+		text-align: center;
+
+		a {
+			display: inline-block;
+			width: 15rem;
+		}
+	}
+}
 /*
  * structure for user account/checkout pages
  */
@@ -2077,6 +2087,40 @@ form {
 				border-radius: 0.5rem;
 		}
 	
+	}
+}
+
+.stripe-payment-intents-form {
+	width: 100%;
+
+	fieldset {
+		border: none;
+		margin: 0;
+
+		input {
+			margin: 0;
+		}
+	}
+	fieldset.card-holder {
+		padding: 0 0 0.5rem 0;
+
+		div.grid {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+
+			div {
+				width: 49%;
+			}
+		}
+
+	}
+
+	fieldset.card-data {
+		padding: 0.5rem;
+		background: white;
+		border: 1px solid #ddd;
+		border-radius: 6px;
 	}
 }
 

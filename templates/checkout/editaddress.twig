@@ -23,6 +23,7 @@
         {{ csrfInput() }}
         {# {{ actionInput('commerce/customer-addresses/save') }} #}
         {{ actionInput('commerce/cart/update-cart') }}
+        {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
 
         {% if redirect %}
             {{ redirectInput(redirect) }}

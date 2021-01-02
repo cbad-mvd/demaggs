@@ -26,10 +26,12 @@
     {% endif %}
 
     <form method="post">
-        <input type="hidden" name="action" value="commerce/cart/update-cart">                    
+        <input type="hidden" name="action" value="commerce/cart/update-cart"> 
+        {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
         {{ redirectInput('checkout/payment') }} 
         {{ csrfInput() }}
         <input id="billingAddress-countryId" type="hidden" name="billingAddress[countryId]" value="{{ globalVars.usCountryId }}">
+        {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
 
         <section row>
             <div class="UserForm AddrBlock">

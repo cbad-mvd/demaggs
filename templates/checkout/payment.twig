@@ -47,7 +47,7 @@
                             <div></div>
                         </div>
 
-                        {# set variables for payment-block #}
+                        {# set variables for payment-block 
                         {% set formHandle = "stripePayment" %}
                         {% set wrapperClass = "pay" %}
                         {% set optionalBtn = {
@@ -56,6 +56,17 @@
                             text: "Previous"} %}
 
                         {% include "_partials/payment-block" %}
+                        #}
+                        <div class="pay">
+                            {% if cart.lineItems|length %}
+                                <h5>Payment Details</h5>
+                                {% set bFirst = billing.firstName %}
+                                {% set bLast = billing.lastName %}
+                                {% include "_partials/stripe-block" %}
+                            {% else %}
+                                <h5>Your order is empty</h5>
+                            {% endif %}
+                        </div>
                         
                     </div>
                 </div>
@@ -70,6 +81,7 @@
     <script>
     {{ m_utils.setProgress('s5', 'Checkout') }}
 
+/**
         const form = document.getElementById("stripePayment");
         if ( form ) {
             form.addEventListener("freeform-ready", function (event) {
@@ -92,7 +104,7 @@
                 window.location.href = response.returnUrl;
             });
         });
-
+**/
 
     </script>
 {% endblock pageJs %}

@@ -20,7 +20,8 @@
     {% set address = cart.shippingAddress %}
 
     <form method="post">
-        <input type="hidden" name="action" value="commerce/cart/update-cart">                    
+        <input type="hidden" name="action" value="commerce/cart/update-cart">    
+        {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}                
         {{ csrfInput() }}
 
         <section row>

@@ -3,9 +3,9 @@ isFrontendEnabled: true
 name: 'Stripe Pay'
 paymentType: purchase
 settings:
-  apiKey: $STRIPE_PRIVATE_KEY
-  publishableKey: $STRIPE_PUBLIC_KEY
+  apiKey: $STRIPE_PRIVATE_KEY_TEST
+  publishableKey: $STRIPE_PUBLIC_KEY_TEST
   sendReceiptEmail: ''
-  signingSecret: $STRIPE_WEBHOOK
+  signingSecret: $STRIPE_WEBHOOK_PT_TEST
 sortOrder: 99
 type: craft\commerce\stripe\gateways\PaymentIntents

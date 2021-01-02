@@ -31,10 +31,12 @@
             <div class="group">
                 <h5>Event Details</h5>
 
+                {#
                 <form method="post">
                     {{ csrfInput() }}
                     {{ hiddenInput('action', 'commerce/cart/update-cart') }}
-                    {{ hiddenInput('gatewayId', 2) }}
+                    {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
+
                 
                     <input type="text"
                         name="email"
@@ -45,9 +47,10 @@
                 
                     <button type="submit">Update Cart Gateway</button>
                 <form>
-                
-                {{ cart.gateway.getPaymentFormHtml({})|raw }}  
-{# {% dd(cart) %} #}
+                #}
+                {##}           
+{# {% dd(cart) %} #} 
+                {% include "_partials/stripe-block" %}
 
             </div>
         </div>

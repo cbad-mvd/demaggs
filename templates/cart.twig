@@ -23,6 +23,7 @@
     <form method="post">
         {{ actionInput('commerce/cart/update-cart') }}
         {{ hiddenInput('successMessage', 'The cart was updated.'|hash) }}
+        {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
         {{ csrfInput() }}
 
         <section row>

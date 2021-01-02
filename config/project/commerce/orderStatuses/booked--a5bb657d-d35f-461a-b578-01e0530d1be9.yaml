@@ -1,6 +1,8 @@
 color: orange
 default: true
 description: 'Order booked, pending scheduling'
+emails:
+  0f2c1dc3-e474-4f62-b3bf-ff5c997c563c: 0f2c1dc3-e474-4f62-b3bf-ff5c997c563c
 handle: booked
 name: Booked
 sortOrder: 99

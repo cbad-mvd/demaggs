@@ -5,7 +5,7 @@ language: orderLanguage
 name: 'Order Confirmation'
 plainTextTemplatePath: ''
 recipientType: customer
-replyTo: jmayall@surething.com
+replyTo: info@demaggs.com
 subject: 'Congratulations! Your Event with Demaggs Dining has been booked!'
 templatePath: emails/test
 to: null
