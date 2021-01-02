@@ -7,4 +7,4 @@
 /templates/forms
 /web/assets/forms
 /mylogs
-
+.env.rabbit
