@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: c2f39c14-196e-4841-915e-c9e5a1541ffd
+handle: itemRemove
+instructions: ''
+name: 'Item Remove'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

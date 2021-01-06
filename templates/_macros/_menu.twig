@@ -149,10 +149,10 @@
 
     {% if cart is not null %}
         <div class="itemRow">
-            <span class="qty hdr">Qty</span>
-            <span class="name hdr">Description</span>
-            <span class="price hdr">Price</span>
-            <span class="remove hdr">Remove</span>
+            <span class="qty hdr">{{ cartVars.itemQty }}</span>
+            <span class="name hdr">{{ cartVars.itemDesc }}</span>
+            <span class="price hdr">{{ cartVars.itemPrice }}</span>
+            <span class="remove hdr">{{ cartVars.itemRemove }}</span>
         </div>
 
         {% set totalDiscounts = {} %}
@@ -192,7 +192,7 @@
         {% if cart.getTotalDiscount() %}
         <div class="itemRow">
             <span class="qty">&nbsp;</span>
-            <span class="name">Subtotal:</span>
+            <span class="name">{{ cartVars.cartSubtotal }}</span>
             <span class="price">{{ cart.itemSubtotal | commerceCurrency(cart.currency) }}</span>
             <span class="remove">&nbsp;</span>
         </div>
@@ -213,7 +213,7 @@
         {% endif %}
         <div class="itemRow">
             <span class="qty">&nbsp;</span>
-            <span class="name heavy">Order Total:</span>
+            <span class="name heavy">{{ cartVars.cartTotal }}</span>
             <span class="price heavy">{{ cart.totalPrice | currency(cart.currency) }}</span>
             <span class="remove">&nbsp;</span>
         </div>

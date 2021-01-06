@@ -29,7 +29,7 @@
 
         <section row>
             <div class="UserForm CartBlock">
-                <h1 class="">Review Order</h1>
+                <h1 class="">{{ cartVars.cartTitle }}</h1>
                 <div class="UserForm-block">
                     {% if craft.app.session.getFlash("error") %}
                         <div class="alert error" role="alert">
@@ -42,7 +42,7 @@
                     <div class="couponRow">
                         <div class="{{ cart.getFirstError('couponCode') ? 'couponError' : 'couponCode' }} text-left max-w-sm w-full">
                             {# Update Coupon form uses the single update controller action: #}
-                            <label class="couponLabel" for="couponCode">Coupon Code</label>
+                            <label class="couponLabel" for="couponCode">{{ cartVars.couponCode }}</label>
                             {% if cart.getFirstError('couponCode') %}
                                 <div class="cartError">{{ cart.getFirstError('couponCode') }}</div>
                             {% endif %}
@@ -59,10 +59,10 @@
                         {{ redirectInput('cart') }}
                         <span class='leftButton'>
                             {% set pageLink = craft.app.request.getReferrer() %}
-                            <a class="button off" href="{{ pageLink }}">Previous Page</a>
+                            <a class="button off" href="{{ pageLink }}">{{ cartVars.previousBtn }}</a>
                         </span>
-                        <input class="button off" type="submit" value="Update Order">
-                        <a class="button" href="{{ url('checkout') }}">Checkout</a>
+                        <input class="button off" type="submit" value="{{ cartVars.updateBtn }}">
+                        <a class="button" href="{{ url('checkout') }}">{{ cartVars.checkoutBtn }}</a>
                     </div>
                 </div>
             </div>
