@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 697fcf4a-885a-4aaa-b5db-58dda24edbd4
+handle: videoUrl
+instructions: 'Full URL for vimeo or youtube video'
+name: 'Video URL'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

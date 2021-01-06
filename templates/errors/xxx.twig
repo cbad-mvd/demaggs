@@ -1,0 +1,44 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+
+{# import macros #}
+{% import '_macros/_utils'   as m_utils %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Page Not Found!</title>
+{% endblock titleTag %}
+
+{% block content %}
+    <section class="row PageError">
+        <div class="PageError-body">
+            <h1>{{ entry.errorTitle }}</h1>
+            <p>{{ entry.errorMsg }}</p>
+            <div class="PageError-options">
+                <div class="one">
+                    <a href="{{ url(entry.errorOptionOneLink) }}">
+                        {% if (entry.errorOptionOneImage is defined) and (entry.errorOptionOneImage.one() is not null) %}
+                            {% set image = entry.errorOptionOneImage.one() %}
+                            <img class="lazyx" src="{{ image.url }}" alt="{{ image.altText }}" />
+                        {% endif %}
+{#
+                        <img src="" alt="">
+                        <p>&nbsp;</p>
+#}                        
+                        <div>{{ entry.errorOptionOneTitle }}</div>
+                    </a>
+                </div>
+                <div class="one">
+                    <a href="{{ url(entry.errorOptionTwoLink) }}">
+                        {% if (entry.errorOptionTwoImage is defined) and (entry.errorOptionTwoImage.one() is not null) %}
+                            {% set image = entry.errorOptionTwoImage.one() %}
+                            <img class="lazyx" src="{{ image.url }}" alt="{{ image.altText }}" />
+                        {% endif %}
+
+                        <p>&nbsp;</p>
+                        <div>{{ entry.errorOptionTwoTitle }}</div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock content %}

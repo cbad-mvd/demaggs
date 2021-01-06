@@ -72,7 +72,7 @@ return [
     // Dev environment settings
     'dev' => [
         // Dev Mode (see https://craftcms.com/guides/what-dev-mode-does)
-        'devMode' => true,
+        // 'devMode' => true,
 
         // Prevent crawlers from indexing pages and following links
         'disallowRobots' => true,

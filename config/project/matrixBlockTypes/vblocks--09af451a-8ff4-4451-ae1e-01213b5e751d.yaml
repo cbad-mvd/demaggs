@@ -22,6 +22,15 @@ fieldLayouts:
             type: craft\fieldlayoutelements\CustomField
             warning: null
             width: 100
+          -
+            fieldUid: 9c75c47c-d25e-4852-b0dc-6210976fbc68
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -53,6 +62,7 @@ fields:
     searchable: false
     settings:
       allowSelfRelations: false
+      allowUploads: true
       allowedKinds:
         - image
       defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
@@ -76,6 +86,25 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Assets
+  9c75c47c-d25e-4852-b0dc-6210976fbc68:
+    contentColumnType: text
+    fieldGroup: null
+    handle: vidDesc
+    instructions: ''
+    name: 'Vid Description'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
 handle: vblocks
 name: vBlocks
 sortOrder: 1

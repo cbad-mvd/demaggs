@@ -3261,8 +3261,15 @@ form.loose input[type="text"] {
 /*
  * Video player
  */
+.Video h2, .Video .compenent-title {
+  margin-bottom: 0.75rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
 .Video-wrapper {
-  width: 90%;
+  width: 70%;
   padding: 2%;
   background-color: #212125;
   margin: 0 auto;
@@ -3416,6 +3423,67 @@ form.loose input[type="text"] {
 .entrance-left {
   -webkit-animation: slide-left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
           animation: slide-left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/***
+ Page Errors
+ ***/
+.PageError {
+  text-align: center;
+}
+
+.PageError-body {
+  width: 60%;
+  margin-top: 0;
+  text-align: center;
+  display: inline-block;
+}
+
+.PageError-body > h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+.PageError-body > p {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: #888;
+}
+
+.PageError-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.PageError-options > div {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 49%;
+}
+
+.PageError-options > div div {
+  position: absolute;
+  margin: 0;
+  padding: 1rem 0.5rem;
+  width: 90%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-bottom: 4px solid #ddd;
+  bottom: 40px;
+  left: 5%;
+  mixn-height: 50px;
 }
 
 /***

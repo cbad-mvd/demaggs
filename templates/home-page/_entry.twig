@@ -26,6 +26,14 @@
 
 {% block content %}
 	{{ m_textpic.textpic(entry.tpBlocks) }}
+    <section class="row Video">
+		<h2>{{ entry.videoTitle }}</h2>
+        <div class="Video-wrapper">
+            <iframe src="{{ entry.videoUrl }}" width="400" height="225" frameborder="0"></iframe>
+        </div>
+        <p class="Video-caption" style="margin: 0.5rem; text-align: center;">{{ entry.videoDescription }}<p>
+    </section>
+
 {% endblock content %}
 
 {% block subcontent %}
@@ -63,7 +71,13 @@
 
 {% endblock %}
 
-{# -- Any JavaScript that should be included before </body> -- #}
 {% block bodyJs %}
-	{{ parent() }}
+    {{ parent() }}
+    <script src="/assets/js/jquery.fitvids.js"></script>
+    <script>
+    // Basic FitVids Test
+    $(".Video-wrapper").fitVids();
+    // Custom selector and No-Double-Wrapping Prevention Test
+    $(".Video-wrapper").fitVids({ customSelector: "iframe[src^='http://socialcam.com']"});
+    </script>
 {% endblock bodyJs %}

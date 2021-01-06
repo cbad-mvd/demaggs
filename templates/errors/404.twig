@@ -1,0 +1,28 @@
+{% extends "_layouts/site-base-checkout.twig" %}
+
+{# import macros #}
+{% import '_macros/_utils'   as m_utils %}
+
+{% block titleTag %}
+	<title>{{ globalVars.pageTitleBase }} Page Not Found!</title>
+{% endblock titleTag %}
+
+{% block content %}
+    {% set entry = craft.entries()
+        .search('404')
+        .one() %}
+    {% if entry %}
+        {% include "errors/_includes/error-section" %}
+    {% else %}
+        {# no entry found #}
+        <div class="PageError-body">
+            <h1>No results found</h1>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{% block pageJs %}
+    <script>
+    {{ m_utils.setProgress('s6', '', 'false') }}
+    </script>
+{% endblock pageJs %}
