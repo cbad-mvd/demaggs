@@ -3,19 +3,18 @@
 {% import _self as self %}
 
     {% if cat is null %}
-        {% set foodItems = craft.entries().section('menu').all() %}
-        {% set products = craft.products.type('supplies').limit(10).all() %}
+        {% set menuItems = craft.products.type('menuItems').limit(10).all() %}
     {% else %}
-        {% set foodItems = craft.entries().section('menu').relatedTo(cat) %}
-        {% set menuItems = craft.products.type('menuItems').relatedTo(cat) %}
+        {% set menuItems = craft.products.type('menuItems').relatedTo(cat).order('title') %}
     {% endif %}
 
+    {% set altClass = "" %}
     {% for item in menuItems.all() %}
         {# get variant for product item #}
         {% set variant = item.defaultVariant %}
 
         <div class="FoodItem">
-            <div class="FoodItem-info"> 
+            <div class="FoodItem-info {{ altClass }}"> 
                 <h5 class="FoodItem-title">{{ item.title }}</h5>
                 <p>{{ item.fiDescription }}</p>
                 <p class="FoodItem-price">{{ variant.price | currency('USD') }}</p>
@@ -42,6 +41,10 @@
             {% set img = item.fiImage.one() %}
             <span class="FoodItem-image" style="background-image: url({{ img.url }});"></span>
         </div>
+
+
+        {% set altClass = (altClass == "") ? "swapOrder" : "" %}
+
     {% endfor %}
 
 {% endmacro showMenuItems %}
@@ -57,8 +60,6 @@
             {{ actionInput('commerce/cart/update-cart') }}
             {{ hiddenInput('successMessage', ('Updated line items.')|hash) }}
             {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
-                    
-            {# {{ redirectInput('/store/cart') }} #}
             {{ csrfInput() }}
         {% endif %}
 
@@ -221,34 +222,3 @@
     {% endif %}   
     
 {% endmacro showOrderDetails %}
-
-{#
-    <div class="itemRow">
-        <span class="qty hdr">Qty</span>
-        <span class="name hdr">Description</span>
-        <span class="price hdr">Price</span>
-        <span class="remove hdr">Remove</span>
-    </div>
-    {% for item in cart.lineItems %}
-    <div class="itemRow">
-        {% set liID = ("lineItems["~item.id~"]") %}
-        {% set liRemove = ("lineItems["~item.id~"][remove]") %}
-        {% set liQty = ("lineItems["~item.id~"][qty]") %}
-
-        {{ hiddenInput('entryId', liID) }}
-        {{ input('number', liQty, item.qty, { class: 'qty', min: '1', max: '99',  }) }}
-        <span class="name">{{ item.description }}</span>
-        <span class="price">{{ (item.price * item.qty) | currency(cart.currency) }}</span>
-        {{ input('checkbox', liRemove, '1', { class: 'remove'  }) }} 
-    </div>
-    {% endfor %}
-    <div class="itemRow">
-        <hr>
-    </div>
-    <div class="itemRow">
-        <span class="qty">&nbsp;</span>
-        <span class="name heavy">Order Total:</span>
-        <span class="price  heavy">{{ cart.totalPrice | currency(cart.currency) }}</span>
-        <span class="remove">&nbsp;</span>
-    </div>
-#}

@@ -6,23 +6,25 @@ name: 'Intro Hero'
 searchable: false
 settings:
   allowSelfRelations: false
-  allowedKinds: null
+  allowUploads: true
+  allowedKinds:
+    - image
   defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
   defaultUploadLocationSubpath: ''
   limit: '1'
   localizeRelations: false
   previewMode: full
-  restrictFiles: ''
+  restrictFiles: '1'
   selectionLabel: ''
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
-  singleUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+  singleUploadLocationSource: 'volume:002ce052-0322-410d-8a96-4e8917312b35'
   singleUploadLocationSubpath: ''
   source: null
   sources: '*'
   targetSiteId: null
-  useSingleFolder: false
+  useSingleFolder: true
   validateRelatedElements: false
   viewMode: list
 translationKeyFormat: null

@@ -4,8 +4,7 @@
 {% import '_macros/_srcset' as m_srcset %}
 {% import _self as self %}
 
-{% set myItems = craft.entries().section('intros').search(slug) %}
-{% set item = myItems.one() %}
+{% set item = craft.entries().section('intros').slug(slug).one() %}
 
 <section class="MainContent">
         <div class="Intro">
@@ -17,7 +16,7 @@
             </div>
 
             {# set top hero image with srcset tags #}
-            {{ m_srcset.srcset(item.introHero.one(), 'hero') }}
+            {{ m_srcset.srcset(item.introHero.one(), 'hero') }} 
 
             <div class="Intro-heading">
                 <h2>{{ item.introTitle }}</h2>
@@ -32,8 +31,7 @@
 {% import '_macros/_srcset' as m_srcset %}
 {% import _self as self %}
 
-{% set myItems = craft.entries().section('intros').search(slug) %}
-{% set item = myItems.one() %}
+{% set item = craft.entries().section('intros').slug(slug).one() %}
 
 <section class="MainContent">
     <div class="Intro">

@@ -1,4 +1,5 @@
-{% extends "_layouts/site-base-page.twig" %}
+{# {% extends "_layouts/site-base-page.twig" %} #}
+{% extends "_layouts/site-base-checkout.twig" %}
 {% if not currentUser %}
     {% redirect "/login" %}
 {% endif %}
@@ -8,15 +9,16 @@
 {% import '_macros/_srcset'  as m_srcset %}
 {% import '_macros/_intros'  as m_intros %}
 {% import '_macros/_textpic' as m_textpic %}
+{% import '_macros/_utils'   as m_utils %}
 
 {% block titleTag %}
 	<title>{{ globalVars.pageTitleBase }} Order History</title>
 {% endblock titleTag %}
-
+{#
 {% block pageintro %}
 	{{ m_intros.showIntro('account') }}
 {% endblock pageintro %}
-
+#}
 {% block content %}
     {% set customerOrders = craft.orders.customerId(craft.commerce.customers.customer).isCompleted(true).all() %}
     {% set oddClass = "" %}
@@ -57,3 +59,8 @@
 
 {% endblock content %}
 
+{% block pageJs %}
+    <script>
+    {{ m_utils.setProgress('s6', 'Order History', 'false') }}
+    </script>
+{% endblock pageJs %}

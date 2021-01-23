@@ -1,0 +1,47 @@
+fieldLayouts:
+  242dd047-a604-4cfc-af62-3dcaa5707774:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\TitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: d940bb15-6740-4d0f-b1c7-d8e53c0ed583
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+handle: heros
+hasUrls: true
+name: Heros
+settings:
+  path: '@assetPath/img/heros'
+sortOrder: 6
+type: craft\volumes\Local
+url: '@assetUrl/img/heros'

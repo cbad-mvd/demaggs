@@ -2203,6 +2203,11 @@ footer {
     height: auto;
     background-position: right center;
   }
+  .FoodItem .swapOrder {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+  }
 }
 
 /*
@@ -2660,6 +2665,7 @@ h1.checkoutTitle {
 
 .UserForm h1 {
   margin: 0.5rem 0.75rem;
+  margin: 0 0.75rem;
   text-transform: uppercase;
 }
 
@@ -2669,6 +2675,7 @@ h1.checkoutTitle {
 
 .UserForm-block {
   margin: 0 1rem 2rem 1rem;
+  margin: 0 0 2rem 0;
   padding: 0.5rem;
   background-color: #eee;
   border: 1px solid #ddd;
@@ -2702,6 +2709,11 @@ h1.checkoutTitle {
   margin-top: 3rem;
 }
 
+.UserForm .btnRow .button, .UserForm .btnRow button, .UserForm .btnRow input[type="submit"], .UserForm .btnRow input[type="reset"], .UserForm .btnRow input[type="button"] {
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+}
+
 .UserForm .btnRow .button.off {
   margin-right: 1rem;
 }
@@ -2728,11 +2740,12 @@ h1.checkoutTitle {
 }
 
 @media (min-width: 550px) {
-  .UserForm {
-    width: 50%;
-  }
   .UserForm-block {
     margin: 0 .5rem;
+  }
+  .UserForm .btnRow .button, .UserForm .btnRow button, .UserForm .btnRow input[type="submit"], .UserForm .btnRow input[type="reset"], .UserForm .btnRow input[type="button"] {
+    padding: 0 0.75rem;
+    font-size: 100%;
   }
 }
 
@@ -2742,7 +2755,7 @@ h1.checkoutTitle {
 .PaymentBlock,
 .DetailsBlock,
 .AddrBlock {
-  width: 65%;
+  width: 95%;
 }
 
 .PaymentBlock .button.plus,
@@ -2775,15 +2788,15 @@ h1.checkoutTitle {
   .PaymentBlock,
   .DetailsBlock,
   .AddrBlock {
-    width: 60%;
+    width: 75%;
   }
 }
 
-@media (min-width: 550px) {
+@media (min-width: 1200px) {
   .PaymentBlock,
   .DetailsBlock,
   .AddrBlock {
-    width: 60%;
+    width: 65%;
   }
 }
 
@@ -2846,29 +2859,13 @@ h1.checkoutTitle {
 
 @media (min-width: 750px) {
   .PaymentBlock {
-    width: 70%;
+    width: 75%;
   }
 }
 
-@media (min-width: 550px) {
+@media (min-width: 1200px) {
   .PaymentBlock {
-    width: 70%;
-  }
-}
-
-.PaymentBlockX {
-  width: 95%;
-}
-
-@media (min-width: 750px) {
-  .PaymentBlockX {
-    width: 75%;
-  }
-}
-
-@media (min-width: 550px) {
-  .PaymentBlockX {
-    width: 75%;
+    width: 65%;
   }
 }
 
@@ -2977,11 +2974,11 @@ h1.checkoutTitle {
 
 @media (min-width: 750px) {
   .CartBlock {
-    width: 65%;
+    width: 75%;
   }
 }
 
-@media (min-width: 550px) {
+@media (min-width: 1200px) {
   .CartBlock {
     width: 65%;
   }

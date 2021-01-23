@@ -6,6 +6,7 @@ name: 'Item Image'
 searchable: false
 settings:
   allowSelfRelations: false
+  allowUploads: true
   allowedKinds:
     - image
   defaultUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
@@ -18,12 +19,12 @@ settings:
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
-  singleUploadLocationSource: 'volume:7b765381-8fc4-4192-b988-b9ef87908a75'
+  singleUploadLocationSource: 'volume:25528379-ee77-44ae-8938-f85a3c12e43f'
   singleUploadLocationSubpath: ''
   source: null
   sources: '*'
   targetSiteId: null
-  useSingleFolder: false
+  useSingleFolder: true
   validateRelatedElements: false
   viewMode: list
 translationKeyFormat: null
