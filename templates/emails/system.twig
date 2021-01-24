@@ -1,0 +1,29 @@
+{% set buttonColor = '#2980b9' %}
+{% import 'emails/includes/email_macros' as m %}
+{% import 'emails/includes/email_macros' as m %}
+{% extends 'emails/includes/email_layout' %}
+
+{% import '_macros/_fmt'     as m_fmt %}
+
+{% block preview %}
+Urgent message, be sure to open it.
+{% endblock %}
+
+{% block header %}
+<span style="width: 100%; display: block; margin: 1rem 0; text-align: center">
+    {% set logo = globalVars.companyLogoEmail.one() %}
+    {% set logoUrl = logo.url %}
+    {% set logoUrl = "https://demaggs.com/assets/img/demaggs-email-logo-200.png" %}
+    <a href="{{ alias('@web') }}">
+        <img style="display: inline-block; width: 200px;" src="{{ logoUrl }}" alt="{{ logo.altText }}" />
+    </a>
+</span>
+{% endblock %}
+
+{% block footer %}
+{{ globalVars.companyStreet }} &bull; {{ globalVars.companyCSZ }} &bull;  {{ globalVars.companyPhone }}
+{% endblock %}
+
+{% block content %}
+    {{ body }}
+{% endblock %}

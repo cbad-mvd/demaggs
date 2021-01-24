@@ -13,7 +13,7 @@ Urgent message, be sure to open it.
 <span style="width: 100%; display: block; margin: 1rem 0; text-align: center">
     {% set logo = globalVars.companyLogoEmail.one() %}
     {% set logoUrl = logo.url %}
-    {% set logoUrl = "https://demaggs.com/assets/img/demaggs-black_2020-12-16-214222.png" %}
+    {% set logoUrl = "https://demaggs.com/assets/img/demaggs-email-logo-200.png" %}
     <a href="{{ alias('@web') }}">
         <img style="display: inline-block; width: 200px;" src="{{ logoUrl }}" alt="{{ logo.altText }}" />
     </a>
@@ -121,7 +121,7 @@ Urgent message, be sure to open it.
         </tbody>
     </table>
 {% else %}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo dignissimos, nostrum quam illo unde quaerat facere perspiciatis. Voluptatum, amet nesciunt explicabo! Id nam vitae distinctio repudiandae voluptatibus ducimus.
+    {{ body }}
 {% endif %}
 
 {% endblock %}
