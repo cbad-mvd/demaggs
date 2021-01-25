@@ -1,9 +1,9 @@
-dateModified: 1611424420
+dateModified: 1611532620
 email:
-  fromEmail: jmayall@surething.com
-  fromName: 'Demaggs Dining'
-  replyToEmail: jmayall@surething.com
-  template: emails/test
+  fromEmail: $SYS_EMAIL_ADDR
+  fromName: $SYS_EMAIL_FROM
+  replyToEmail: $SYS_EMAIL_RETURN
+  template: emails/system
   transportSettings:
     apiKey: $MAILGUN_API
     domain: mg.demaggs.com

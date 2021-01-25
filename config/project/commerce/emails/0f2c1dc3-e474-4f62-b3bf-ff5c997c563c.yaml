@@ -7,5 +7,5 @@ plainTextTemplatePath: ''
 recipientType: customer
 replyTo: info@demaggs.com
 subject: 'Congratulations! Your Event with Demaggs Dining has been booked!'
-templatePath: emails/test
+templatePath: emails/confirmation
 to: null

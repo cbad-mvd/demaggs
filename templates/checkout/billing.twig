@@ -33,6 +33,16 @@
         <input id="billingAddress-countryId" type="hidden" name="billingAddress[countryId]" value="{{ globalVars.usCountryId }}">
         {{ hiddenInput('gatewayId', globalVars.stripeGatewayId) }}
 
+        {% set requiredFields = {   "errorId" : "#errors", 
+            "#billingAddress-firstName" : "→ First Name is required",
+            "#billingAddress-lastName" : "→ Last Name is required",
+            "#eventEmail" : "→ Email is required",
+            "#billingAddress-phone" : "→ Phone is required",
+            "#billingAddress-address1" : "→ Address is required",
+            "#billingAddress-city" : "→ City is required",
+            "#billingAddress-zipCode" : "→ Zip code is required" } | json_encode() 
+        %}
+
         <section row>
             <div class="UserForm AddrBlock">
                 <h1 class="">Billing Address</h1>
@@ -57,9 +67,13 @@
                             <input type="hidden" name="billingAddressId" value="{{ billingId }}">
                         {% endif %}
                     </div>
+
+                    {# catch required field errors here #}
+                    <p id="errors" class="error"></p>
+
                     <div class="btnRow">
                         <a class="button off" href="/checkout/details">Previous</a>
-                        <input class="button" type="submit" value="Continue">
+                        <input class="button jsCheckRequired" data-required='{{ requiredFields }}' type="submit" value="Continue">
                     </div>
                 </div>
             </div>

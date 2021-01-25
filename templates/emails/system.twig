@@ -13,7 +13,7 @@ Important message, be sure to open it.
     {% set logo = globalVars.companyLogoEmail.one() %}
     {% set logoUrl = logo.url %}
     {% set logoUrl = "https://demaggs.com/assets/img/demaggs-email-logo-light-200.png" %}
-    <a href="{{ alias('@web') }}">
+    <a style="text-shadow: none; color: #eee" href="{{ alias('@web') }}">
         <img style="display: inline-block; width: 200px;" src="{{ logoUrl }}" alt="{{ logo.altText }}" />
     </a>
 </span>
@@ -25,6 +25,14 @@ Important message, be sure to open it.
 
 {% block content %}
     {% if body is defined %}{
-        { body }}
+        {{ body }}
+    {% else %}  
+        <h2>Heading...</h2>      
+        <p>now is the time for all men to come to the aid of their country...</p>
+        <ul>
+            <li>one</li>
+            <li>one</li>
+            <li>one</li>
+        </ul>
     {% endif %}
 {% endblock %}

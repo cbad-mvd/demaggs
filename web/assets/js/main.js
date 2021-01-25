@@ -300,33 +300,42 @@ $(document).ready(function () {
 
 	});
 
-	$('.js-saveAddress').click(function() {
-		var shippingId = $("input[name='shippingAddress[id]']").val();
-		var fName = $("input[name='shippingAddress[firstName]']").val();
-		var lName = $("input[name='shippingAddress[lastName]']").val();
+	$('.jsSaveAddress').click(function() {
+		var $this = $(this);
+		var flds = $this.data('required');
 
-		var data = {
-			'action': 'commerce/cart/update-cart',
-			'shippingAddressId': shippingId,
-			'shippingAddress[fullName]': (fName + ' ' + lName),
+		if ( !checkRequiredFlds(flds) ) {
+			event.preventDefault();
+			return;
 		}
+		else {
+			var shippingId = $("input[name='shippingAddress[id]']").val();
+			var fName = $("input[name='shippingAddress[firstName]']").val();
+			var lName = $("input[name='shippingAddress[lastName]']").val();
 
-		$.ajax({
-			type: "POST",
-			dataType: 'json',
-			headers: {
-				"X-CSRF-Token" : window.csrfTokenValue,
-			},
-			url: '/',
-			data: data,
-			success: function(response){
-				location.reload();
-				console.log("successfully updated cart", response, data);
-			},
-			fail :function(response) {
-				console.log("error updating cart", response, data);
+			var data = {
+				'action': 'commerce/cart/update-cart',
+				'shippingAddressId': shippingId,
+				'shippingAddress[fullName]': (fName + ' ' + lName),
 			}
-		});
+
+			$.ajax({
+				type: "POST",
+				dataType: 'json',
+				headers: {
+					"X-CSRF-Token" : window.csrfTokenValue,
+				},
+				url: '/',
+				data: data,
+				success: function(response){
+					location.reload();
+					console.log("successfully updated cart", response, data);
+				},
+				fail :function(response) {
+					console.log("error updating cart", response, data);
+				}
+			});
+		}			
 
 	});
 
@@ -372,15 +381,14 @@ $(document).ready(function () {
 		alert($('#eventDayOfWeek').val());
 	});
 
-	$('.jsCheckRequired').click( function() {
-		var $this = $(this);
-		var flds = $this.data('required');
+	function checkRequiredFlds( flds ) {
 		var errorId = flds['errorId'];
 		var errorMsg = "";
 		var fldVal = "";
 		var fldMsg = "";
+		var retVal = true;
 
-		$('.jsErrorMsg').text('');
+		$(errorId).html("");
 		$.each( flds, function( key, value ) {
 			fldVal = $(key).val();
 			fldMsg = value;
@@ -390,9 +398,21 @@ $(document).ready(function () {
 					// alert('setting '+errorId+' to '+value);
 					errorMsg = (errorMsg == '') ? fldMsg : (errorMsg + '<br>' + fldMsg);
 					$(errorId).html(errorMsg);
-					event.preventDefault();
+					retVal = false;
 				}
 			}
 		});
+
+		return(retVal);
+	}
+
+	$('.jsCheckRequired').click( function() {
+		var $this = $(this);
+		var flds = $this.data('required');
+
+		if ( !checkRequiredFlds(flds) ) {
+			event.preventDefault();
+		}
 	});
-});
+
+});			// end of doc(ready)

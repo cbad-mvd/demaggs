@@ -13,7 +13,7 @@ Urgent message, be sure to open it.
     {% set logo = globalVars.companyLogoEmail.one() %}
     {% set logoUrl = logo.url %}
     {% set logoUrl = "https://demaggs.com/assets/img/demaggs-email-logo-light-200.png" %}
-    <a href="{{ alias('@web') }}">
+    <a style="text-shadow: none; color: #eee" href="{{ alias('@web') }}">
         <img style="display: inline-block; width: 200px;" src="{{ logoUrl }}" alt="{{ logo.altText }}" />
     </a>
 </span>
@@ -121,7 +121,7 @@ Urgent message, be sure to open it.
     </table>
 {% else %}
     {% if body is defined %}{
-        { body }}
+        {{ body }}
     {% endif %}
 {% endif %}
 

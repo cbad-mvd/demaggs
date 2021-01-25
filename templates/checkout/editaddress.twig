@@ -31,6 +31,16 @@
             {{ redirectInput('checkout/review') }}
         {% endif %}
 
+        {% set requiredFields = {   "errorId" : "#errors", 
+            "#shippingAddress-firstName" : "→ First Name is required",
+            "#shippingAddress-lastName" : "→ Last Name is required",
+            "#eventEmail" : "→ Email is required",
+            "#shippingAddress-phone" : "→ Phone is required",
+            "#shippingAddress-address1" : "→ Address is required",
+            "#shippingAddress-city" : "→ City is required",
+            "#shippingAddress-zipCode" : "→ Zip code is required" } | json_encode() 
+        %}
+
         <section row>
             <div id="setAddr" class="UserForm AddrBlock">
                 <h1 class="jsLoginTitle">
@@ -53,6 +63,9 @@
                     {% set isPrimaryBilling = cart.customer.primaryBillingAddressId == addressId %}
                     {% set isPrimaryShipping = cart.customer.primaryShippingAddressId == addressId %}
 
+                    {# catch required field errors here #}
+                    <p id="errors" class="error"></p>
+
                     <div class="btnRow">
                         <div>
                             {% if redirect %}
@@ -62,7 +75,7 @@
                             {% endif %}
                         </div>
                         <div>
-                            <input class="button js-saveAddress" type="submit" value="Save Address">
+                            <input class="button jsSaveAddress" data-required='{{ requiredFields }}' type="submit" value="Save Address">
                         </div>
                     </div>
                 </div>
