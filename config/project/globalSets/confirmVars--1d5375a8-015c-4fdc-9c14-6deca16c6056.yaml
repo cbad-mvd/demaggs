@@ -1,0 +1,99 @@
+fieldLayouts:
+  5e24740c-f092-4e79-ab18-1f622a79da5b:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 51125066-31c0-48c6-ae54-b9e68a129e6d
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 0ed44741-15d0-40db-b772-c90e4ba85717
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: f98f3b46-1145-4175-ae15-821a1c7a308d
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 5b3b288a-f16a-4b78-8c59-a838f390de7c
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 46ec17d9-9ea7-4bfe-b0d0-c09308461572
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e79e6688-bd1f-476c-baf6-ea37902c6eeb
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 462741fb-e15c-4067-97a9-62f96ec0d5bf
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 09a78864-7e95-4b02-92b4-6c7d79b9f121
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 4503face-4c76-45d0-999b-a9965cd752c5
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 8b7917c5-edb8-47c2-990b-8c4e6dbbbd7e
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Labels
+        sortOrder: 1
+handle: confirmVars
+name: 'Confirmation Vars'

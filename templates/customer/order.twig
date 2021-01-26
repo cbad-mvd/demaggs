@@ -20,6 +20,9 @@
 
 {% block headStyles %}
     <style media="print">
+        html {
+            font-size: 75%;
+        }
         header,
         footer,
         footer.FooterSections,
@@ -37,7 +40,7 @@
             margin: 1rem 0;
         }
         .UserOrder-info .selections {
-            page-break-before: always;
+            page-break-before: avoid;
         }
         .UserOrder-info {
             padding: 0 1rem;
@@ -65,17 +68,17 @@
         </div>
         <div class="UserOrder">
             <div class="UserOrder-info">
-                    <h3>Thank you for your order!</h3>
+                    <h3>{{ confirmVars.confirmHdr }}</h3>
+                    <p>{{ confirmVars.confirmIntro }}</p>
                 <div class="details">
                     <span>
-                        <h5>Customer Information</h5>
+                        <h5>{{ confirmVars.confirmCustomer }}</h5>
                         <p>{{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}</p>
-                        <p>Phone: {{ order.shippingAddress.phone }}</p>
-                        <p>Order Number: {{ m_fmt.OrderNum(order.id) }}</p>
-                        <p>Order Date: {{ order.dateOrdered | date }}</p>
-                        <p>Order Total: {{ order.totalPrice | currency(order.currency) }}</p>
+                        <p>{{ confirmVars.confirmOrderNum }}: {{ m_fmt.OrderNum(order.id) }}</p>
+                        <p>{{ confirmVars.confirmOrderDate }}: {{ order.dateOrdered | date }}</p>
+                        <p>{{ confirmVars.confirmOrderTotal }}: {{ order.totalPrice | currency(order.currency) }}</p>
                         <p>&nbsp;</p>
-                        <h5>Customer Comments</h5>
+                        <h5>{{ confirmVars.confirmComments }}</h5>
                         {% if order.eventComments %}
                             <p>{{ order.eventComments }}</p>
                         {% endif %}
@@ -84,38 +87,39 @@
                     </span>
                     <span>
                     {% if order.shippingAddress %}
-                        <h5>Event Details</h5>
+                        <h5>{{ confirmVars.confirmEvent }}</h5>
                         <p>{{ order.eventDate | date('l F j, Y') }}</p>
-                        <p>Starts at: {{ order.eventTime | date('g:i A') }}</p>
-                        <p>Meal Served at: {{ order.eventMealTime ? order.eventMealTime | date('g:i A') : order.eventTime | date('g:i A') }}</p>
+                        <p>{{ events.timeHdr }}: {{ order.eventTime | date('g:i A') }}</p>
+                        <p>{{ events.mealTimeHdr }}: {{ order.eventMealTime ? order.eventMealTime | date('g:i A') : order.eventTime | date('g:i A') }}</p>
                         <p>{{ (order.eventOven == 'true') ? "A Stove/Oven is available" : "A Stove/Oven is not available" }}</p>
                         <p>&nbsp;</p>
-                        <h5>Event Address</h5>
+                        <h5>{{ confirmVars.confirmAddress }}</h5>
                         <p>{{ order.shippingAddress.address1 }}</p>
                         {% if order.shippingAddress.address2 %}
                             <p>{{ order.shippingAddress.address2 }}</p>
                         {% endif %}
                         <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.state }} {{ order.shippingAddress.zipCode }}</p>
-                        <p>Contact: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</p>
-                        <p>Email: {{ order.email }}</p>
+                        <p>{{ events.contactHdr }}: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</p>
+                        <p>{{ events.emailHdr }}: {{ order.email }}</p>
+                        <p>{{ events.phoneHdr }}: {{ order.shippingAddress.phone }}</p>
                     {% endif %}
                     </span>
                 </div>
 
                 <div class="selections">
-                    <h5>Menu Selections</h5>
+                    <h5>{{ confirmVars.confirmSelections }}</h5>
                     <div class="lineItem hdr">
                             <span class="itemQty hdr">
-                                Qty
+                                {{ cartVars.itemQty }}
                             </span>
                             <span class="itemDesc hdr">
-                                Description
+                                {{ cartVars.itemDesc }}
                             </span>
                             <span class="itemPrice hdr">
-                                Price
+                                {{ cartVars.itemPrice }}
                             </span>
                             <span class="itemTotal hdr">
-                                Total
+                                {{ cartVars.itemTotal }}
                             </span>
                     </div>
                     {% for item in order.lineItems %}
@@ -146,7 +150,7 @@
                                 &nbsp;
                             </span>
                             <span class="itemPrice">
-                                Discount:
+                                {{ cartVars.cartDiscount }}
                             </span>
                             <span class="itemTotal">
                                 {{ order.getTotalDiscount()|commerceCurrency(order.currency) }}
@@ -161,7 +165,7 @@
                                 &nbsp;
                             </span>
                             <span class="itemPrice hdr">
-                                Total:
+                                {{ cartVars.cartTotal }}
                             </span>
                             <span class="itemTotal hdr">
                                 {{ order.totalPrice | currency(order.currency) }}

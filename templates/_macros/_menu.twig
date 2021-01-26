@@ -5,7 +5,7 @@
     {% if cat is null %}
         {% set menuItems = craft.products.type('menuItems').limit(10).all() %}
     {% else %}
-        {% set menuItems = craft.products.type('menuItems').relatedTo(cat).order('title') %}
+        {% set menuItems = craft.products.type('menuItems').relatedTo(cat).orderBy('title') %}
     {% endif %}
 
     {% set altClass = "" %}
