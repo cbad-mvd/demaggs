@@ -1,4 +1,4 @@
-dateModified: 1611633189
+dateModified: 1612371118
 email:
   fromEmail: $SYS_EMAIL_ADDR
   fromName: $SYS_EMAIL_FROM
@@ -13,6 +13,7 @@ plugins:
   commerce:
     edition: pro
     enabled: true
+    licenseKey: DBBX4ETIETGWPG0TMR079LJJ
     schemaVersion: 3.2.13
     settings:
       activeCartDuration: 3600
@@ -59,6 +60,7 @@ plugins:
   freeform:
     edition: pro
     enabled: true
+    licenseKey: LKAPJZ1PZ7C42KYCNDFRBX99
     schemaVersion: 3.1.0
     settings:
       ajaxByDefault: '1'
@@ -140,5 +142,5 @@ system:
   live: true
   name: demaggs
   retryDuration: null
-  schemaVersion: 3.5.13
+  schemaVersion: 3.6.1
   timeZone: America/Los_Angeles
