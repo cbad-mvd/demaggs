@@ -116,3 +116,8 @@
         #}
     {% endif %}   {# category is defined #}
 {% endblock content %}
+
+{% block bodyJs %}
+    {{ parent() }}
+    <script src="/assets/js/scroll-show.js"></script>
+{% endblock bodyJs %}

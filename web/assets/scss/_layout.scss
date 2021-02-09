@@ -2283,7 +2283,25 @@ form {
 }
 
 .entrance-left {
-	animation: slide-left 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: scale-in-center 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+}
+
+.slide-left {
+	animation: slide-left 2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+.motionUpxxx {
+	animation: motionUp 1.5s both;
+}
+
+.motionUp {
+	transform: translateY(150px);
+	animation: come-in 0.8s ease forwards;  
+}
+
+.already-visible {
+	transform: translateY(0);
+	animation: none;
 }
 
 /***

@@ -784,6 +784,76 @@ label[for=textarea] {
   }
 }
 
+/**
+ * ----------------------------------------
+ * animation slide-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-left {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes motionUpxxx {
+  0% {
+    opacity: 0;
+    -webkit-transform: translatey(500px);
+            transform: translatey(500px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translatey(0);
+            transform: translatey(0);
+  }
+}
+
+@keyframes motionUpxxx {
+  0% {
+    opacity: 0;
+    -webkit-transform: translatey(500px);
+            transform: translatey(500px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translatey(0);
+            transform: translatey(0);
+  }
+}
+
+@-webkit-keyframes motionUp {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes motionUp {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
 .row {
   width: 100%;
   margin: 2rem 0;
@@ -3418,8 +3488,32 @@ form.loose input[type="text"] {
 }
 
 .entrance-left {
-  -webkit-animation: slide-left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          animation: slide-left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: scale-in-center 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          animation: scale-in-center 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.slide-left {
+  -webkit-animation: slide-left 2s cubic-bezier(0.23, 1, 0.32, 1) both;
+          animation: slide-left 2s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.motionUpxxx {
+  -webkit-animation: motionUp 1.5s both;
+          animation: motionUp 1.5s both;
+}
+
+.motionUp {
+  -webkit-transform: translateY(150px);
+          transform: translateY(150px);
+  -webkit-animation: come-in 0.8s ease forwards;
+          animation: come-in 0.8s ease forwards;
+}
+
+.already-visible {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-animation: none;
+          animation: none;
 }
 
 /***
