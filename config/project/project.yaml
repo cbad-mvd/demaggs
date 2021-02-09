@@ -1,4 +1,4 @@
-dateModified: 1612371118
+dateModified: 1612907253
 email:
   fromEmail: $SYS_EMAIL_ADDR
   fromName: $SYS_EMAIL_FROM
@@ -57,70 +57,6 @@ plugins:
     edition: standard
     enabled: false
     schemaVersion: 1.0.0
-  freeform:
-    edition: pro
-    enabled: true
-    licenseKey: LKAPJZ1PZ7C42KYCNDFRBX99
-    schemaVersion: 3.1.0
-    settings:
-      ajaxByDefault: '1'
-      alertNotificationRecipients: null
-      autoScrollToErrors: '1'
-      badgeType: all
-      blockedEmails: null
-      blockedEmailsError: 'Invalid Email Address'
-      blockedIpAddresses: null
-      blockedKeywords: null
-      blockedKeywordsError: 'Invalid Entry Data'
-      customErrorMessage: null
-      customHoneypotName: null
-      defaultTemplates: '1'
-      defaultView: submissions
-      digestRecipients: null
-      displayFeed: true
-      emailTemplateDirectory: emails/payments/
-      emailTemplateStorage: template
-      fieldDisplayOrder: name
-      fillWithGet: ''
-      footerScripts: false
-      formSubmitDisable: ''
-      formSubmitExpiration: null
-      formTemplateDirectory: null
-      formattingTemplate: flexbox.html
-      freeformHoneypot: true
-      freeformHoneypotEnhancement: false
-      hideBannerDemo: '1'
-      hideBannerOldFreeform: false
-      minimumSubmitTime: null
-      pluginName: Freeform
-      purgableSpamAgeInDays: null
-      purgableSubmissionAgeInDays: '0'
-      purgableUnfinalizedAssetAgeInMinutes: 180
-      recaptchaBehaviour: display_error
-      recaptchaEnabled: false
-      recaptchaErrorMessage: 'Please verify that you are not a robot.'
-      recaptchaKey: null
-      recaptchaMinScore: 0.5
-      recaptchaSecret: null
-      recaptchaSize: normal
-      recaptchaTheme: light
-      recaptchaType: v2_checkbox
-      removeNewlines: ''
-      renderFormHtmlInCpViews: '1'
-      salesforce_client_id: null
-      salesforce_client_secret: null
-      salesforce_password: null
-      salesforce_username: null
-      scriptInsertLocation: footer
-      sessionEntryMaxCount: 50
-      sessionEntryTTL: 10800
-      showErrorsForBlockedEmails: false
-      showErrorsForBlockedKeywords: false
-      showTutorial: ''
-      spamFolderEnabled: true
-      spamProtectionBehaviour: simulate_success
-      submissionThrottlingCount: null
-      submissionThrottlingTimeFrame: null
   mailgun:
     edition: standard
     enabled: true
