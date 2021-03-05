@@ -1,8 +1,8 @@
 {
   "require": {
     "barrelstrength/sprout-encode-email": "2.0.7",
-    "craftcms/cms": "3.6.4.1",
-    "craftcms/commerce": "3.2.14.1",
+    "craftcms/cms": "3.6.8",
+    "craftcms/commerce": "3.2.17",
     "craftcms/commerce-stripe": "2.3.2.1",
     "craftcms/contact-form": "2.2.7",
     "craftcms/mailgun": "1.4.3",

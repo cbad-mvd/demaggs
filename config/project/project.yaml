@@ -1,4 +1,4 @@
-dateModified: 1612907253
+dateModified: 1614962798
 email:
   fromEmail: $SYS_EMAIL_ADDR
   fromName: $SYS_EMAIL_FROM
@@ -78,5 +78,5 @@ system:
   live: true
   name: demaggs
   retryDuration: null
-  schemaVersion: 3.6.1
+  schemaVersion: 3.6.6
   timeZone: America/Los_Angeles
